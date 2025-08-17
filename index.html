@@ -6,8 +6,8 @@
 
   <title>ZenonEl - Developer Portfolio | Портфолио разработчика</title>
 
-  <meta name="description" content="Portfolio of ZenonEl, a developer creating tools like TelegramMediaRelayBot. Explore my projects on GitHub and follow my journey on Mastodon.">
-  <meta name="keywords" content="ZenonEl, developer, portfolio, github, telegram bot, projects, разработчик, портфолио, проекты, телеграм бот">
+  <meta name="description" content="Portfolio of ZenonEl, a developer creating tools like TelegramMediaRelayBot and RemoteGamepad. Explore my projects on GitHub and follow my journey on Mastodon.">
+  <meta name="keywords" content="ZenonEl, developer, portfolio, github, telegram bot, remote gamepad, projects, разработчик, портфолио, проекты, телеграм бот, удаленный геймпад">
   <meta name="author" content="ZenonEl">
 
   <link rel="canonical" href="https://zenonel.github.io/">
@@ -118,6 +118,124 @@
     .links a i {
       font-size: 1.2rem;
     }
+
+    /* Новые стили для RemoteGamepad секции */
+    .project-section {
+      margin-top: 20px;
+      position: relative;
+    }
+    
+    .project-trigger {
+      background-color: #ff6b35;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+    
+    .project-trigger:hover {
+      background-color: #e55a2b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(255, 107, 53, 0.3);
+    }
+    
+    .project-info {
+      background: #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 15px;
+      border-left: 4px solid #ff6b35;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    
+    .project-info.show {
+      opacity: 1;
+      max-height: 500px;
+      margin-top: 15px;
+    }
+    
+    .project-title {
+      color: #ff6b35;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .project-description {
+      color: #ccc;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+    
+    .project-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .feature {
+      background: #444;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: #ddd;
+      text-align: center;
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .project-links a {
+      background-color: #ff6b35;
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .project-links a:hover {
+      background-color: #e55a2b;
+    }
+    
+    .project-links a i {
+      font-size: 1rem;
+    }
+    
+    .beta-badge {
+      background: #ff6b35;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-left: 8px;
+    }
   </style>
 </head>
 <body>
@@ -139,6 +257,65 @@
         <i class="fab fa-mastodon"></i> My Projects on Mastodon
       </a>
     </div>
+    <div class="project-section">
+      <button class="project-trigger" onclick="toggleProjectInfo()">
+        <i class="fas fa-gamepad"></i>
+        RemoteGamepad
+        <span class="beta-badge">BETA</span>
+      </button>
+      
+      <div class="project-info" id="projectInfo">
+        <div class="project-title">
+          <i class="fas fa-gamepad"></i>
+          RemoteGamepad
+          <span class="beta-badge">BETA</span>
+        </div>
+        
+        <div class="project-description">
+          Transform your smartphone into a wireless gamepad for your PC! Real-time control with minimal latency through a web interface. Perfect for situations where you can't connect a gamepad directly to your PC.
+        </div>
+        
+        <div class="project-features">
+          <div class="feature">�� Full Basic Gamepad Support</div>
+          <div class="feature">🌐 Web-based Interface</div>
+          <div class="feature">📱 Cross-platform</div>
+          <div class="feature">🔌 Virtual Device</div>
+          <div class="feature">🎨 Modern UI</div>
+          <div class="feature">🌍 Multi-language</div>
+        </div>
+        
+        <div class="project-links">
+          <a href="https://github.com/ZenonEl/RemoteGamepad" target="_blank">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://github.com/ZenonEl/RemoteGamepad/blob/main/README.md" target="_blank">
+            <i class="fas fa-book"></i> English README
+          </a>
+          <a href="https://github.com/ZenonEl/RemoteGamepad/blob/main/README.ru.md" target="_blank">
+            <i class="fas fa-book"></i> Русский README
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function toggleProjectInfo() {
+      const projectInfo = document.getElementById('projectInfo');
+      projectInfo.classList.toggle('show');
+      
+      if (projectInfo.classList.contains('show')) {
+        projectInfo.style.display = 'block';
+        setTimeout(() => {
+          projectInfo.classList.add('show');
+        }, 10);
+      } else {
+        projectInfo.classList.remove('show');
+        setTimeout(() => {
+          projectInfo.style.display = 'none';
+        }, 400);
+      }
+    }
+  </script>
 </body>
 </html>
