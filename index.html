@@ -6,14 +6,15 @@
 
         <title>ZenonEl - Developer Portfolio | Портфолио разработчика</title>
 
-        <meta name="description" content="Portfolio of ZenonEl, a developer creating tools like TelegramMediaRelayBot and RemoteGamepad. Explore my projects on GitHub and follow my journey on Mastodon.">
-        <meta name="keywords" content="ZenonEl, developer, portfolio, github, telegram bot, remote gamepad, projects, разработчик, портфолио, проекты, телеграм бот, удаленный геймпад">
+        <meta name="description" content="ZenonEl's developer portfolio. Creator of CrabVoice (real-time voice-over translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Open-source tools in Rust, TypeScript, Python.">
+        <meta name="keywords" content="ZenonEl, developer, portfolio, github, crabvoice, voice translation, real-time dubbing, video translation, remote gamepad, telegram bot, tauri, rust, голосовой перевод, озвучка видео, разработчик, портфолио, проекты, удаленный геймпад">
         <meta name="author" content="ZenonEl">
 
         <link rel="canonical" href="https://zenonel.github.io/">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
         <meta property="og:title" content="ZenonEl - Developer Portfolio">
-        <meta property="og:description" content="Where keystrokes mutate into Burroughs cut-ups (and syntax becomes poetry).">
+        <meta property="og:description" content="Open-source developer creating CrabVoice (real-time voice translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Tools in Rust, TypeScript, Python.">
         <meta property="og:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
         <meta property="og:url" content="https://zenonel.github.io/">
         <meta property="og:site_name" content="ZenonEl">
@@ -21,270 +22,65 @@
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="ZenonEl - Developer Portfolio">
-        <meta name="twitter:description" content="Where keystrokes mutate into Burroughs cut-ups (and syntax becomes poetry).">
+        <meta name="twitter:description" content="Open-source developer creating CrabVoice (real-time voice translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Tools in Rust, TypeScript, Python.">
         <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="/styles.css">
 
         <script src="https://app.rybbit.io/api/script.js" data-site-id="430" defer></script>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
         <script defer src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
-        <style>:root
+
+        <script type="application/ld+json">
         {
-            --primary-color: #4caf50;
-            --primary-hover: #388e3c;
-            --secondary-color: #247e2e;
-            --secondary-hover: #247e2e;
-            --background-dark: #1a1a1a;
-            --background-card: #2a2a2a;
-            --background-feature: #333;
-            --text-primary: #e0e0e0;
-            --text-secondary: #b0b0b0;
-            --text-muted: #ccc;
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "ZenonEl",
+            "url": "https://zenonel.github.io/",
+            "image": "https://avatars.githubusercontent.com/u/165126589?v=4",
+            "sameAs": [
+                "https://github.com/ZenonEl",
+                "https://mastodon.ml/@ZenonEl",
+                "https://lor.sh/@ZenonEl"
+            ],
+            "jobTitle": "Software Developer",
+            "knowsAbout": ["Rust", "TypeScript", "Python", "Tauri", "Open Source"]
         }
-
-        * {
-            box-sizing: border-box;
+        </script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "SoftwareApplication",
+                        "name": "CrabVoice",
+                        "url": "https://zenonel.github.io/crabvoice/",
+                        "applicationCategory": "MultimediaApplication",
+                        "operatingSystem": "Windows, Linux, Android",
+                        "description": "Cross-platform real-time voice-over translation for online videos. Supports 55+ platforms including YouTube, Twitch, VK, TikTok.",
+                        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "SoftwareApplication",
+                        "name": "RemoteGamepad",
+                        "url": "https://github.com/ZenonEl/RemoteGamepad",
+                        "applicationCategory": "GameApplication",
+                        "operatingSystem": "Linux",
+                        "description": "Transform your smartphone into a wireless gamepad for your PC with real-time control through a web interface."
+                    }
+                }
+            ]
         }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--background-dark);
-            background-image: url("data:image/svg+xml, %3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234caf50' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            color: var(--text-primary);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background: var(--background-card);
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            margin: 20px;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid var(--primary-color);
-            margin-bottom: 20px;
-            object-fit: cover;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #7eff83;
-            position: relative;
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
-            }
-            to {
-                text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
-            }
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-        }
-
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: #fff;
-            background-color: var(--primary-color);
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .links a:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-3px);
-        }
-
-        .links a i {
-            font-size: 1.2rem;
-        }
-
-        .project-section {
-            margin-top: 20px;
-            position: relative;
-        }
-
-        .project-trigger {
-            background-color: var(--secondary-color);
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .project-trigger:hover {
-            background-color: var(--secondary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(107, 114, 128, 0.3);
-        }
-
-        .project-info {
-            background: var(--background-feature);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-top: 15px;
-            border-left: 4px solid var(--secondary-color);
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .project-info.show {
-            opacity: 1;
-            max-height: 500px;
-            margin-top: 15px;
-        }
-
-        .project-title {
-            color: var(--secondary-color);
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .project-description {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .project-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-bottom: 15px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .feature {
-            background: #444;
-            padding: 8px 12px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .project-links a {
-            background-color: var(--secondary-color);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .project-links a:hover {
-            background-color: var(--secondary-hover);
-        }
-
-        .project-links a i {
-            font-size: 1rem;
-        }
-
-        .beta-badge {
-            background: var(--secondary-color);
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-left: 8px;
-        }
-
-        @media(max-width: 768px) {
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
-
-            .project-features {
-                grid-template-columns: 1fr;
-                list-style: none;
-                padding: 0;
-            }
-        }
-    </style>
+        </script>
 </head>
 <body>
     <main class="container">
@@ -298,6 +94,10 @@
             <a href="https://github.com/ZenonEl" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-github" aria-hidden="true"></i>
                 GitHub
+            </a>
+            <a href="/crabvoice/">
+                <i class="fas fa-microphone" aria-hidden="true"></i>
+                CrabVoice
             </a>
             <a href="https://zenonel.github.io/TelegramMediaRelayBot-Site/" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-robot" aria-hidden="true"></i>
@@ -313,8 +113,54 @@
             </a>
         </nav>
 
+        <section class="project-section" aria-labelledby="crabvoice-title">
+            <h2 id="crabvoice-title" class="project-trigger" role="button" tabindex="0" onclick="toggleProjectInfo('crabvoiceInfo')" onkeydown="handleKeyDown(event, 'crabvoiceInfo')">
+                <i class="fas fa-microphone" aria-hidden="true"></i>
+                CrabVoice
+                <span class="version-badge">v1.0.0</span>
+            </h2>
+
+            <article class="project-info" id="crabvoiceInfo" hidden>
+                <header>
+                    <h3 class="project-title">
+                        <i class="fas fa-microphone" aria-hidden="true"></i>
+                        CrabVoice
+                        <span class="version-badge">v1.0.0</span>
+                    </h3>
+                </header>
+
+                <p class="project-description">
+                    Real-time voice-over translation for online videos. Watch YouTube, Twitch, VK, TikTok and 55+ other platforms in your language with instant AI-powered dubbing. Built with Rust and Tauri v2.
+                </p>
+
+                <ul class="project-features" role="list">
+                    <li class="feature">🎙️ Real-time Dubbing</li>
+                    <li class="feature">🌐 55+ Platforms</li>
+                    <li class="feature">⏭️ SponsorBlock</li>
+                    <li class="feature">🔒 Proxy Support</li>
+                    <li class="feature">💻 Win / Linux / Android</li>
+                    <li class="feature">🦀 Rust + Tauri v2</li>
+                </ul>
+
+                <footer class="project-links">
+                    <a href="https://github.com/ZenonEl/CrabVoice" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        GitHub
+                    </a>
+                    <a href="/crabvoice/">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Learn More
+                    </a>
+                    <a href="https://github.com/ZenonEl/CrabVoice/releases" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-download" aria-hidden="true"></i>
+                        Download
+                    </a>
+                </footer>
+            </article>
+        </section>
+
         <section class="project-section" aria-labelledby="project-title">
-            <h2 id="project-title" class="project-trigger" role="button" tabindex="0" onclick="toggleProjectInfo()" onkeydown="handleKeyDown(event)">
+            <h2 id="project-title" class="project-trigger" role="button" tabindex="0" onclick="toggleProjectInfo('projectInfo')" onkeydown="handleKeyDown(event, 'projectInfo')">
                 <i class="fas fa-gamepad" aria-hidden="true"></i>
                 RemoteGamepad
                 <span class="beta-badge">BETA</span>
@@ -360,8 +206,8 @@
         </section>
     </main>
     <script>
-        function toggleProjectInfo() {
-            const projectInfo = document.getElementById('projectInfo');
+        function toggleProjectInfo(id) {
+            const projectInfo = document.getElementById(id);
             const isHidden = projectInfo.hidden;
 
             if (isHidden) {
@@ -375,10 +221,10 @@
             }
         }
 
-        function handleKeyDown(event) {
+        function handleKeyDown(event, id) {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
-                toggleProjectInfo();
+                toggleProjectInfo(id);
             }
         }
     </script>

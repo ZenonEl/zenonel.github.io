@@ -1,0 +1,16 @@
+# ZenonEl Developer Portfolio
+
+> Open-source developer creating tools for multimedia and gaming.
+
+## Projects
+
+- [CrabVoice](https://zenonel.github.io/crabvoice/): Real-time voice-over translation for online videos. Supports 55+ platforms including YouTube, Twitch, VK, TikTok. Built with Rust + Tauri v2. Free and open-source (GPL-3.0). Available for Windows, Linux, and Android.
+- [RemoteGamepad](https://github.com/ZenonEl/RemoteGamepad): Transform your smartphone into a wireless gamepad for your PC. Web-based interface with real-time control.
+- [TelegramMediaRelayBot](https://zenonel.github.io/TelegramMediaRelayBot-Site/): Telegram bot for media relay.
+
+## Contact
+
+- GitHub: https://github.com/ZenonEl
+- Mastodon (life): https://mastodon.ml/@ZenonEl
+- Mastodon (projects): https://lor.sh/@ZenonEl
+- Website: https://zenonel.github.io/

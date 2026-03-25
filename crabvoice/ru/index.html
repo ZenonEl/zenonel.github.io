@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CrabVoice — Голосовой перевод видео в реальном времени</title>
+
+    <meta name="description" content="CrabVoice — бесплатное приложение для голосового перевода онлайн-видео в реальном времени. Смотрите YouTube, Twitch, VK, TikTok и 55+ платформ на своём языке с мгновенной AI-озвучкой. Доступно для Windows, Linux и Android.">
+    <meta name="keywords" content="CrabVoice, голосовой перевод, озвучка видео, перевод видео, перевод в реальном времени, YouTube перевод, Twitch перевод, VK видео, TikTok, tauri, rust, open source, бесплатно, voice translation, real-time dubbing">
+    <meta name="author" content="ZenonEl">
+
+    <link rel="canonical" href="https://zenonel.github.io/crabvoice/ru/">
+    <link rel="alternate" hreflang="en" href="https://zenonel.github.io/crabvoice/">
+    <link rel="alternate" hreflang="ru" href="https://zenonel.github.io/crabvoice/ru/">
+    <link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/crabvoice/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <meta property="og:title" content="CrabVoice — Голосовой перевод видео в реальном времени">
+    <meta property="og:description" content="Бесплатное приложение для озвучки онлайн-видео. Смотрите YouTube, Twitch, VK, TikTok и 55+ платформ на своём языке с мгновенной AI-озвучкой.">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
+    <meta property="og:url" content="https://zenonel.github.io/crabvoice/ru/">
+    <meta property="og:site_name" content="ZenonEl">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CrabVoice — Голосовой перевод видео в реальном времени">
+    <meta name="twitter:description" content="Бесплатное приложение для озвучки онлайн-видео. Смотрите YouTube, Twitch, VK, TikTok и 55+ платформ на своём языке.">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/crabvoice/styles.css">
+
+    <script src="https://app.rybbit.io/api/script.js" data-site-id="430" defer></script>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+    <script defer src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "CrabVoice",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Windows, Linux, Android",
+        "softwareVersion": "1.0.0",
+        "license": "https://opensource.org/licenses/GPL-3.0",
+        "description": "Кросс-платформенное приложение для голосового перевода онлайн-видео в реальном времени. Поддерживает 55+ платформ включая YouTube, Twitch, VK, TikTok.",
+        "featureList": [
+            "Голосовой перевод в реальном времени",
+            "Поддержка 55+ платформ",
+            "Интеграция SponsorBlock",
+            "Поддержка HTTP/SOCKS5 прокси",
+            "Кросс-платформенность (Windows, Linux, Android)"
+        ],
+        "author": {
+            "@type": "Person",
+            "name": "ZenonEl",
+            "url": "https://zenonel.github.io/"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "downloadUrl": "https://github.com/ZenonEl/CrabVoice/releases",
+        "url": "https://zenonel.github.io/crabvoice/"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "CrabVoice бесплатный?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да, CrabVoice полностью бесплатный и с открытым исходным кодом, выпущен под лицензией GPL-3.0."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Какие платформы поддерживает CrabVoice?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CrabVoice поддерживает 55+ видеоплатформ, включая YouTube, Twitch, VK Видео, TikTok, Vimeo, Dailymotion и многие другие."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "На каких ОС работает CrabVoice?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CrabVoice доступен для Windows, Linux (AppImage, deb, rpm) и Android."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "На какие языки переводит CrabVoice?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CrabVoice использует API Яндекс Переводчика и поддерживает перевод между множеством языков. Доступные языковые пары зависят от возможностей сервиса перевода."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Как работает CrabVoice?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "CrabVoice перехватывает аудио видео в реальном времени, отправляет его на перевод через API Яндекса и воспроизводит озвученное аудио синхронно с оригинальным видео. Работает как десктопное приложение на Rust и Tauri v2."
+                }
+            }
+        ]
+    }
+    </script>
+</head>
+<body>
+    <div class="crabvoice-page">
+        <div class="lang-switch">
+            <a href="/crabvoice/">🇬🇧 English version</a>
+        </div>
+
+        <section class="hero">
+            <h1>🦀 CrabVoice</h1>
+            <span class="version">v1.0.0</span>
+            <p class="subtitle">Голосовой перевод онлайн-видео в реальном времени.<br>Смотрите любое видео на своём языке с мгновенной AI-озвучкой.</p>
+
+            <div class="cta-buttons">
+                <a href="https://github.com/ZenonEl/CrabVoice/releases" class="primary" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-download" aria-hidden="true"></i>
+                    Скачать
+                </a>
+                <a href="https://github.com/ZenonEl/CrabVoice" class="secondary" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    GitHub
+                </a>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Что такое CrabVoice?</h2>
+            <p>
+                CrabVoice — это бесплатное приложение с открытым исходным кодом для голосового перевода онлайн-видео в реальном времени. Оно позволяет смотреть видео с 55+ платформ на вашем языке с синхронизированной озвучкой.
+            </p>
+            <p>
+                Будь то обучающее видео на YouTube, стрим на Twitch, ролик в VK или клип в TikTok — CrabVoice переводит и озвучивает аудио в реальном времени, чтобы вы могли понимать контент на любом языке без ожидания субтитров или ручного перевода.
+            </p>
+            <p>
+                Создан на Rust и Tauri v2 — быстрый, лёгкий и работает на Windows, Linux и Android.
+            </p>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-star" aria-hidden="true"></i> Ключевые возможности</h2>
+            <ul class="features-grid">
+                <li>
+                    <span class="feature-icon">🎙️</span>
+                    <span class="feature-name">Перевод в реальном времени</span>
+                    Автоматический голосовой перевод, синхронизированный с воспроизведением видео
+                </li>
+                <li>
+                    <span class="feature-icon">🌐</span>
+                    <span class="feature-name">55+ платформ</span>
+                    YouTube, Twitch, VK, TikTok, Vimeo, Dailymotion и другие
+                </li>
+                <li>
+                    <span class="feature-icon">⏭️</span>
+                    <span class="feature-name">SponsorBlock</span>
+                    Автоматический пропуск спонсорских вставок и нерелевантных сегментов
+                </li>
+                <li>
+                    <span class="feature-icon">🔒</span>
+                    <span class="feature-name">Поддержка прокси</span>
+                    HTTP и SOCKS5 прокси с проверкой подключения
+                </li>
+                <li>
+                    <span class="feature-icon">⚡</span>
+                    <span class="feature-name">Умное воспроизведение</span>
+                    Координация аудио, паузы, перемотки и скорости
+                </li>
+                <li>
+                    <span class="feature-icon">🛡️</span>
+                    <span class="feature-name">Обход CSP</span>
+                    Работает даже при строгих политиках безопасности контента
+                </li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-globe" aria-hidden="true"></i> Поддерживаемые платформы</h2>
+            <p>CrabVoice работает с 55+ видеоплатформами, включая:</p>
+            <ul class="platforms-list">
+                <li>YouTube</li>
+                <li>Twitch</li>
+                <li>VK Видео</li>
+                <li>TikTok</li>
+                <li>Vimeo</li>
+                <li>Dailymotion</li>
+                <li>Rutube</li>
+                <li>Kick</li>
+                <li>9GAG</li>
+                <li>Coursera</li>
+                <li>Udemy</li>
+                <li>Reddit</li>
+                <li>Twitter/X</li>
+                <li>Facebook</li>
+                <li>Tumblr</li>
+                <li>Bitchute</li>
+                <li>Rumble</li>
+                <li>PeerTube</li>
+                <li>Odysee</li>
+                <li>и ещё 35+...</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-cogs" aria-hidden="true"></i> Технологии</h2>
+            <ul class="tech-stack">
+                <li>🦀 Rust (бэкенд)</li>
+                <li>📘 TypeScript (фронтенд)</li>
+                <li>⚡ Tauri v2 (фреймворк)</li>
+                <li>🔑 GPL-3.0 (лицензия)</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-download" aria-hidden="true"></i> Установка</h2>
+            <ol class="install-steps">
+                <li>Перейдите на страницу <a href="https://github.com/ZenonEl/CrabVoice/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a></li>
+                <li>Скачайте версию для вашей ОС: <strong>.exe</strong> (Windows), <strong>.AppImage / .deb / .rpm</strong> (Linux) или <strong>.apk</strong> (Android)</li>
+                <li>Установите и запустите приложение</li>
+                <li>Откройте любую поддерживаемую видеоплатформу в браузере и наслаждайтесь переводом в реальном времени</li>
+            </ol>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-question-circle" aria-hidden="true"></i> Часто задаваемые вопросы</h2>
+
+            <div class="faq-item">
+                <h3>CrabVoice бесплатный?</h3>
+                <p>Да, CrabVoice полностью бесплатный и с открытым исходным кодом, выпущен под лицензией GPL-3.0.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Какие платформы поддерживает CrabVoice?</h3>
+                <p>CrabVoice поддерживает 55+ видеоплатформ, включая YouTube, Twitch, VK Видео, TikTok, Vimeo, Dailymotion и многие другие.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>На каких ОС работает CrabVoice?</h3>
+                <p>CrabVoice доступен для Windows, Linux (AppImage, deb, rpm) и Android.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>На какие языки переводит CrabVoice?</h3>
+                <p>CrabVoice использует API Яндекс Переводчика и поддерживает перевод между множеством языков. Доступные языковые пары зависят от возможностей сервиса перевода.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Как работает CrabVoice?</h3>
+                <p>CrabVoice перехватывает аудио видео в реальном времени, отправляет его на перевод через API Яндекса и воспроизводит озвученное аудио синхронно с оригинальным видео. Работает как десктопное приложение на Rust и Tauri v2.</p>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <p>
+                <a href="/">← Вернуться к портфолио ZenonEl</a> &nbsp;|&nbsp;
+                <a href="https://github.com/ZenonEl/CrabVoice" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;|&nbsp;
+                <a href="https://github.com/ZenonEl/CrabVoice/releases" target="_blank" rel="noopener noreferrer">Релизы</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
