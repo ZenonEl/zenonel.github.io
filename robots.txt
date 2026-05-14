@@ -1,4 +1,37 @@
 User-agent: *
 Allow: /
 
+# Content-Signal directives (IETF AI Preferences / Content Signals)
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+# AI crawlers — allowed for citation/answer, disallowed for training
+User-agent: GPTBot
+Allow: /
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: ClaudeBot
+Allow: /
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: Claude-Web
+Allow: /
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: PerplexityBot
+Allow: /
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: Google-Extended
+Allow: /
+Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://zenonel.github.io/sitemap.xml

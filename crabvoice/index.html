@@ -16,7 +16,7 @@
 
     <title>CrabVoice — Real-Time Voice Translation for Online Videos</title>
 
-    <meta name="description" content="CrabVoice is a free, open-source app for real-time voice-over translation of online videos. Watch YouTube, Twitch, VK, TikTok and 55+ platforms in your language with instant AI dubbing. Available for Windows, Linux, and Android.">
+    <meta name="description" content="Free open-source app for real-time voice translation of online videos. YouTube, Twitch, VK, TikTok and 55+ platforms. Windows, Linux, Android.">
     <meta name="keywords" content="CrabVoice, voice translation, real-time dubbing, video translation, голосовой перевод, озвучка видео, YouTube translation, Twitch translation, VK video, TikTok, tauri, rust, open source, free">
     <meta name="author" content="ZenonEl">
 
@@ -25,6 +25,10 @@
     <link rel="alternate" hreflang="ru" href="https://zenonel.github.io/crabvoice/ru/">
     <link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/crabvoice/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt">
+    <link rel="alternate" type="text/plain" title="LLMs full context" href="/llms-full.txt">
 
     <meta property="og:title" content="CrabVoice — Real-Time Voice Translation for Online Videos">
     <meta property="og:description" content="Free app for real-time voice-over translation. Watch YouTube, Twitch, VK, TikTok and 55+ platforms in your language with instant AI dubbing.">
@@ -75,6 +79,49 @@
         },
         "downloadUrl": "https://github.com/ZenonEl/CrabVoice/releases",
         "url": "https://zenonel.github.io/crabvoice/"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to install and use CrabVoice for real-time video translation",
+        "description": "Step-by-step guide to installing CrabVoice and translating videos from 55+ platforms in real time.",
+        "totalTime": "PT5M",
+        "supply": [
+            { "@type": "HowToSupply", "name": "Windows, Linux, or Android device" },
+            { "@type": "HowToSupply", "name": "Internet connection" }
+        ],
+        "tool": [
+            { "@type": "HowToTool", "name": "CrabVoice installer (.msi / .AppImage / .deb / .apk)" }
+        ],
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Download CrabVoice",
+                "text": "Go to the CrabVoice GitHub Releases page and download the installer for your platform: .msi for Windows, .AppImage or .deb for Linux, .apk for Android.",
+                "url": "https://github.com/ZenonEl/CrabVoice/releases"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Install the application",
+                "text": "Run the downloaded installer. On Linux, make the .AppImage executable with chmod +x. On Android, allow installation from unknown sources."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Configure translation API",
+                "text": "Open CrabVoice settings, select your target language and translation source (Yandex Translate by default)."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Open a video",
+                "text": "Open any supported platform (YouTube, Twitch, VK, TikTok, etc.) and start playing a video — CrabVoice intercepts the audio and plays back the dubbed version in your language with ~1-3 second latency."
+            }
+        ]
     }
     </script>
     <script type="application/ld+json">

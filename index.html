@@ -16,12 +16,16 @@
 
         <title>ZenonEl - Developer Portfolio | Портфолио разработчика</title>
 
-        <meta name="description" content="ZenonEl's developer portfolio. Creator of CrabVoice (real-time voice-over translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Open-source tools in Rust, TypeScript, Python.">
+        <meta name="description" content="Open-source developer. Creator of CrabVoice (real-time AI voice translation for 55+ video platforms), RemoteGamepad & Telegram bots. Rust + TypeScript.">
         <meta name="keywords" content="ZenonEl, developer, portfolio, github, crabvoice, voice translation, real-time dubbing, video translation, remote gamepad, telegram bot, tauri, rust, голосовой перевод, озвучка видео, разработчик, портфолио, проекты, удаленный геймпад">
         <meta name="author" content="ZenonEl">
 
         <link rel="canonical" href="https://zenonel.github.io/">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/favicon.svg">
+        <link rel="manifest" href="/manifest.webmanifest">
+        <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt">
+        <link rel="alternate" type="text/plain" title="LLMs full context" href="/llms-full.txt">
 
         <meta property="og:title" content="ZenonEl - Developer Portfolio">
         <meta property="og:description" content="Open-source developer creating CrabVoice (real-time voice translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Tools in Rust, TypeScript, Python.">
@@ -61,6 +65,46 @@
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Who is ZenonEl?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "ZenonEl is an independent open-source developer focused on multimedia, gaming, and automation tools. Primary work includes CrabVoice (real-time video voice translation), RemoteGamepad, and TelegramMediaRelayBot."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What is CrabVoice?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "CrabVoice is a free, open-source desktop app for real-time voice-over translation of online videos. It works with 55+ platforms including YouTube, Twitch, VK, and TikTok, on Windows, Linux, and Android."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What tech stack does ZenonEl use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Rust and Tauri v2 for desktop applications, TypeScript for web frontends, and Python for automation and Telegram bots. All projects are open-source."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How can I contact ZenonEl?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Via GitHub (github.com/ZenonEl), Mastodon for personal content (mastodon.ml/@ZenonEl), or Mastodon for project updates (lor.sh/@ZenonEl)."
+                    }
+                }
+            ]
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
             "@type": "ItemList",
             "itemListElement": [
                 {
@@ -95,7 +139,7 @@
 <body>
     <main class="container">
         <header>
-            <img src="https://avatars.githubusercontent.com/u/165126589?v=4" alt="ZenonEl Avatar" class="avatar">
+            <img src="https://avatars.githubusercontent.com/u/165126589?v=4" alt="ZenonEl Avatar" class="avatar" width="120" height="120" fetchpriority="high">
             <h1>ZenonEl</h1>
             <p class="tagline">Where ⌨️ keystrokes mutate into 🧩 Burroughs cut-ups 🧩 (and syntax becomes poetry 📚)</p>
         </header>
@@ -214,6 +258,19 @@
                 </footer>
             </article>
         </section>
+
+        <footer class="site-footer">
+            <nav aria-label="Site map">
+                <a href="/">Home</a>
+                <span aria-hidden="true">·</span>
+                <a href="/crabvoice/">CrabVoice (EN)</a>
+                <span aria-hidden="true">·</span>
+                <a href="/crabvoice/ru/">CrabVoice (RU)</a>
+                <span aria-hidden="true">·</span>
+                <a href="https://github.com/ZenonEl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </nav>
+            <p class="copyright">© <span id="year">2026</span> ZenonEl · Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></p>
+        </footer>
     </main>
     <script>
         function toggleProjectInfo(id) {

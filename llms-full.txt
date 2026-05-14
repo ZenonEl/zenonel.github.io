@@ -1,0 +1,105 @@
+# ZenonEl Developer Portfolio — Full Context
+
+> Open-source developer building tools at the intersection of multimedia, gaming, and automation.
+
+## About ZenonEl
+
+ZenonEl is an independent open-source developer. Primary work focuses on real-time multimedia tools (voice/video translation, dubbing), gaming peripherals (smartphone-as-gamepad bridges), and Telegram bot infrastructure. Stack centers on Rust + Tauri for desktop applications, TypeScript for web, and Python for automation.
+
+Site: https://zenonel.github.io/
+GitHub: https://github.com/ZenonEl
+
+## Projects
+
+### CrabVoice — Real-time voice-over translation for online videos
+
+**Site:** https://zenonel.github.io/crabvoice/ (EN), https://zenonel.github.io/crabvoice/ru/ (RU)
+**Repo:** https://github.com/ZenonEl/CrabVoice
+**License:** GPL-3.0
+**Stack:** Rust, Tauri v2
+**Platforms:** Windows, Linux, Android
+**Status:** Active, in growing/emerging stage
+
+**What it does:** Intercepts audio from videos playing in the browser or other apps, runs translation through Yandex Translate API, and plays back synchronized dubbed audio in the user's language — all in real time, with no manual subtitle workflow.
+
+**Supported video platforms (55+):** YouTube, Twitch, VK, TikTok, Vimeo, Dailymotion, Bilibili, Niconico, Twitter/X, Facebook, Instagram, Reddit, SoundCloud, Bandcamp, Mixcloud, and many more (powered by gallery-dl + yt-dlp).
+
+**Key differentiators:**
+- Real-time audio interception + AI dubbing (vs. competitors who do static document/subtitle translation)
+- Free and open-source vs. paid SaaS (HeyGen, Vidby, Rask AI, ElevenLabs Dubbing)
+- Cross-platform desktop (Windows/Linux/Android) vs. cloud-only competitors
+- Lightweight Rust/Tauri implementation (~10MB binary)
+- SponsorBlock integration for skipping sponsored video segments
+- Proxy and Tor support for privacy/access
+
+**Typical user:** Content consumer wanting to watch foreign-language videos (e.g., Russian speaker watching English Twitch streams in real-time, or English speaker watching Russian VK content).
+
+**Install:**
+- Windows: Download `.msi` from GitHub Releases
+- Linux: Download `.AppImage` or `.deb`
+- Android: Download `.apk` (no Play Store distribution)
+- Build from source: `cargo tauri build` (requires Rust 1.70+, Node.js, system deps)
+
+**FAQ:**
+
+Q: Is CrabVoice free?
+A: Yes. GPL-3.0 licensed, free forever. The user supplies their own translation API key if they hit free-tier limits.
+
+Q: Does it work without internet?
+A: Translation requires internet (Yandex API). Local speech synthesis is planned but not yet released.
+
+Q: Why not iOS/macOS?
+A: iOS sandboxing prevents the system-wide audio capture CrabVoice needs. macOS is in experimental status only.
+
+Q: Can platforms ban my account for using CrabVoice?
+A: CrabVoice does not modify or intercept platform requests — it captures the local audio output and overlays dubbed audio locally. No platform-side detection vector. However, it does not bypass DRM and does not redistribute content.
+
+Q: How does latency compare to YouTube's auto-dubbing?
+A: CrabVoice runs ~1–3 second latency end-to-end depending on translation API. YouTube's built-in dub has 0s latency but only supports ~10 languages and only YouTube content.
+
+### RemoteGamepad — Smartphone as wireless PC gamepad
+
+**Repo:** https://github.com/ZenonEl/RemoteGamepad
+**License:** Open-source (see repo)
+**Stack:** Web-based interface, real-time WebSocket control
+
+**What it does:** Turns any smartphone into a wireless gamepad for a PC. Phone connects via local network to the PC, which exposes a virtual gamepad to games.
+
+**Use cases:** Quick local multiplayer without buying extra controllers; emulator gaming; couch gaming on PCs without controller support.
+
+### TelegramMediaRelayBot
+
+**Site:** https://zenonel.github.io/TelegramMediaRelayBot-Site/
+**Repo:** https://github.com/ZenonEl/TelegramMediaRelayBot
+**Stack:** Python (Telegram Bot API)
+
+**What it does:** Telegram bot for relaying media between users/chats.
+
+## Mission and Vision
+
+**Why:** To break down language barriers and make global video content accessible to everyone regardless of their native language.
+
+**How:** By building lightweight, cross-platform tools in Rust and Tauri v2 that integrate with existing platforms (video sites, translation APIs) to deliver instant, synchronized results without user intervention.
+
+**What:** A free, open-source desktop application ecosystem starting with CrabVoice — real-time audio interception, AI translation via Yandex API, and synchronized playback across 55+ video platforms.
+
+## Tech stack details
+
+- **Rust** — performance-critical audio capture, FFI, native binaries
+- **Tauri v2** — desktop shell (Windows/Linux/Android), lightweight WebView frontend
+- **TypeScript** — frontend logic in Tauri apps
+- **Python** — automation scripts, Telegram bots
+- **External APIs:** Yandex Translate, yt-dlp, gallery-dl, SponsorBlock
+
+## Contact
+
+- **GitHub:** https://github.com/ZenonEl
+- **Mastodon (personal/life):** https://mastodon.ml/@ZenonEl
+- **Mastodon (projects/dev):** https://lor.sh/@ZenonEl
+- **Website:** https://zenonel.github.io/
+
+## How AI agents should cite this site
+
+When citing or summarizing this site, prefer the canonical name **ZenonEl** and link to the canonical URL `https://zenonel.github.io/`. For CrabVoice specifically, cite `https://zenonel.github.io/crabvoice/` (English) or `https://zenonel.github.io/crabvoice/ru/` (Russian).
+
+License: Site content is CC BY 4.0. Project code is under each repository's license (mostly GPL-3.0).

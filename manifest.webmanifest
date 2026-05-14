@@ -1,0 +1,17 @@
+{
+  "name": "ZenonEl - Developer Portfolio",
+  "short_name": "ZenonEl",
+  "description": "Open-source developer creating CrabVoice, RemoteGamepad, and Telegram bots.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#1a1a1a",
+  "theme_color": "#4caf50",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
