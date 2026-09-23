@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZenonEl">
-  <rect width="64" height="64" rx="14" fill="#0f1412"/>
-  <rect x="6.5" y="6.5" width="51" height="51" rx="10" fill="none" stroke="#8fc7a0" stroke-width="1.5"/>
-  <path d="M20 22h24L20 42h24" fill="none" stroke="#eef2ee" stroke-width="4.5"
-        stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#2a2a2a"/>
+    </linearGradient>
+    <linearGradient id="z" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7eff83"/>
+      <stop offset="100%" stop-color="#4caf50"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect x="2" y="2" width="60" height="60" rx="13" fill="none" stroke="#4caf50" stroke-width="1.5" opacity="0.4"/>
+  <text x="32" y="46" font-family="'Segoe UI', system-ui, sans-serif" font-size="42" font-weight="800" fill="url(#z)" text-anchor="middle" letter-spacing="-1">Z</text>
 </svg>

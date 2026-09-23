@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "agent": "https://zenonel.github.io/.well-known/agent-card.json",
+  "skills": [
+    {
+      "id": "project-info",
+      "url": "https://zenonel.github.io/llms.txt",
+      "description": "Information about ZenonEl's open-source projects"
+    },
+    {
+      "id": "crabvoice-info",
+      "url": "https://zenonel.github.io/crabvoice/",
+      "description": "Real-time voice translation app for online videos"
+    }
+  ]
+}

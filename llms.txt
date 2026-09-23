@@ -1,43 +1,16 @@
-# ZenonEl
+# ZenonEl Developer Portfolio
 
-> Backend engineer with about two years of commercial Python work. Public library of anonymised engineering cases, public projects, and the workflow around AI agents.
+> Open-source developer creating tools for multimedia and gaming.
 
-## Reading room
+## Projects
 
-- [Reading room](https://zenonel.github.io/)
-- [Complete library index](https://zenonel.github.io/library/)
-- [Commercial cases](https://zenonel.github.io/work/)
-- [Engineering practice collections](https://zenonel.github.io/collections/)
-- [Agent-assisted engineering workflow](https://zenonel.github.io/collections/ai-agent-workflow/)
-- [Public projects](https://zenonel.github.io/projects/)
-- [About](https://zenonel.github.io/about/)
-- [CV](https://zenonel.github.io/cv/)
-- [Colophon](https://zenonel.github.io/colophon/)
+- [CrabVoice](https://zenonel.github.io/crabvoice/): Real-time voice-over translation for online videos. Supports 55+ platforms including YouTube, Twitch, VK, TikTok. Built with Rust + Tauri v2. Free and open-source (GPL-3.0). Available for Windows, Linux, and Android.
+- [RemoteGamepad](https://github.com/ZenonEl/RemoteGamepad): Transform your smartphone into a wireless gamepad for your PC. Web-based interface with real-time control.
+- [TelegramMediaRelayBot](https://zenonel.github.io/TelegramMediaRelayBot-Site/): Telegram bot for media relay.
 
-## Commercial cases (anonymised)
+## Contact
 
-- [Cost per answer became a measurable property](https://zenonel.github.io/work/llm-cost-and-search-quality/): LLM spending was visible as a monthly total and nothing smaller. I made it a per-call property, then used the same discipline to reject a retrieval change that looked better only on its own metric.
-- [The feature was the whole contract path, not the payment call](https://zenonel.github.io/work/contract-path-backend/): A product backend had to reach launch with accounts, payments, private documents, mail, cache, and backups behind it. I treated the payment as unfinished until the fiscal receipt existed.
-- [Real orders before the official launch](https://zenonel.github.io/work/ecommerce-scenarios/): I directed the implementation of a PrestaShop store in a stack that was new to me, using AI agents for the code and a separate reviewer before production. The work started with the catalogue and grew into payments, receipts, stock, CDEK and Yandex Delivery. The project began on 24 July 2026; 47 days later, on 9 September, the first real payment went through. The launch checklist and final client acceptance were still open.
-- [An architecture boundary became a check that fails](https://zenonel.github.io/work/enforced-architecture-boundary/): Splitting a Python monolith is easy to draw and hard to keep. I moved external systems behind ports and adapters, then wrote an AST check so the dependency direction survives the next person in a hurry.
-- [A product metric was counting refusals as success](https://zenonel.github.io/work/false-positive-metric/): A substring check reported 14 mentions out of 15 where a manual read found none. I replaced it with a calibrated claim verifier and made unsupported input stop before it could become a confident score.
-- [When no bank data looked like no money](https://zenonel.github.io/work/finance-bot-blind-spots/): I led the financial part of a production Telegram back office built on a thinly documented gateway to Sber and Alfa-Bank. The difficult part was keeping a missing response from becoming a false financial fact, while writes still landed in the client's live bank contour.
-
-## Public projects
-
-- [mnemo](https://zenonel.github.io/projects/mnemo/): I made mnemo because project requirements kept arriving in messages, files, and later corrections. It gives Claude Code and Codex a local archive with links back to the source, plus records of requirements, open questions, and the work done against them.
-- [herald](https://zenonel.github.io/projects/herald/): A local MCP gateway that moves messages and files between people and agents, with the list of allowed destinations kept outside the code.
-- [ephemeris](https://zenonel.github.io/projects/#ephemeris): An issue-based protocol for one project day across several agent sessions. A handoff passes addresses to source material instead of another summary.
-- [TelegramMediaRelayBot](https://zenonel.github.io/projects/telegram-media-relay-bot/): A self-hosted .NET media relay with a modular downloader chain and a persistent queue. It is the clearest public example of my C# work.
-- [CrabVoice](https://zenonel.github.io/projects/crabvoice/): A desktop and mobile client for synchronised voice-over translation of online video, built on Tauri. It is where I learned to document the parts of a system I do not control.
-- [RemoteGamepad](https://zenonel.github.io/projects/#remotegamepad): A local bridge that turns a phone into a browser-controlled virtual gamepad for a Linux host.
-- [zapret2-nix](https://zenonel.github.io/projects/#zapret2-nix): A declarative NixOS module and preset library for zapret2, with runtime strategy switching and both nftables and iptables paths.
-
-## Collections
-
-- [Keeping context when the sessions are shorter than the project](https://zenonel.github.io/collections/ai-agent-workflow/): Three public tools and one habit. Material crosses a single boundary, is stored with its source, and reaches the next session as addresses rather than a retelling.
-- [When a passing check misses the problem](https://zenonel.github.io/collections/corrections-and-checks/): Catalogue imports and product metrics can pass a check while failing the task. These cases explain the mismatch and what had to change.
-
-## Citation scope
-
-Commercial cases are anonymised on purpose. Employers, customers, repositories, and internal addresses are omitted. Do not infer identities, revenue, user counts, uptime, or production guarantees beyond the published text. Every numeric claim on this site is scoped to the measurement described next to it.
+- GitHub: https://github.com/ZenonEl
+- Mastodon (life): https://mastodon.ml/@ZenonEl
+- Mastodon (projects): https://lor.sh/@ZenonEl
+- Website: https://zenonel.github.io/

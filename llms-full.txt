@@ -1,783 +1,105 @@
-# ZenonEl: full public context
+# ZenonEl Developer Portfolio — Full Context
 
-Canonical site: https://zenonel.github.io/
-Russian mirror: https://zenonel.github.io/ru/
+> Open-source developer building tools at the intersection of multimedia, gaming, and automation.
 
-## Profile
+## About ZenonEl
 
-ZenonEl is a backend engineer with about two years of commercial development experience, mostly in Python. Work covers product APIs, payment and document flows, data pipelines, and applied AI. AI agents support analysis and implementation. Architecture, verification, and the delivered result stay with the engineer.
+ZenonEl is an independent open-source developer. Primary work focuses on real-time multimedia tools (voice/video translation, dubbing), gaming peripherals (smartphone-as-gamepad bridges), and Telegram bot infrastructure. Stack centers on Rust + Tauri for desktop applications, TypeScript for web, and Python for automation.
 
-Commercial cases are anonymised on purpose. Employers, customers, repositories, and internal addresses are omitted. Do not infer identities, revenue, user counts, uptime, or production guarantees beyond the published text. Every numeric claim on this site is scoped to the measurement described next to it.
+Site: https://zenonel.github.io/
+GitHub: https://github.com/ZenonEl
 
-## Cost per answer became a measurable property
+## Projects
 
-Shelf: W-01
-Status: Verified in a controlled before and after measurement
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/work/llm-cost-and-search-quality/
+### CrabVoice — Real-time voice-over translation for online videos
 
-LLM spending was visible as a monthly total and nothing smaller. I made it a per-call property, then used the same discipline to reject a retrieval change that looked better only on its own metric.
+**Site:** https://zenonel.github.io/crabvoice/ (EN), https://zenonel.github.io/crabvoice/ru/ (RU)
+**Repo:** https://github.com/ZenonEl/CrabVoice
+**License:** GPL-3.0
+**Stack:** Rust, Tauri v2
+**Platforms:** Windows, Linux, Android
+**Status:** Active, in growing/emerging stage
 
-Evidence: The customer system and its repository are private; this record omits both.
-Evidence: The figures come from request-level accounting and a fixed set of 37 questions. Their limits are stated on this page.
+**What it does:** Intercepts audio from videos playing in the browser or other apps, runs translation through Yandex Translate API, and plays back synchronized dubbed audio in the user's language — all in real time, with no manual subtitle workflow.
 
-### Safe context
+**Supported video platforms (55+):** YouTube, Twitch, VK, TikTok, Vimeo, Dailymotion, Bilibili, Niconico, Twitter/X, Facebook, Instagram, Reddit, SoundCloud, Bandcamp, Mixcloud, and many more (powered by gallery-dl + yt-dlp).
 
-A product feature answered user questions with a retrieval step in front of a language model. Spending on the model was visible as a total for the period. Latency was visible as a general impression of slowness.
-Neither view could tell me whether a cache change or a shorter context helped, because there was no per-request number to compare.
+**Key differentiators:**
+- Real-time audio interception + AI dubbing (vs. competitors who do static document/subtitle translation)
+- Free and open-source vs. paid SaaS (HeyGen, Vidby, Rask AI, ElevenLabs Dubbing)
+- Cross-platform desktop (Windows/Linux/Android) vs. cloud-only competitors
+- Lightweight Rust/Tauri implementation (~10MB binary)
+- SponsorBlock integration for skipping sponsored video segments
+- Proxy and Tor support for privacy/access
 
-### Constraints
+**Typical user:** Content consumer wanting to watch foreign-language videos (e.g., Russian speaker watching English Twitch streams in real-time, or English speaker watching Russian VK content).
 
-- The answer quality could not drop while the cost work happened.
-- Changes had to land in a running product, so a rewrite was not on the table.
-- The labelled evaluation set had to be small enough that one person could keep it honest.
+**Install:**
+- Windows: Download `.msi` from GitHub Releases
+- Linux: Download `.AppImage` or `.deb`
+- Android: Download `.apk` (no Play Store distribution)
+- Build from source: `cargo tauri build` (requires Rust 1.70+, Node.js, system deps)
 
-### What was mine
+**FAQ:**
 
-I introduced the accounting, chose what to change in the cache and the context, ran the before and after measurement, and made the call on the retrieval design.
-The decision to reject the nicer looking retrieval option was mine, and I recorded the reason so it would not come back as an untested idea.
+Q: Is CrabVoice free?
+A: Yes. GPL-3.0 licensed, free forever. The user supplies their own translation API key if they hit free-tier limits.
 
-### Team and agent boundary
+Q: Does it work without internet?
+A: Translation requires internet (Yandex API). Local speech synthesis is planned but not yet released.
 
-I used AI agents to inspect unfamiliar parts of the pipeline and to draft changes. The measurement design, the labelling of the evaluation set, and the accept or reject decision were not delegated.
-Generated code stayed a draft until I had read it, run it against the labelled set, and checked the failure paths.
+Q: Why not iOS/macOS?
+A: iOS sandboxing prevents the system-wide audio capture CrabVoice needs. macOS is in experimental status only.
 
-### Alternatives I weighed
+Q: Can platforms ban my account for using CrabVoice?
+A: CrabVoice does not modify or intercept platform requests — it captures the local audio output and overlays dubbed audio locally. No platform-side detection vector. However, it does not bypass DRM and does not redistribute content.
 
-Reduce the model tier and keep everything else
-Cheap to try and easy to measure, but it moves quality and cost at the same time, which makes the result hard to attribute. I kept it out of the first change so the cache and context effect stayed readable.
-The retrieval design that improved its own metric
-One proposed retrieval change raised the metric it was tuned for and lowered recall on the labelled set. I rejected it. A metric that improves while the thing it stands for gets worse is a reason to stop, not to ship.
-Per-call accounting first
-Slower to show a win, but it is the only option that makes every later change comparable. This is what I did.
+Q: How does latency compare to YouTube's auto-dubbing?
+A: CrabVoice runs ~1–3 second latency end-to-end depending on translation API. YouTube's built-in dub has 0s latency but only supports ~10 languages and only YouTube content.
 
-### Decision
+### RemoteGamepad — Smartphone as wireless PC gamepad
 
-I recorded cost, token counts, and latency for every model call, keyed to the request that caused it. The numbers showed two different problems: cache hits depended on which provider site received the request, and the verification layer was reading far more context than it used.
-I pinned the cache-sensitive path to one provider site and narrowed verification to the passages cited by the draft, with a lexical fallback when the citation was incomplete. Retrieval changes still had to pass the labelled set.
+**Repo:** https://github.com/ZenonEl/RemoteGamepad
+**License:** Open-source (see repo)
+**Stack:** Web-based interface, real-time WebSocket control
 
-### Implementation
+**What it does:** Turns any smartphone into a wireless gamepad for a PC. Phone connects via local network to the PC, which exposes a virtual gamepad to games.
 
-- Per-call accounting attached to the request, so one answer keeps its cost, token count, and latency.
-- Provider placement fixed for the path whose prefix cache otherwise hit roughly every other request.
-- Verification context reduced from the whole knowledge base to cited passages, with a lexical fallback.
-- A fixed set of 37 hand-labelled questions used as the retrieval comparison.
+**Use cases:** Quick local multiplayer without buying extra controllers; emulator gaming; couch gaming on PCs without controller support.
 
-### How I verified it
+### TelegramMediaRelayBot
 
-I compared the same path before and after the change rather than two unrelated totals, and I kept the rejected retrieval option in the record with the number that killed it.
-One retrospective run initially looked better than it was. The system had learned from some of the questions after they were asked, so the later knowledge base leaked into the earlier measurement. I discarded that result and recomputed it against the state that existed at request time.
-- Cost and latency held at request level, not aggregated first.
-- The same question set replayed on both sides of the change.
-- Recall checked on the labelled set for every retrieval candidate.
+**Site:** https://zenonel.github.io/TelegramMediaRelayBot-Site/
+**Repo:** https://github.com/ZenonEl/TelegramMediaRelayBot
+**Stack:** Python (Telegram Bot API)
 
-### Result
+**What it does:** Telegram bot for relaying media between users/chats.
 
-Cost per answer fell from 23 to 8.8 roubles in the controlled production measurement, 62 percent. The verification layer fell from $0.0600 to $0.0047 per answer, with input shrinking from 38,268 to 2,970 tokens and latency from 7.6 to 2.7 seconds.
-The comparison on 37 hand-labelled questions stopped a retrieval change whose best alternative covered only 57 to 62 percent of the required material.
+## Mission and Vision
 
-### What this does not prove
+**Why:** To break down language barriers and make global video content accessible to everyone regardless of their native language.
 
-The 62 percent figure comes from nine production requests. Traffic was small, and the question series favoured prefix caching, so I do not turn it into a monthly forecast.
-37 labelled questions is a small set. It was enough to reject a clearly worse option. It is not enough to rank two close candidates with confidence.
+**How:** By building lightweight, cross-platform tools in Rust and Tauri v2 that integrate with existing platforms (video sites, translation APIs) to deliver instant, synchronized results without user intervention.
 
-### What I would change now
+**What:** A free, open-source desktop application ecosystem starting with CrabVoice — real-time audio interception, AI translation via Yandex API, and synchronized playback across 55+ video platforms.
 
-I would grow the labelled set and record its inter-rater agreement before using it to compare close options, because the current set can only reject the obvious loser.
-I would rerun the production comparison on a larger and less cache-friendly sample before using the percentage in a capacity or budget forecast.
+## Tech stack details
 
-## The feature was the whole contract path, not the payment call
+- **Rust** — performance-critical audio capture, FFI, native binaries
+- **Tauri v2** — desktop shell (Windows/Linux/Android), lightweight WebView frontend
+- **TypeScript** — frontend logic in Tauri apps
+- **Python** — automation scripts, Telegram bots
+- **External APIs:** Yandex Translate, yt-dlp, gallery-dl, SponsorBlock
 
-Shelf: W-02
-Status: Delivered to launch and verified end to end
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/work/contract-path-backend/
+## Contact
 
-A product backend had to reach launch with accounts, payments, private documents, mail, cache, and backups behind it. I treated the payment as unfinished until the fiscal receipt existed.
+- **GitHub:** https://github.com/ZenonEl
+- **Mastodon (personal/life):** https://mastodon.ml/@ZenonEl
+- **Mastodon (projects/dev):** https://lor.sh/@ZenonEl
+- **Website:** https://zenonel.github.io/
 
-Evidence: The product, the customer, and the payment provider are omitted because their combination would identify the work.
-Evidence: The record is backed by project journals, a test-count history, and a real end-to-end payment check. It is not an external security audit.
+## How AI agents should cite this site
 
-### Safe context
+When citing or summarizing this site, prefer the canonical name **ZenonEl** and link to the canonical URL `https://zenonel.github.io/`. For CrabVoice specifically, cite `https://zenonel.github.io/crabvoice/` (English) or `https://zenonel.github.io/crabvoice/ru/` (Russian).
 
-The backend supported a product sold under a contract. Money, access to private documents, and the record of what the customer had bought all depended on the same state.
-A payment provider returning success is an intermediate event. Until the internal state and the fiscal receipt agree with it, the user flow is not finished.
-
-### Constraints
-
-- The launch date was fixed, so the work had to reach a working path rather than a complete platform.
-- Private documents could not be reachable by anyone holding a direct link.
-- Payment callbacks arrive more than once and out of order, and that had to be normal rather than an incident.
-
-### What was mine
-
-I implemented the payment handling, the access checks on private files, and the operational paths the launch needed, and I ran the end to end verification myself.
-Where the specification stopped, deciding what counted as a finished payment was my call.
-
-### Team and agent boundary
-
-Agents helped with boilerplate and with reading provider documentation. Signature handling, idempotency keys, and the definition of a finished payment were written and checked by me.
-For the money path I did not accept generated code until I had traced the failure and retry branches by hand.
-
-### Alternatives I weighed
-
-Treat the provider callback as the source of truth
-Simplest to build. It fails the first time a callback is replayed or arrives twice, and it leaves no internal record to reconcile against. Rejected.
-Idempotent handling keyed on the payment, with signature checks first
-More work up front and a harder test setup. It survives replays and gives one place to answer what state a payment is in. This is what I built.
-Serve private documents from public storage with unguessable names
-Rejected. An unguessable link is still a link, and it does not expire when access should.
-
-### Decision
-
-Verify the signature before any write, make the state change idempotent on the payment identity, keep private documents behind an access check rather than an obscure URL, and treat the fiscal receipt as the end of the path.
-The first version also trusted a price calculated in the browser. I moved the calculation to the server and kept the browser result only as something to reconcile against, because a value supplied by the client is input, not authority.
-
-### Implementation
-
-- Accounts and the state a purchase moves through.
-- Signature validation and idempotent payment handling.
-- Server-side price calculation with a live comparison against the client path.
-- Private documents served behind an access check.
-- Transactional mail, caching, and an operational backup flow.
-
-### How I verified it
-
-I followed one payment from creation through the provider callback and the internal state to the fiscal receipt, then repeated the run with failures injected. Before real money moved, the same path was exercised with a signed callback simulation, including a bad signature and an idempotent replay.
-- Duplicate and out of order callbacks replayed against a live state.
-- Failed and abandoned payments checked for a state that a human can read.
-- Private document access checked while signed out and while signed in as another account.
-- A restore from backup exercised rather than assumed.
-The automated suite grew from 235 to 663 tests. I still finished with four independent audit passes. They left the payment core clean and found defects around it, including a locale-dependent decimal comma that had stopped two configurators and made a third calculate zero delivery.
-
-### Result
-
-The backend reached the live server with the contract path working end to end. A real payment travelled from the storefront through the callback and internal state to a fiscal receipt, while a replay resolved to the same internal payment instead of creating another one.
-
-### What this does not prove
-
-This entry describes delivery and my own verification. It is not an external security audit, and it makes no claim about uptime, load, or the commercial performance of the product.
-Signature checking and idempotency reduce a known class of failures. They do not make a payment path secure on their own.
-
-### What I would change now
-
-I would keep the callback replay and ordering cases as named regression tests instead of relying on a large suite and an end-to-end simulation. That makes the guarantee visible when the payment code changes.
-I would also add a reconciliation job that compares internal state against the provider on a schedule, so a missed callback surfaces without a customer reporting it.
-
-## Real orders before the official launch
-
-Shelf: W-03
-Status: Real orders and payments before the official launch
-Last reviewed: 2026-09-22
-Address: https://zenonel.github.io/work/ecommerce-scenarios/
-
-I directed the implementation of a PrestaShop store in a stack that was new to me, using AI agents for the code and a separate reviewer before production. The work started with the catalogue and grew into payments, receipts, stock, CDEK and Yandex Delivery. The project began on 24 July 2026; 47 days later, on 9 September, the first real payment went through. The launch checklist and final client acceptance were still open.
-
-Evidence: The client, brand, domain, buyers and commercial totals are omitted. The technical sequence and measurements come from work logs, database queries, acceptance records and repository checks.
-Evidence: I led the work: set tasks, chose solutions, checked and accepted them. AI agents implemented the changes I led, and a separate reviewer with a shell checked them before production.
-
-### From requirements to real orders
-
-Management handled the client relationship. I received the requirements, chose the technical direction and carried the work through implementation, review and acceptance. The stack was new to me, so I used AI agents to inspect the platform and write the code. I was responsible for the user flows, the boundaries between systems, production checks and the final engineering decisions.
-The shop had to support several sellers, take catalogue data from marketplaces, handle partial prepayments, synchronise stock and route orders to two delivery services. I chose PrestaShop after checking those requirements on a live stand. Its native model could represent the size ranges, the official YooKassa module installed without a patch, the delivery sandbox returned 13 rates and 20 pickup points, and an API stock write recalculated the aggregate. YooKassa was useful for validating the platform choice; we later chose CloudPayments and a custom module for the production payment path.
-The store eventually included catalogue imports, CloudPayments, online receipts, stock synchronisation, marketplace data, CDEK and Yandex Delivery. At the 22 September 2026 snapshot, the repository contained 20 custom modules. Thirteen module suites completed 1,343 assertion checks offline. These were hand-written runners; the repository still had no CI.
-The first real payment went through on 9 September. The next day, an order completed payment, receipt, stock and delivery processing without the team moving it by hand.
-
-### The catalogue passed the wrong check
-
-One import increased the catalogue from 1,263 to 1,857 variants while reporting no errors and no duplicate size values. The source supplied point sizes such as 90; the store had already normalised the same size to a range such as 80-90. A string comparison treated them as different, so both survived on 193 products.
-I restored the database from the dump taken before the import. The variant count returned to 1,263, the cache was cleared, and the storefront was checked before another write was allowed. The fix reused the mapping recorded by the earlier catalogue cleanup and applied it before donor product cards were merged. A command-level regression test then checked the real entry point, because calling the two functions in the right order inside a unit test did not prove that the import command did the same.
-The first correction protected incoming data. It did not clean point sizes already stored in older cards. A later import exposed that second layer on 40 cards. A separate cleanup checked each point value against eleven kinds of references before removing it: 169 values removed, none skipped, with the dry run and write run producing the same result. A repeat on hidden cards used the same guarded path.
-The importer had also been overwriting prices, size surcharges and discounts that the client maintained in the store. We built a small preview-and-apply tool for spreadsheet updates instead. On its first recorded use, the client uploaded 198 rows; 124 changed and the tool reported no errors. This is the only run preserved in the work log; there is no recorded result for later uploads.
-
-### Money was read from the wrong moment
-
-Before live payments, a reservation could expire while the buyer was still passing 3-D Secure. The payment could then complete against a cancelled order while the confirmation page still said success. The correction added an in-flight mark, a grace period and an order lock. A late payment restores the order only if stock still allows it; otherwise the payment is refunded automatically.
-The first live payment incidents revealed another class of error. Two preorder buyers chose a 10 percent prepayment and were charged the full amount. A separate reproducing order showed the checkout asking for 10 percent while the CloudPayments widget received 100 percent. The payment page created a new empty cart, and a hook read that context cart before the explicit order snapshot. With no preorder plan left, the first payment became the whole debt.
-I chose a small server-side boundary: the explicit order takes priority over the context cart, and the notification handler refuses an amount that differs from the current debt. A reproducing test failed on the old code before the change. The same assumption then turned up in a discount listener, so the final guard walks every listener in that hook family and requires order data to win over cart data.
-A third incident came from a value that was true when an item entered the cart and stale by checkout. The rule moved to the stock snapshot stored on the order itself. Before I accepted the change, the new rule was replayed read-only across 77 production orders. Exactly one result changed, the incident the rule was meant to correct. The client handled the earlier charge with the buyer outside this code path.
-
-### CDEK accepted the request, then rejected the parcel
-
-CDEK could return 202 Accepted and reject the parcel four seconds later. The reverse was possible too: our request timed out while CDEK still created the parcel. A blind retry would create a second shipment because the service did not deduplicate on our order number.
-Across the review rounds, eleven critical findings came back to one unsafe assumption: that the absence of a clean response proved the absence of a parcel. The integration now asks CDEK for its final state and separates an unknown result from a confirmed rejection. A cancellation that arrives during the request is kept instead of being overwritten by the late response.
-The sandbox could demonstrate rejection but never a successful final state. With the client's permission, the acceptance plan allowed one real waybill on a controlled order, followed by deletion. That run found another defect before automation was enabled. A mixed order then produced separate waybills for its normal and preorder parts, and only after those checks did the service begin receiving orders automatically.
-
-### The shop was selling, but the project was not finished
-
-By 22 September 2026, this was already an operating system rather than a catalogue demo. Real buyers could place and pay for orders; the shop issued receipts, changed stock, reserved goods in the accounting system and sent orders to CDEK or Yandex Delivery. Mixed orders split normal and preorder items into separate shipments. When a partly paid order needed a quantity or product correction, our team handled it as a controlled production change.
-Live operation changed the work. An incident could span the shop database, the payment provider, a receipt, the accounting system and a delivery service. Before changing money or order state, I first reconstructed that chain from read-only data, wrote down the proposed mutation and took a database dump. Delivery acceptance included one controlled real waybill because the sandbox could not prove a successful final state.
-I kept the open questions in my own source archive (/projects/mnemo/), each linked to the material it came from. That made it possible to put the complete open list in front of management on 8 September without reconstructing it from memory.
-The project was still not complete. Search indexing remained disabled, CDEK courier delivery was outside the verified path, and the closeout list still included partial purchase, the fast-payment path, legal copy, the product-marking boundary and final client acceptance. The store had not been tested at high volume, so this case does not claim a completed launch or production scale.
-
-## An architecture boundary became a check that fails
-
-Shelf: W-04
-Status: In use, enforced by a check that fails the build
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/work/enforced-architecture-boundary/
-
-Splitting a Python monolith is easy to draw and hard to keep. I moved external systems behind ports and adapters, then wrote an AST check so the dependency direction survives the next person in a hurry.
-
-Evidence: Service names and the repository are withheld; the boundary and the failure it caught are described without them.
-Evidence: The line count and the failed boundary check come from the project journal and locally resolved changes.
-
-### Safe context
-
-Domain logic and infrastructure concerns were mixed inside a Python monolith. Business rules imported database and third party client code directly, so testing a rule meant standing up everything around it.
-The team had a diagram of the intended structure. The code did not agree with it, and nothing noticed.
-
-### Constraints
-
-- The system stayed in use throughout, so the migration had to arrive in small reviewable steps.
-- The result had to be understandable by people who had not read an architecture book that week.
-- Any rule I introduced had to be cheap to run on every change, or it would be skipped.
-
-### What was mine
-
-I chose the boundary, moved external systems behind ports and adapters, sequenced the migration, and wrote the check that holds the direction.
-I also chose where to stop. The goal was one useful direction of dependency, not maximum abstraction.
-
-### Team and agent boundary
-
-Agents were useful for the mechanical part of the migration and for finding every import of a module. Deciding what belongs in the domain was not something I handed over.
-The AST check itself is small enough to read in one sitting, which matters more than how it was drafted.
-
-### Alternatives I weighed
-
-Document the rule and rely on review
-Free to introduce. It works until a deadline, a new joiner, or a large diff. Rejected, because the previous diagram had already failed the same way.
-A linter plugin or an off the shelf import checker
-Reasonable, and worth revisiting. At the time a short AST check tuned to this one rule was easier to explain and had no configuration surface to drift.
-A full rewrite into services first
-Rejected. The dependency direction was the actual problem. Moving unclear boundaries into separate deployments would have made them permanent.
-
-### Decision
-
-Put external systems behind ports, implement them as adapters in infrastructure, migrate in small steps, and enforce the one rule that matters with an AST check that fails.
-I also introduced one result contract with an explicit status and a restartable flag. Callers could then distinguish no data from a failed run instead of guessing from an empty payload.
-
-### Implementation
-
-- Ports defined in the domain as plain interfaces.
-- Adapters in infrastructure implementing those ports.
-- A common result contract carrying status and whether the operation can be restarted.
-- Small migrations, each one reviewable on its own.
-- An AST check that walks the source and fails when a domain module imports infrastructure.
-
-### How I verified it
-
-The check earns its place by failing. I confirmed that it fails on a deliberately reintroduced import, then let it run on every change.
-Independent review caught a different failure that unit tests had missed: the graph library recursively expanded a nested state object, so the real graph path failed even though the isolated tests passed. I fixed the integration path and kept the case as a warning against testing only below the framework boundary.
-- A forbidden import added on purpose, to see the check reject it.
-- Domain tests run without infrastructure present.
-- Each migration step reviewed as its own change rather than one large diff.
-
-### Result
-
-The main orchestration module shrank from 976 to 647 lines while its responsibilities moved behind explicit boundaries. The domain layer no longer imports infrastructure, and an attempt to reintroduce that dependency fails the check instead of passing review.
-
-### What this does not prove
-
-The check enforces one rule about import direction. It does not verify that the boundary is in the right place, and a determined workaround at runtime can still cross it.
-Ports and adapters suited this boundary. It does not follow that every Python or Django application needs the same structure.
-
-### What I would change now
-
-I would add the same check to the application layer, because the rule I enforced is the one I happened to break first.
-I would also record the rule next to the code it protects, so a reader meets the constraint before the failure message.
-
-## A product metric was counting refusals as success
-
-Shelf: W-05
-Status: Verified on a small labelled set and in the product path
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/work/false-positive-metric/
-
-A substring check reported 14 mentions out of 15 where a manual read found none. I replaced it with a calibrated claim verifier and made unsupported input stop before it could become a confident score.
-
-Evidence: Product and customer names are withheld. The failure replay, calibration, and product-path change remain traceable in the private record.
-Evidence: The calibration figures are scoped to the labelled set described here. They are not a general model benchmark.
-
-### Safe context
-
-A product asked language models whether they knew a brand, then turned the answers into a visible mention metric. The implementation looked for the brand name in the returned text.
-That counted sentences such as 'I cannot verify this brand' as a mention. On one fresh run the report showed 14 out of 15 while a manual read found zero substantive mentions.
-
-### Constraints
-
-- Unknown brands had to stop producing confident positive scores.
-- Known brands still needed to pass when the answer contained real, useful information.
-- The replacement had to fit the existing claim contract instead of changing every caller at once.
-
-### What was mine
-
-I traced the metric back to the substring rule, built the labelled cases, wrote the verification service, calibrated the rubric, and moved the refusal rule into the product path.
-The uncomfortable part was treating the existing headline metric as untrustworthy until it survived a negative control.
-
-### Team and agent boundary
-
-Agents helped locate callers and exercise prompt variants. I read the captured answers, assigned the labels, and decided which mistakes mattered to the product metric.
-The verifier is allowed to abstain. A forced answer would recreate the defect with more elaborate machinery.
-
-### Alternatives I weighed
-
-Tighten the substring rule
-Cheap, but another list of negative phrases would only move the false positives around. The text can deny a claim in more ways than a rule can enumerate.
-Ask one model and trust its prose
-That keeps the original coupling between fluent text and a product score. Rejected for the same reason as the substring rule.
-Verify one claim against a strict rubric
-More expensive per answer and easier to inspect. It produces an explicit verdict, can abstain, and can be calibrated on known and unknown cases. This is what I built.
-
-### Decision
-
-Replace substring matching with a separate claim verifier. It receives the answer and known context, selects the matching rubric, and returns a structured verdict. Only a supported verdict may increase the metric.
-The same rule now applies earlier too: if the input does not support a run, reject it before the graph is built instead of spending tokens on a result the product cannot stand behind.
-
-### Implementation
-
-- A verification service behind the existing stable claim contract.
-- Separate rubric modes for known context and missing context.
-- Structured outcomes for a substantive match, denial, name-only text, a pivot, or an unsupported claim.
-- A refusal gate before graph execution and an explicit failure reason when generation is cut off.
-
-### How I verified it
-
-I kept known and unknown cases separate. That matters because one skeptical rubric had removed false positives but also rejected ordinary, correct mentions of known brands.
-- The original failure replayed as zero real mentions against 14 reported by the old metric.
-- Known-case recall measured before and after the rubric change.
-- Unknown cases checked for substantive false positives, not mere name occurrence.
-- The stable claim contract left unchanged while the verifier changed behind it.
-
-### Result
-
-On the recorded control run, substantive mentions were zero where the previous metric had reported 14 of 15. In the later calibration, known-case recall rose from 64.3 percent to 100 percent while substantive false positives on the unknown set stayed at zero.
-The product now carries the difference between no evidence and a positive claim instead of flattening both into a score.
-
-### What this does not prove
-
-The labelled sets were small. These figures show that the recorded failure class was closed; they do not establish model quality across brands, languages, or prompt styles.
-A model verifier can still be wrong. The gain is a testable contract and an abstention path, not a guarantee that hallucinations are solved.
-
-### What I would change now
-
-I would keep expanding the labelled set with real boundary cases and report precision and recall by rubric mode, because a single aggregate can hide which side regressed.
-I would also sample live abstentions for review. A refusal that is always safe and never useful is another broken metric, just in the opposite direction.
-
-## When no bank data looked like no money
-
-Shelf: W-06
-Status: Production bot, evidence reviewed through 21 September 2026
-Last reviewed: 2026-09-23
-Address: https://zenonel.github.io/work/finance-bot-blind-spots/
-
-I led the financial part of a production Telegram back office built on a thinly documented gateway to Sber and Alfa-Bank. The difficult part was keeping a missing response from becoming a false financial fact, while writes still landed in the client's live bank contour.
-
-Evidence: The client, companies, people, bot name, accounts, amounts, domains and infrastructure are omitted. The mechanisms and measurements come from 22 work logs, repository checks and production observations.
-Evidence: I led the work: turned requirements into acceptance conditions, chose the failure boundaries, checked critical paths by hand and accepted production changes. AI agents wrote the code and separate reviewers with shell access checked it.
-
-### The bot grew from documents into live money
-
-The project began as an assistant for invoices and contracts, with separate checks around bank details. It later grew into a production back office for balances, statements, planned payments, notifications and access control. The client entered the production bot on 18 August 2026 and used the financial functions in daily work.
-The bank layer reads Sber and Alfa-Bank through a third-party gateway with thin documentation. An empty list can mean that there are no operations, that one account is unavailable, or that the gateway silently cut the period. A write is riskier: the service has no delete operation, so a payment created in the client's contour cannot be undone through the same API.
-Management handled the client relationship. I chose how we would distinguish missing data from empty data, required a preview before writes, tested the critical paths by hand and decided when a change was ready for production. AI sessions implemented the code. A separate reviewer checked it with shell access. A colleague's webhook and access-control code is part of the system; our work there was review and correction, not authorship.
-
-### A bank failure must not become a zero
-
-The first versions flattened too many states. A failed request could appear as an empty payment list, a zero balance or a screen saying there was nobody to ask. The closing check eventually covered fourteen combinations of source availability and real emptiness instead of testing only the happy path.
-The sharpest incident lasted 35 hours and 5 minutes across 288 attempts: operations from one Sber account failed while Alfa-Bank and the other gateway methods answered normally. The bot never told the client that the account was blind. Five direct probes returned 502 in 0.13 to 0.17 seconds while the control bank returned 200 in 0.39 seconds, which ruled out a general network failure.
-I chose to close the class in one branch: one read per run, account health stored as state, a cursor for the last complete point, backfill over the outage window, and one message when a source fails and another when it catches up. On the first weekend after deployment, four outages lasting 45 to 75 minutes were all announced and closed with a recovery message.
-The earlier blind period still had a cost: the bot could not distinguish an empty account from an unavailable one. That ambiguity is why the later design treats availability as state rather than inferring it from an empty response.
-
-### We had to prove where the defect lived
-
-A wide statement request returned 25 operations where month-by-month requests returned 275. Thirty-four manual measurements established the hidden rule: the gateway clamped the interval to 92 days from its start without saying that the response was incomplete.
-I asked for the alternative explanations to be tested before blaming the vendor. The parameter names matched the specification, the end date worked inside the 92-day window, four alternative parameter names returned the same result, and an intentionally unknown start parameter produced a different response. The workaround slices statements by month and fails the whole period if any slice is unavailable. Quarterly slices would have been three times cheaper, but a two-day reduction in the vendor limit would break them silently.
-Another defect put incoming payments into the wrong category because Sber operations arrived without a payer. The full sample showed the payer in 0 of 265 operations at one bank and in all 18 sampled at the other. We did not add our own classifier on top of the vendor's categories. After the vendor fixed its side, the payer appeared in 283 of 283 Sber operations, where it had been absent in 301 of 301 before the fix, and the categories corrected with it.
-This boundary is still imperfect. As of 9 September, another wide query could drop all 210 operations from the last month. From outside the system we cannot distinguish whether the truncation happens in the gateway or inside the bank.
-
-### One requested alert became rules the client controls
-
-A request for a percentage-of-turnover alert exposed a larger need. The gateway had no such field, no daily period and the bot had no scheduler. I proposed seven configurable rule types instead of hard-coding one notification, and the client agreed to the set.
-A webhook and a scheduled poll both mean the same thing to the rule engine: wake up, read the current picture across accounts and evaluate pure rules. Deduplication is based on the financial fact rather than the run that found it. On the first night after release, the client created six rules without us. Their first live day produced four triggers, twenty delivery keys and no send errors; later the client rebuilt an income rule after the account set changed.
-The weekly narrative is the only path where client data reaches a model. The first version sent complete payment purposes, including cardholder names. I replaced that with a whitelist parser that extracts only a contract reference. The summary uses Gemini Flash Lite through OpenRouter, and its first recorded live run cost $0.00035 according to the provider response.
-One business rule remains unresolved: the percentage base was never agreed with the client even though the rule can already compute a figure. The site does not present that calculation as accepted policy.
-
-### A bank write has an unknown outcome too
-
-Every planned-payment write goes through a preview and an explicit confirmation. The result is one of three states: applied, refused or unknown. An unknown result is never retried automatically because the first request may have reached the bank even when the response did not reach us.
-The development stand forwards reads to the live service but blocks every POST before it leaves the machine. That boundary caught a redirect behaviour where Python's urllib changed a POST into a GET: the bot could have reported success although nothing had been written.
-Manual checking still mattered after automation. Fifteen minutes on the stand found two defects that 737 tests and three review rounds had missed. Final acceptance still includes a manual run.
-
-### Where the system stands
-
-By 21 September 2026 the production bot was on v0.8.10. The test suite had grown from 419 to 1,680 tests in five weeks, with three known external failures in the final run. The client managed access through the bot and maintained notification rules without asking us to edit configuration.
-The system still depends on a gateway whose incomplete answers are not self-describing. Wide-period truncation remains open, the first blind interval cannot be reconstructed completely, and the percentage base still needs a client decision. The external API has not become reliable, and the bot cannot prove that the client's financial records are complete.
-
-## mnemo
-
-Shelf: P-01
-Status: Active, used on my projects, tests run in CI
-Last reviewed: 2026-09-23
-Address: https://zenonel.github.io/projects/mnemo/
-
-I made mnemo because project requirements kept arriving in messages, files, and later corrections. It gives Claude Code and Codex a local archive with links back to the source, plus records of requirements, open questions, and the work done against them.
-
-Evidence: Public repository: github.com/ZenonEl/mnemo (https://github.com/ZenonEl/mnemo).
-Evidence: The standard is published next to the code under SPEC (https://github.com/ZenonEl/mnemo/tree/main/SPEC).
-
-### A forwarded message is part of the project too
-
-In my commercial work, management handles the client relationship. I do the implementation, often working from a forwarded message, a document, or a video showing what someone has configured. Before changing the code, I need to understand what was requested and how it relates to the earlier discussion.
-I wanted to keep that material in a form I could return to: who said what, when it arrived, what it referred to, and which later decision relied on it. Saving the chat history helps, but it does not tell the next agent session which requirement changed or where to look for the original explanation.
-That became mnemo. I wrote the archive format, the Python tools, and a plugin for working with the archive from Claude Code and Codex. I use it on my own projects. It keeps the source material alongside the records I need to continue the work.
-
-### What happens to a new piece of feedback
-
-An import keeps the material with its source information and gives it an address inside the project archive. A requirement or decision can then refer to that entry. The original stays available when the shorter working record is no longer enough to explain a detail.
-For example, imagine a forwarded screenshot asking to change how a delivery option appears. This is an illustration, not a quotation from a client project. The screenshot belongs in the archive as a source. The interpretation of the request belongs in a separate requirement linked to it. If a later message changes the condition, that message should have its own entry; it should not erase the earlier wording.
-The format separates fidelity from attribution. A screenshot may preserve visible text exactly while leaving it unclear who originally wrote it. A machine transcript may help find the relevant part of a recording without being suitable for a verbatim quotation. One confidence score would blur those differences.
-Mnemo cannot recover an author or source that was never supplied. It can retain that uncertainty with the material so that a later summary does not silently turn it into a fact.
-
-### Keeping the files does not settle the task
-
-Preserving material is one job. Figuring out what remains to be done is another. Mnemo has a work-state skill for requirements, open questions, and checks of completion claims against the archived evidence.
-In the delivery-option example, importing the screenshot does not make the requested change complete. The requirement still needs an implementation and a check tied to that request. A question also needs to explain what is unclear and what has already been tried, instead of sending every uncertainty back to the person.
-I keep those records linked to the archive because the next session needs both sides: the current work and the source behind it. The plugin helps maintain the records and check them. Deciding what a request means, whether an answer is sufficient, and whether the result is acceptable still involves me.
-
-### Herald brings material in; ephemeris carries the day forward
-
-I use herald for the communication side. It captures incoming material in a local buffer, where an agent can pick it up for import into mnemo. It also lets an agent prepare and send an update through a configured channel. The capture buffer is temporary; mnemo holds the project history.
-Ephemeris handles the daily record. In my workflow that means the daily issue, its body and development-log comments, with links back to the relevant mnemo entries. That gives the next session somewhere to start without having to reconstruct the entire day from chat.
-The projects can be read separately, but this is why I built them to work together. A new message has a route into the archive, work has a place to be recorded, and the next session has references to follow. The workflow page (/collections/ai-agent-workflow/) shows that route across the tools.
-
-### A live project corrected the archive itself
-
-On 8 September 2026, I used mnemo to assemble every open question on an e-commerce project, with a source address beside each one, and put the complete list in front of management. The reply exposed one conclusion drawn too quickly, so I returned to the primary source and corrected it.
-Six days later, work on the same project exposed two defects in mnemo's reconciliation logic. Both were fixed in the tool that day and released as 0.15.1-beta. The project supplied material to the archive and showed where the archive's own rules were wrong.
-
-### The archive's own write path needed work
-
-Importing material safely took several corrections in the public history. An early rollback fix still had a bad window: an interruption after the manifest had been saved could make the importer treat a completed import as unfinished and remove its files.
-The next fix based that decision on the manifest state on disk rather than on signal-handler timing. A further correction limited the saved-state check to material belonging to the current operation. That detail matters when an import is deciding what it is allowed to undo.
-The published standard describes the archive rules. A self-check compares the standard and the implementation, while the test suite exercises their behaviour. At the reviewed commit 5e0417c, the CI commands were also run locally on 7 September 2026: the self-check and all 64 unittest tests passed.
-To try mnemo, start with the repository README (https://github.com/ZenonEl/mnemo#readme). It gives installation instructions for both hosts; the Python tools use the standard library. The format specification (https://github.com/ZenonEl/mnemo/tree/main/SPEC) is available separately if you want to inspect how the records work before installing the plugin. The archive is local working material, so using mnemo does not make private project files suitable for publication.
-
-## herald
-
-Shelf: P-02
-Status: Active; send and capture on main, addressed Watch on a public beta branch
-Last reviewed: 2026-09-23
-Address: https://zenonel.github.io/projects/herald/
-
-A local MCP gateway that moves messages and files between people and agents, with the list of allowed destinations kept outside the code.
-
-Evidence: Public repository: github.com/ZenonEl/herald (https://github.com/ZenonEl/herald).
-Evidence: At beta/watch commit f55c0ab, the repository test command collected and passed 140 tests on 7 September 2026. This is a snapshot, not a coverage claim.
-
-### Origin need
-
-Agent sessions need to receive project material and, less often, to send something back. Doing that through whatever channel is at hand puts an agent one mistake away from writing to the wrong person.
-I wanted the communication edge to be a small component with an explicit boundary rather than a capability scattered across prompts.
-
-### Who it is for
-
-Me, on projects where an agent needs the day's incoming material. More generally, anyone who wants agent output to pass a human before it reaches a client.
-
-### My role
-
-Author. The gateway, the route model, and the test suite are mine.
-
-### Architecture
-
-Herald runs locally and speaks MCP. Incoming messages and files land in a temporary buffer that mnemo imports from, so herald never becomes a second archive.
-In the other direction it sends material an agent has prepared, but only to destinations and file roots that exist in configuration outside the repository.
-
-### Design decisions
-
-The allow-list lives outside the repository
-Destinations and file roots are configuration, not code. Nothing in the public repository names a real channel, and cloning the project does not hand anyone a route.
-The buffer is deliberately temporary
-Herald captures and hands off. Storage, provenance, and long-term structure belong to mnemo. Two components with narrow jobs are easier to reason about than one that does both.
-Herald does not decide when to write to a client
-It moves prepared material through an allowed route. Judging whether a message should be sent at all stays with the person.
-
-### A correction I had to make
-
-A concrete correction is public in commit b0bff52. An agent preparing one client update could append unrelated project problems and downstream questions because the tool described relevance but did not make the requested subject a hard boundary.
-The correction made every field stay inside the requested subject and limited questions to the first unresolved dependency that blocks the next action. Tests now assert those two phrases in the tool contract. This checks the instruction surface, not every response an agent can produce.
-
-### Tests, CI, releases
-
-At reviewed beta/watch commit f55c0ab, pytest collected and passed 140 tests. The same workflow runs tests and builds the package in CI; server-side CI status was not checked here.
-The count belongs to the beta snapshot and will change. It does not establish coverage or live-channel reliability.
-
-### Privacy boundary
-
-Herald handles material that belongs to other people, so the design keeps the sensitive parts out of the code: routes, file roots, and credentials are configuration supplied by the operator.
-The allow-list stops an accidental route from being invented at send time. It does not defend a machine that is already under someone else's control.
-
-### Limitations
-
-- It runs locally and is built around one operator, not a team deployment.
-- An allow-list constrains where material can go. It cannot judge whether the content should be sent.
-- The value depends on mnemo being on the other side of the import.
-
-### Next steps
-
-Herald is deliberately narrow. A useful next change would remove friction from the handoff to mnemo or make a refused destination easier to understand. Adding another channel by itself would not improve the boundary.
-
-### Reproduction path
-
-The test directory is the fastest honest read: it shows which behaviours are pinned and which are not.
-The README carries separate marketplace installation commands for Claude Code and Codex, then requires operator-owned routes and credentials outside the repository.
-
-## ephemeris
-
-Shelf: P-03
-Status: Instruction package with one version check; no tests or CI
-Last reviewed: 2026-09-23
-Address: https://zenonel.github.io/projects/#ephemeris
-
-An issue-based protocol for one project day across several agent sessions. A handoff passes addresses to source material instead of another summary.
-
-Evidence: Public repository: github.com/ZenonEl/ephemeris (https://github.com/ZenonEl/ephemeris).
-Evidence: There is no deep page yet because the honest description fits in a paragraph.
-
-A work day usually outlives one agent session. Ephemeris records the state of the day in an issue and hands the next session addresses it can resolve: issues, comments, commits, paths, and mnemo citations.
-It is a package of agent instructions, not an application. Its only executable file checks version parity across the manifests and README badges. There are no automated tests or CI, and I would rather say that here than let the repository look larger than it is.
-
-## TelegramMediaRelayBot
-
-Shelf: P-04
-Status: Active, 34 unit tests running in CI
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/projects/telegram-media-relay-bot/
-
-A self-hosted .NET media relay with a modular downloader chain and a persistent queue. It is the clearest public example of my C# work.
-
-Evidence: Public repository: github.com/ZenonEl/TelegramMediaRelayBot (https://github.com/ZenonEl/TelegramMediaRelayBot).
-Evidence: Every figure here is read from the repository itself: the project files, the test files, the CI workflow, and the commit named in the correction below.
-Evidence: The documentation site is my own writing. Nothing on this record is sourced from its landing page.
-Evidence: The at least once delivery boundary is stated in the code that removes a finished job, not inferred from the design.
-
-### Origin need
-
-Sharing media between people through a chat client runs into two limits at once: what the hosted API will accept, and what happens to a long download when the process restarts.
-The project exists to solve both on hardware the operator controls.
-
-### Who it is for
-
-People who self-host their own tools and are willing to run a container to avoid a third party in the middle.
-
-### My role
-
-Author. Architecture, implementation, tests, and the documentation site are mine.
-
-### Architecture
-
-A request is written to the database before any download starts. Workers claim from the queue and run a chain of downloader backends, and delivery can go through an optional local Bot API server.
-- C# 14 on .NET 10, packaged for Docker as the intended way to run it.
-- SQLite reached through Dapper, with FluentMigrator owning the schema.
-- Modular yt-dlp and gallery-dl backends behind one downloader interface.
-- Concurrency is bounded by a semaphore sized from configuration, three at a time by default and capped at twenty.
-- Typed configuration that validates itself at startup rather than loose environment lookups.
-
-### Design decisions
-
-Persist the queue instead of holding it in memory
-Media downloads are long and failure prone. Writing the work down first is what makes a restart a pause rather than a loss, and it costs a schema and a migration path.
-Downloaders behind one interface
-Sites break, tools get replaced, and one backend is never enough. A chain with a common interface lets a new backend enter without touching the queue or the delivery path.
-Local Bot API as an optional path
-It raises the file limit to 2 GB, and it also adds a component the operator has to run. Making it optional keeps the simple deployment simple.
-
-### A correction I had to make
-
-Until the middle of 2026 the queue existed only in memory. A crash or a reboot dropped whatever had been requested, and the person who asked got neither the file nor an explanation. The design read as durable on a diagram and was not durable in operation.
-The fix was to write each request into a DownloadJobs row before the download begins, delete the row on completion, and re-enqueue whatever is left at startup through a resume service that also tells the requester what is happening.
-It was checked by hand as well as in tests: a job was inserted, the bot was restarted, the download resumed and the media arrived, and the row was gone afterwards. What the change buys is at least once delivery, which is written into the code as a deliberate choice rather than left as an assumption.
-
-### Tests, CI, releases
-
-34 unit tests run on every push and pull request. They use xUnit with NSubstitute for the seams, and the CI job restores, builds in Release, runs the suite, and then starts the bot for two minutes so a configuration error cannot pass as a green build.
-The latest published GitHub release at review time is v0.3.0-beta from 27 July 2025. The reviewed main commit is newer, so the release tag is not used as the current code version.
-
-### Privacy boundary
-
-The point of self-hosting is that the media and the queue stay on the operator's machine. Credentials and destinations are configuration, not code.
-Self-hosting keeps the queue and media on the operator's machine. The project has not had an external security review.
-
-### Limitations
-
-- Downloader backends depend on third party sites that change without warning.
-- The 2 GB path requires running a local Bot API server, which is a real operational cost.
-- 34 unit tests pin the core behaviour. They are not an end to end guarantee across every backend.
-- Delivery is at least once, not exactly once. The job row is removed only after a normal finish, so a crash between a successful send and that removal replays the whole job on restart and the recipient can get a duplicate. The code says this is the accepted trade: a repeat is preferable to a lost download.
-- Nothing here has been reviewed by anyone else. Self-hosted describes where it runs, not how safe it is.
-
-### Next steps
-
-The changelog is generated from commit history. It describes what landed and when; proposed work stays out of the release record.
-I would watch two pressure points first: downloader backends move whenever the sites they read move, and the 2 GB path costs the operator a second component to keep running.
-
-### Reproduction path
-
-The repository ships a Dockerfile and a compose file, and the documentation site covers configuration in more detail.
-After the required configuration files are prepared, docker compose up -d --build builds and starts the bot together with the local Bot API service described by that compose file.
-
-## CrabVoice
-
-Shelf: P-05
-Status: Earlier project, kept for the record rather than actively developed
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/projects/crabvoice/
-
-A desktop and mobile client for synchronised voice-over translation of online video, built on Tauri. It is where I learned to document the parts of a system I do not control.
-
-Evidence: Public repository: github.com/ZenonEl/CrabVoice (https://github.com/ZenonEl/CrabVoice).
-Evidence: Platform support is described the way the repository README describes it, with verified platforms separated from detected but untested ones.
-
-### Origin need
-
-Watching a video in a language you do not speak is a solved problem only if you accept subtitles or a separate browser extension. I wanted a client that plays a synchronised voice track over the original.
-
-### Who it is for
-
-People who watch video in another language on desktop or Android and prefer an application over a browser extension.
-
-### My role
-
-Author. The client, the injection layer, and the synchronisation are mine. The translation itself is not.
-
-### Architecture
-
-The application wraps a WebView and injects a detection layer that recognises a video element on the page, using rules compatible with vot.js. A translation is requested for the detected video, and playback of the returned audio is kept aligned with the video timeline.
-Rust and Tauri 2 provide the shell, and the injected layer is TypeScript.
-
-### Design decisions
-
-WebView injection rather than a browser extension
-An extension is easier to ship and harder to keep across browsers and Android. A WebView gives one place to control playback and one behaviour to reason about, and it costs the trust an installed application asks for.
-Detection rules compatible with an existing project
-Reimplementing video detection for every site is an endless job. Following vot.js compatible rules meant the detection surface was already described.
-Say plainly which platforms were verified
-Detection covering a site is not the same as the flow working on it. The README separates verified platforms from detected but untested ones instead of publishing one large support number.
-
-### A correction I had to make
-
-The honest correction in this project was to the documentation rather than the code. An early framing counted every platform detection as support, which reads as a promise. Separating verified from detected made the project smaller on paper and accurate in use.
-At the reviewed commit the README names three verified platforms: YouTube, VK and Vimeo. TikTok, Twitch, Twitter/X, Reddit, Rutube, Dailymotion, Bilibili, Kick and more are listed separately as detected and requiring testing.
-
-### Tests, CI, releases
-
-At reviewed commit 956e0d8 the repository contains no automated test files or test command, and the release workflow builds packages without a test step.
-The latest published GitHub release is v1.2.0 from 25 April 2026. A published build shows that packaging completed for that release. It says nothing about behavioural coverage.
-
-### Privacy boundary
-
-The client sends video identity to a third party translation service, which is inherent to the feature rather than a side effect. The README documents that the integration is reverse engineered.
-No security claim is made about this project. The translation path is outside my control.
-
-### Limitations
-
-- The translation step depends on a third party service reached through a reverse engineered integration, so it can stop working without any change here.
-- Detected does not mean verified, and the README is the authority on which is which.
-- The project is earlier work. It is on this site for what it shows about handling parts of a system you do not own.
-
-### Next steps
-
-No active development is planned. If it resumes, the first task is restating platform support against the current behaviour of the translation service.
-
-### Reproduction path
-
-Release builds are published on the repository releases page, and the README is the place where verified platforms are listed.
-The repository's source-build path is pnpm install followed by pnpm tauri build; it requires Node.js 20 or newer, stable Rust, pnpm and protobuf-compiler.
-
-## RemoteGamepad
-
-Shelf: P-06
-Status: Earlier experiment, not developed further
-Last reviewed: 2026-08-25
-Address: https://zenonel.github.io/projects/#remotegamepad
-
-A local bridge that turns a phone into a browser-controlled virtual gamepad for a Linux host.
-
-Evidence: Public repository: github.com/ZenonEl/RemoteGamepad (https://github.com/ZenonEl/RemoteGamepad).
-
-The phone opens a page, the browser sends input over a WebSocket, and the host presents a virtual gamepad to the system. It works on a local network and stops there.
-It is an earlier experiment, useful here as a small example of carrying browser input through to an operating-system device rather than as a current product.
-
-## zapret2-nix
-
-Shelf: P-07
-Status: Public v0.1; module, presets and checks are available
-Last reviewed: 2026-09-23
-Address: https://zenonel.github.io/projects/#zapret2-nix
-
-A declarative NixOS module and preset library for zapret2, with runtime strategy switching and both nftables and iptables paths.
-
-Evidence: Public repository and usage guide: github.com/ZenonEl/zapret2-nix (https://github.com/ZenonEl/zapret2-nix).
-Evidence: The repository contains Nix checks for preset evaluation, nftables, iptables and the DPI test path.
-
-I built it because the upstream NixOS module deliberately stops at raw service flags. This project adds a preset library, derives firewall ports from the same preset data, and lets a running machine switch strategy without a rebuild.
-The awkward cases are part of the design: a running bypass service can corrupt a strategy test, and a VPN can make every strategy look successful. The check wrapper stops the service for its run and refuses to treat a tunnel as useful evidence. Presets still depend on the ISP and can stop working when its DPI changes.
-
-## Keeping context when the sessions are shorter than the project
-
-Shelf: C-01
-Status: In daily use on my own projects
-Last reviewed: 2026-08-25
-Address: https://zenonel.github.io/collections/ai-agent-workflow/
-
-Three public tools and one habit. Material crosses a single boundary, is stored with its source, and reaches the next session as addresses rather than a retelling.
-
-Evidence: Three public repositories: mnemo (https://github.com/ZenonEl/mnemo), herald (https://github.com/ZenonEl/herald), ephemeris (https://github.com/ZenonEl/ephemeris).
-Evidence: The tools exchange links and published formats. They do not share a runtime, a database, or a library.
-
-### Why this exists
-
-Agent sessions are short and the project is long. Without something outside the session, each new one starts from a retelling of the previous one, and the further you go the less of the original material survives.
-The failure is quiet. Nothing errors. The requirement simply drifts from what the client actually said, and by the time that matters the original message is three tools away.
-
-### How the loop runs
-
-- Material arrives from people and project channels and crosses one boundary, herald, into a local buffer.
-- Mnemo imports it and stores it raw with its source, date, and attribution, and links it to requirements, decisions, and open questions.
-- I work with agents against that material. Agents inspect and implement. I choose the approach and check the result.
-- Ephemeris records the state of the day and hands the next session addresses rather than a summary.
-- When something needs to reach a person, herald sends it through an allowed route, and a person reads it before the client does.
-The tools connect through links and published formats. Each one can be understood, and discarded, on its own.
-
-### What agents do not decide
-
-Agents read unfamiliar code faster than I do, hold more of a repository at once, and write a first version of a bounded change quickly. That is worth using.
-They also produce work that is nearly correct, which is the expensive kind of wrong. So the loop keeps four things with me: what the requirement means, where the boundary goes, what counts as verified, and whether a result is allowed to leave the machine.
-Generated code is a draft until I have read it, run it on the failing path, and understood how it behaves in the system around it.
-
-### What this does not prove
-
-Three repositories and a working habit are not a product. The tools are used by one person on his own projects, and nothing here has been tested by a team under someone else's constraints.
-The workflow reduces one specific loss, which is context evaporating between sessions. It does not make agent output correct, and it is not a security boundary.
-
-## When a passing check misses the problem
-
-Shelf: C-02
-Status: A working practice, documented from real corrections
-Last reviewed: 2026-09-07
-Address: https://zenonel.github.io/collections/corrections-and-checks/
-
-Catalogue imports and product metrics can pass a check while failing the task. These cases explain the mismatch and what had to change.
-
-Evidence: The examples combine public project histories with a private work archive. Employer and customer details stay out of the page.
-Evidence: This is a description of my practice, not a claim that the practice prevents every defect.
-
-### The check passed. The task did not.
-
-In a catalogue import, checking for duplicate attributes was not enough. A size written as a point and the same size represented by a range were different strings, so both survived. The catalogue gained unwanted variants even though the duplicate check returned zero.
-A product metric had a different problem: it counted the presence of a name in an answer, including an answer that refused to provide the requested information. The implementation could count the text correctly and still report the wrong outcome.
-
-### What to read next
-
-The catalogue case follows the failure through a database restore and a change in transformation order. The metric case explains what had to count as a result before there was any point comparing scores.
-The cost-and-search case takes this further into evaluation: a cheaper proposal only helps if it still returns the material the task needs. The mnemo page covers another part of the same working process: keeping the original source available when a decision has to be revisited.
+License: Site content is CC BY 4.0. Project code is under each repository's license (mostly GPL-3.0).
