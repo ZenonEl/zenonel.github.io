@@ -1,333 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc" />
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-7XFXVE7BPP');
-    </script>
-
-    <title>CrabVoice — Real-Time Voice Translation for Online Videos</title>
-
-    <meta name="description" content="Free open-source app for real-time voice translation of online videos. YouTube, Twitch, VK, TikTok and 55+ platforms. Windows, Linux, Android.">
-    <meta name="keywords" content="CrabVoice, voice translation, real-time dubbing, video translation, голосовой перевод, озвучка видео, YouTube translation, Twitch translation, VK video, TikTok, tauri, rust, open source, free">
-    <meta name="author" content="ZenonEl">
-
-    <link rel="canonical" href="https://zenonel.github.io/crabvoice/">
-    <link rel="alternate" hreflang="en" href="https://zenonel.github.io/crabvoice/">
-    <link rel="alternate" hreflang="ru" href="https://zenonel.github.io/crabvoice/ru/">
-    <link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/crabvoice/">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/favicon.svg">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt">
-    <link rel="alternate" type="text/plain" title="LLMs full context" href="/llms-full.txt">
-
-    <meta property="og:title" content="CrabVoice — Real-Time Voice Translation for Online Videos">
-    <meta property="og:description" content="Free app for real-time voice-over translation. Watch YouTube, Twitch, VK, TikTok and 55+ platforms in your language with instant AI dubbing.">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
-    <meta property="og:url" content="https://zenonel.github.io/crabvoice/">
-    <meta property="og:site_name" content="ZenonEl">
-    <meta property="og:type" content="website">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CrabVoice — Real-Time Voice Translation for Online Videos">
-    <meta name="twitter:description" content="Free app for real-time voice-over translation. Watch YouTube, Twitch, VK, TikTok and 55+ platforms in your language with instant AI dubbing.">
-    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="stylesheet" href="/crabvoice/styles.css">
-
-    <script src="https://app.rybbit.io/api/script.js" data-site-id="430" defer></script>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
-    <script defer src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "CrabVoice",
-        "applicationCategory": "MultimediaApplication",
-        "operatingSystem": "Windows, Linux, Android",
-        "softwareVersion": "1.0.0",
-        "license": "https://opensource.org/licenses/GPL-3.0",
-        "description": "Cross-platform real-time voice-over translation for online videos. Supports 55+ platforms including YouTube, Twitch, VK, TikTok with instant AI-powered dubbing.",
-        "featureList": [
-            "Real-time voice dubbing",
-            "55+ platform support",
-            "SponsorBlock integration",
-            "HTTP/SOCKS5 proxy support",
-            "Cross-platform (Windows, Linux, Android)"
-        ],
-        "author": {
-            "@type": "Person",
-            "name": "ZenonEl",
-            "url": "https://zenonel.github.io/"
-        },
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "downloadUrl": "https://github.com/ZenonEl/CrabVoice/releases",
-        "url": "https://zenonel.github.io/crabvoice/"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "How to install and use CrabVoice for real-time video translation",
-        "description": "Step-by-step guide to installing CrabVoice and translating videos from 55+ platforms in real time.",
-        "totalTime": "PT5M",
-        "supply": [
-            { "@type": "HowToSupply", "name": "Windows, Linux, or Android device" },
-            { "@type": "HowToSupply", "name": "Internet connection" }
-        ],
-        "tool": [
-            { "@type": "HowToTool", "name": "CrabVoice installer (.msi / .AppImage / .deb / .apk)" }
-        ],
-        "step": [
-            {
-                "@type": "HowToStep",
-                "position": 1,
-                "name": "Download CrabVoice",
-                "text": "Go to the CrabVoice GitHub Releases page and download the installer for your platform: .msi for Windows, .AppImage or .deb for Linux, .apk for Android.",
-                "url": "https://github.com/ZenonEl/CrabVoice/releases"
-            },
-            {
-                "@type": "HowToStep",
-                "position": 2,
-                "name": "Install the application",
-                "text": "Run the downloaded installer. On Linux, make the .AppImage executable with chmod +x. On Android, allow installation from unknown sources."
-            },
-            {
-                "@type": "HowToStep",
-                "position": 3,
-                "name": "Configure translation API",
-                "text": "Open CrabVoice settings, select your target language and translation source (Yandex Translate by default)."
-            },
-            {
-                "@type": "HowToStep",
-                "position": 4,
-                "name": "Open a video",
-                "text": "Open any supported platform (YouTube, Twitch, VK, TikTok, etc.) and start playing a video — CrabVoice intercepts the audio and plays back the dubbed version in your language with ~1-3 second latency."
-            }
-        ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Is CrabVoice free?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, CrabVoice is completely free and open-source, released under the GPL-3.0 license."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What platforms does CrabVoice support?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "CrabVoice supports 55+ video platforms including YouTube, Twitch, VK Video, TikTok, Vimeo, Dailymotion, and many more."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What operating systems can run CrabVoice?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "CrabVoice is available for Windows, Linux (AppImage, deb, rpm), and Android."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What languages does CrabVoice translate to?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "CrabVoice uses the Yandex Translation API and supports translation between numerous languages. The available language pairs depend on the translation service capabilities."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How does CrabVoice work?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "CrabVoice intercepts video audio in real-time, sends it for translation via the Yandex API, and plays back the dubbed audio synchronized with the original video. It works as a desktop application built with Rust and Tauri v2."
-                }
-            }
-        ]
-    }
-    </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The CrabVoice page moved | ZenonEl</title>
+<meta name="description" content="This address used to hold a standalone product page. The project now lives in the library, on the projects shelf, with the same schema as everything else.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0f1412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/projects/crabvoice/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/projects/crabvoice/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/projects/crabvoice/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/projects/crabvoice/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="preload" href="/assets/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="The CrabVoice page moved">
+<meta property="og:description" content="This address used to hold a standalone product page. The project now lives in the library, on the projects shelf, with the same schema as everything else.">
+<meta property="og:url" content="https://zenonel.github.io/projects/crabvoice/">
+<meta property="og:locale" content="en_US">
 </head>
 <body>
-    <div class="crabvoice-page">
-        <div class="lang-switch">
-            <a href="/crabvoice/ru/">🇷🇺 Русская версия</a>
-        </div>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="/">
+    <span class="brand-mark" aria-hidden="true">ZE</span>
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Backend engineer</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Primary">
+    <ul><li><a href="/work/">Work</a></li><li><a href="/projects/" aria-current="page">Projects</a></li><li><a href="/collections/">Practice</a></li><li><a href="/about/">About</a></li><li><a href="/cv/">CV</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <a class="lang-switch" href="/ru/projects/crabvoice/" lang="ru" hreflang="ru">RU</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
 
-        <section class="hero">
-            <h1>🦀 CrabVoice</h1>
-            <span class="version">v1.0.0</span>
-            <p class="subtitle">Real-time voice-over translation for online videos.<br>Watch any video in your language with instant AI dubbing.</p>
+<article class="entry moved">
+  <header class="entry-head">
+    <p class="entry-coord">Moved</p>
+    <h1>The CrabVoice page moved</h1>
+    <p class="entry-lead">This address used to hold a standalone product page. The project now lives in the library, on the projects shelf, with the same schema as everything else.</p>
+  </header>
+  <div class="entry-body">
+    <p class="moved-action"><a class="button" href="/projects/crabvoice/">Open the CrabVoice project page</a></p>
+    <p>The old page was written as a product landing page, and it loaded an icon set from a third party. Neither belongs on this site any more.</p><p>The new entry keeps what was worth keeping: how the client works, what depends on a third party service, and which platforms were verified rather than merely detected.</p>
+  </div>
+</article>
 
-            <div class="cta-buttons">
-                <a href="https://github.com/ZenonEl/CrabVoice/releases" class="primary" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-download" aria-hidden="true"></i>
-                    Download
-                </a>
-                <a href="https://github.com/ZenonEl/CrabVoice" class="secondary" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    GitHub
-                </a>
-            </div>
-        </section>
-
-        <section class="content-section">
-            <h2><i class="fas fa-info-circle" aria-hidden="true"></i> What is CrabVoice?</h2>
-            <p>
-                CrabVoice is a free, open-source application that provides real-time voice-over translation for online video content. It enables you to watch videos from 55+ platforms in your preferred language with synchronized dubbed audio.
-            </p>
-            <p>
-                Whether you're watching a YouTube tutorial, a Twitch stream, a VK video, or a TikTok clip — CrabVoice translates and dubs the audio in real-time, so you can understand content in any language without waiting for subtitles or manual translations.
-            </p>
-            <p>
-                Built with Rust and Tauri v2, CrabVoice is fast, lightweight, and works across Windows, Linux, and Android.
-            </p>
-        </section>
-
-        <section class="content-section">
-            <h2><i class="fas fa-star" aria-hidden="true"></i> Key Features</h2>
-            <ul class="features-grid">
-                <li>
-                    <span class="feature-icon">🎙️</span>
-                    <span class="feature-name">Real-time Dubbing</span>
-                    Automatic voice translation synchronized with video playback
-                </li>
-                <li>
-                    <span class="feature-icon">🌐</span>
-                    <span class="feature-name">55+ Platforms</span>
-                    YouTube, Twitch, VK, TikTok, Vimeo, Dailymotion and more
-                </li>
-                <li>
-                    <span class="feature-icon">⏭️</span>
-                    <span class="feature-name">SponsorBlock</span>
-                    Automatic skipping of sponsors and non-content segments
-                </li>
-                <li>
-                    <span class="feature-icon">🔒</span>
-                    <span class="feature-name">Proxy Support</span>
-                    HTTP and SOCKS5 proxy with connectivity verification
-                </li>
-                <li>
-                    <span class="feature-icon">⚡</span>
-                    <span class="feature-name">Smart Playback</span>
-                    Coordinated audio, pause, seeking, and speed controls
-                </li>
-                <li>
-                    <span class="feature-icon">🛡️</span>
-                    <span class="feature-name">CSP Resilient</span>
-                    Works despite strict Content Security Policies
-                </li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2><i class="fas fa-globe" aria-hidden="true"></i> Supported Platforms</h2>
-            <p>CrabVoice works with 55+ video platforms, including:</p>
-            <ul class="platforms-list">
-                <li>YouTube</li>
-                <li>Twitch</li>
-                <li>VK Video</li>
-                <li>TikTok</li>
-                <li>Vimeo</li>
-                <li>Dailymotion</li>
-                <li>Rutube</li>
-                <li>Kick</li>
-                <li>9GAG</li>
-                <li>Coursera</li>
-                <li>Udemy</li>
-                <li>Reddit</li>
-                <li>Twitter/X</li>
-                <li>Facebook</li>
-                <li>Tumblr</li>
-                <li>Bitchute</li>
-                <li>Rumble</li>
-                <li>PeerTube</li>
-                <li>Odysee</li>
-                <li>and 35+ more...</li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2><i class="fas fa-cogs" aria-hidden="true"></i> Tech Stack</h2>
-            <ul class="tech-stack">
-                <li>🦀 Rust (backend)</li>
-                <li>📘 TypeScript (frontend)</li>
-                <li>⚡ Tauri v2 (framework)</li>
-                <li>🔑 GPL-3.0 (license)</li>
-            </ul>
-        </section>
-
-        <section class="content-section">
-            <h2><i class="fas fa-download" aria-hidden="true"></i> Installation</h2>
-            <ol class="install-steps">
-                <li>Go to the <a href="https://github.com/ZenonEl/CrabVoice/releases" target="_blank" rel="noopener noreferrer">GitHub Releases</a> page</li>
-                <li>Download the version for your OS: <strong>.exe</strong> (Windows), <strong>.AppImage / .deb / .rpm</strong> (Linux), or <strong>.apk</strong> (Android)</li>
-                <li>Install and launch the application</li>
-                <li>Open any supported video platform in your browser and enjoy real-time translation</li>
-            </ol>
-        </section>
-
-        <section class="content-section">
-            <h2><i class="fas fa-question-circle" aria-hidden="true"></i> FAQ</h2>
-
-            <div class="faq-item">
-                <h3>Is CrabVoice free?</h3>
-                <p>Yes, CrabVoice is completely free and open-source, released under the GPL-3.0 license.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>What platforms does CrabVoice support?</h3>
-                <p>CrabVoice supports 55+ video platforms including YouTube, Twitch, VK Video, TikTok, Vimeo, Dailymotion, and many more.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>What operating systems can run CrabVoice?</h3>
-                <p>CrabVoice is available for Windows, Linux (AppImage, deb, rpm), and Android.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>What languages does CrabVoice translate to?</h3>
-                <p>CrabVoice uses the Yandex Translation API and supports translation between numerous languages. The available language pairs depend on the translation service capabilities.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3>How does CrabVoice work?</h3>
-                <p>CrabVoice intercepts video audio in real-time, sends it for translation via the Yandex API, and plays back the dubbed audio synchronized with the original video. It works as a desktop application built with Rust and Tauri v2.</p>
-            </div>
-        </section>
-
-        <footer class="page-footer">
-            <p>
-                <a href="/">← Back to ZenonEl Portfolio</a> &nbsp;|&nbsp;
-                <a href="https://github.com/ZenonEl/CrabVoice" target="_blank" rel="noopener noreferrer">GitHub</a> &nbsp;|&nbsp;
-                <a href="https://github.com/ZenonEl/CrabVoice/releases" target="_blank" rel="noopener noreferrer">Releases</a>
-            </p>
-        </footer>
-    </div>
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Backend development and tools I build for my own work.</p>
+    <p class="footer-legal">Site text under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of each repository.</p>
+  </div>
+  <nav aria-label="Footer">
+    <ul><li><a href="/library/">Library index</a></li><li><a href="/collections/corrections-and-checks/">How I check my own work</a></li><li><a href="/collections/ai-agent-workflow/">AI workflow collection</a></li><li><a href="/colophon/">Colophon</a></li><li><a href="/ru/projects/crabvoice/" lang="ru" hreflang="ru">Русская версия</a></li></ul>
+  </nav>
+</footer>
 </body>
 </html>

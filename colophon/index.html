@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colophon | ZenonEl</title>
+<meta name="description" content="How this site is built: a content model in JSON, a standard library generator, one self hosted display face, no framework, no script, and the checks that keep it honest.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0f1412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/colophon/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/colophon/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/colophon/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/colophon/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="preload" href="/assets/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="Colophon">
+<meta property="og:description" content="How this site is built: a content model in JSON, a standard library generator, one self hosted display face, no framework, no script, and the checks that keep it honest.">
+<meta property="og:url" content="https://zenonel.github.io/colophon/">
+<meta property="og:locale" content="en_US">
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="/">
+    <span class="brand-mark" aria-hidden="true">ZE</span>
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Backend engineer</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Primary">
+    <ul><li><a href="/work/">Work</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Practice</a></li><li><a href="/about/">About</a></li><li><a href="/cv/">CV</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <a class="lang-switch" href="/ru/colophon/" lang="ru" hreflang="ru">RU</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<article class="entry static-page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol>
+    <li><a href="/">Home</a></li>
+    <li><span>Colophon</span></li>
+  </ol></nav>
+  <header class="entry-head">
+    <p class="entry-coord">Colophon</p>
+    <h1>Colophon</h1>
+    <p class="entry-lead">Static HTML generated from a content model by a Python script with no dependencies. Nothing on a page reaches outside the site, and no page runs any script.</p>
+<p class="page-reviewed"><span>Last reviewed</span> <time datetime="2026-09-07">2026-09-07</time></p>
+  </header>
+  <div class="entry-body"><section class="entry-section" id="build" aria-labelledby="h-build"><h2 id="h-build"><span class="section-num" aria-hidden="true">01</span>How it is built</h2><p>Every entry is a JSON file with an <code>en</code> and a <code>ru</code> block. A generator in the Python standard library reads them, checks them against the case and project schemas, and writes the whole site.</p><p>Stories have their own headings. The build checks that both languages contain the same sections in the same order, that the text is not empty, and that older fragment links still have a destination. Other entries still use the original fixed section schema.</p><p>One rule is newer than the rest and worth naming. A required section that carries nothing but an owner-input marker also fails. Structural presence was too easy to satisfy, and an empty section under a real heading reads as an answer.</p></section><section class="entry-section" id="marks" aria-labelledby="h-marks"><h2 id="h-marks"><span class="section-num" aria-hidden="true">02</span>Evidence marks, and two kinds of blank</h2><p>The content model records sources and publication limits for editing. Pages show only the marks that help a reader: measured, public repository and published specification. Employment provenance and deliberate redactions remain in the model; they are not displayed as badges.</p><p>A blank space on this site is one of two things, and they are marked differently because they mean different things.</p><dl class="defs"><dt>Detail withheld</dt><dd>A decision. The fact exists, it would identify a client or a system, and it is not going to be published. The reason travels with the mark.</dd><dt><code>TODO: owner input</code></dt><dd>A gap. Something is missing that could be published, and until it is quoted from a source it stays visibly missing.</dd></dl></section><section class="entry-section" id="stack" aria-labelledby="h-stack"><h2 id="h-stack"><span class="section-num" aria-hidden="true">03</span>What it does not use</h2><ul><li>No framework and no build toolchain. The generator has no dependencies outside the standard library.</li><li>No script of any kind. Stepping through a diagram is links and <code>:target</code>, so the page that arrives is the page that works.</li><li>No analytics, no embeds, and no request to any other host.</li><li>One web font, served from this site, under an open licence, in two subsets.</li><li>One icon set, thirteen files, vendored and inlined. No icon font.</li><li>One diagram engine, run at build time and never in a browser. The committed SVG is what ships.</li></ul></section><section class="entry-section" id="type" aria-labelledby="h-type"><h2 id="h-type"><span class="section-num" aria-hidden="true">04</span>Type, surface, and ink</h2><p>The site follows the reader's system colour scheme: graphite at night and soft paper by day. If the browser reports no preference, graphite is the default. Geometry, type and hierarchy do not move between them, so these are two palettes for one design rather than two different pages.</p><p>Both palettes use three surfaces: the page, an inset panel, and a sheet on the panel. Text is near white on graphite and deep green-black on paper. Structure is carried by one-pixel hairlines in two weights: a quieter one inside a list and a firmer one where a section starts.</p><p>Headings are set in Lora, a screen oriented serif with calligraphic roots, published under the SIL Open Font License. It is served from this site in a Latin and a Cyrillic subset, so Russian headings come from the same drawing as English ones instead of falling through to whatever serif the machine happens to have. That was the reason for adopting it: Cyrillic display type through a fallback stack reads sharper and less controlled than the Latin beside it. Body text uses the platform sans and metadata uses the platform mono.</p><p class="note">Softness comes from spacing and curvature, not from blur. There is no shadow anywhere in the stylesheet, and no decorative mark. Every line on a page separates, connects, or classifies something.</p><p>One botanical green accent, tuned separately for graphite and paper, appears only where it carries meaning: the current page, a hovered link, a gate on a diagram, a section number, an evidence mark. Every text colour is checked against WCAG 2.2 AA on all three surfaces in both palettes, and the lines that carry information clear the 3 to 1 ratio for non-text contrast.</p><p>Print uses a third palette, plain black on white. Navigation disappears and external link addresses are written out, so a printed CV or case remains readable without its screen chrome.</p></section><section class="entry-section" id="sheet" aria-labelledby="h-sheet"><h2 id="h-sheet"><span class="section-num" aria-hidden="true">05</span>The shape of a record</h2><p>A deep record is a sheet with a margin. The margin holds what the record claims: its status, the date it was last reviewed, its evidence marks, the sources behind it, and the links it points at. The column beside it holds prose and nothing else.</p><p>The margin also holds the contents of the sheet, numbered in reading order, so a reader can jump to the verification section without scrolling past the architecture. Below the breakpoint the margin becomes the first block, which is the order a phone needs anyway.</p></section><section class="entry-section" id="icons" aria-labelledby="h-icons"><h2 id="h-icons"><span class="section-num" aria-hidden="true">06</span>Icons, and what they are not allowed to do</h2><p>Thirteen concepts carry an icon: public repository, specification, measured evidence, self-reported, detail withheld, tests, checks, release, external link, related material, language, architecture, and people. They come from the MIT licensed Iconoir set, and only the thirteen files this site uses are vendored into the repository.</p><p>There is no icon font and no request. Each icon is inlined into the page at build time from one helper, so a concept is drawn the same way everywhere and adding one means vendoring a file rather than pasting markup.</p><p>An icon supports a label and never replaces one. A decorative instance is hidden from assistive technology in the markup, the word beside it stays, and the validator fails a link whose only content is an icon.</p><p>The licence ships with them at <a href="/assets/icons/LICENSE.txt">/assets/icons/LICENSE.txt</a>.</p></section><section class="entry-section" id="checks" aria-labelledby="h-checks"><h2 id="h-checks"><span class="section-num" aria-hidden="true">07</span>Checks</h2><p><code>tools/build.py</code> refuses to build content that breaks the schema. <code>tools/validate.py</code> checks the generated site: internal links and fragments, page metadata, language parity, the rendered section schema, dash usage and a short list of canned phrases, the absence of script and of any external request, the self hosted font declarations, and the publish boundary.</p><p>The privacy check is stored as digests of stems rather than as words, because a linter that spells out the identifiers it protects has already published them. Hashing stems rather than whole words is what catches an inflected form. A single word can be tested against the list with <code>tools/validate.py --check-token</code>.</p><p>HTML validation runs separately with html-validate, and the commands are in the README.</p></section><section class="entry-section" id="licence" aria-labelledby="h-licence"><h2 id="h-licence"><span class="section-num" aria-hidden="true">08</span>Licence</h2><p>Site text is published under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of its own repository.</p><p>Lora is copyright the Lora Project Authors and is used under the SIL Open Font License 1.1. The full licence ships with the font at <a href="/assets/fonts/OFL.txt">/assets/fonts/OFL.txt</a>.</p></section></div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Backend development and tools I build for my own work.</p>
+    <p class="footer-legal">Site text under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of each repository.</p>
+  </div>
+  <nav aria-label="Footer">
+    <ul><li><a href="/library/">Library index</a></li><li><a href="/collections/corrections-and-checks/">How I check my own work</a></li><li><a href="/collections/ai-agent-workflow/">AI workflow collection</a></li><li><a href="/colophon/">Colophon</a></li><li><a href="/ru/colophon/" lang="ru" hreflang="ru">Русская версия</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>

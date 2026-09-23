@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Коммерческие кейсы | ZenonEl</title>
+<meta name="description" content="Обезличенные инженерные кейсы: замеры LLM, платёжные пути, e-commerce, сбои внешнего API, архитектурные границы и исправленные продуктовые метрики.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0f1412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/ru/work/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/work/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/work/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/work/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="preload" href="/assets/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/lora-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="Коммерческие кейсы">
+<meta property="og:description" content="Обезличенные инженерные кейсы: замеры LLM, платёжные пути, e-commerce, сбои внешнего API, архитектурные границы и исправленные продуктовые метрики.">
+<meta property="og:url" content="https://zenonel.github.io/ru/work/">
+<meta property="og:locale" content="ru_RU">
+</head>
+<body>
+<a class="skip-link" href="#content">К содержанию</a>
+<header class="masthead">
+  <a class="brand" href="/ru/">
+    <span class="brand-mark" aria-hidden="true">ZE</span>
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Бекенд-разработчик</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Основная навигация">
+    <ul><li><a href="/ru/work/" aria-current="page">Работа</a></li><li><a href="/ru/projects/">Проекты</a></li><li><a href="/ru/collections/">Практика</a></li><li><a href="/ru/about/">Обо мне</a></li><li><a href="/ru/cv/">Резюме</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <a class="lang-switch" href="/work/" lang="en" hreflang="en">EN</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<article class="shelf">
+  <header class="page-head">
+    <p class="page-kicker">Коммерческая работа</p>
+    <h1>Работа за строками в резюме.</h1>
+    <div class="page-lead"><p>Занимаюсь бекендом, продуктовыми интеграциями и задачами с применением AI. Требования обычно приходят через руководителя; я разбираюсь с реализацией и проверяю результат.</p><p>Здесь есть платёжные пути до их реального результата, импорт с откатом и метрики, которые считали не то, что от них ожидали. В каждом случае рассказываю о самой работе и решениях по ходу неё.</p></div>
+    <p class="page-note">Имена клиентов и приватные материалы проектов не публикую.</p>
+  </header>
+  <ul class="card-grid card-grid-wide"><li class="card"><p class="card-coord"><span>W-01</span><span class="card-kind">Кейс</span></p><h2 class="card-title"><a href="/ru/work/llm-cost-and-search-quality/">Стоимость ответа стала измеримой характеристикой</a></h2><p class="card-summary">Расходы на LLM были видны только общей суммой за период. Я сделал их характеристикой каждого вызова, а затем той же дисциплиной отклонил изменение поиска, которое выглядело лучше лишь по собственной метрике.</p><p class="card-status"><span class="status-dot" aria-hidden="true"></span>Проверено контрольным замером до и после<span class="card-sep" aria-hidden="true">/</span><time datetime="2026-09-07">проверено 2026-09-07</time></p><ul class="marks"><li><span class="mark mark-measured"><span class="mark-glyph" aria-hidden="true"><svg class="icon icon-measured" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M16 7V2.6C16 2.26863 15.7314 2 15.4 2H8.6C8.26863 2 8 2.26863 8 2.6V21.4C8 21.7314 8.26863 22 8.6 22H15.4C15.7314 22 16 21.7314 16 21.4V17M16 7H13M16 7V12M16 12H13M16 12V17M16 17H13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span>замер</span></li></ul><ul class="tag-row"><li>applied AI</li><li>измерения</li><li>поиск</li><li>Python</li></ul></li><li class="card"><p class="card-coord"><span>W-02</span><span class="card-kind">Кейс</span></p><h2 class="card-title"><a href="/ru/work/contract-path-backend/">Фичей был весь договорный путь, а не вызов оплаты</a></h2><p class="card-summary">Бекенд продукта нужно было довести до запуска вместе с учётными записями, платежами, приватными документами, письмами, кешем и бэкапами. Платёж я считал незавершённым, пока не появился фискальный чек.</p><p class="card-status"><span class="status-dot" aria-hidden="true"></span>Доведено до запуска и проверено сквозным сценарием<span class="card-sep" aria-hidden="true">/</span><time datetime="2026-09-07">проверено 2026-09-07</time></p><ul class="tag-row"><li>платежи</li><li>запуск</li><li>Python</li><li>идемпотентность</li></ul></li><li class="card"><p class="card-coord"><span>W-03</span><span class="card-kind">Кейс</span></p><h2 class="card-title"><a href="/ru/work/ecommerce-scenarios/">Живые заказы до официального запуска</a></h2><p class="card-summary">Я вёл разработку интернет-магазина на PrestaShop, новом для себя стеке: код реализовывали AI-агенты, а перед продом изменения проверял отдельный ревьюер. Работа началась с каталога, затем появились оплаты, чеки, остатки, СДЭК и Яндекс Доставка. Проект начался 24 июля 2026 года; через 47 дней, 9 сентября, прошёл первый настоящий платёж. Чек-лист запуска и финальная приёмка заказчиком в этот момент ещё оставались открыты.</p><p class="card-status"><span class="status-dot" aria-hidden="true"></span>Живые заказы и оплаты до официального запуска<span class="card-sep" aria-hidden="true">/</span><time datetime="2026-09-22">проверено 2026-09-22</time></p><ul class="marks"><li><span class="mark mark-measured"><span class="mark-glyph" aria-hidden="true"><svg class="icon icon-measured" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M16 7V2.6C16 2.26863 15.7314 2 15.4 2H8.6C8.26863 2 8 2.26863 8 2.6V21.4C8 21.7314 8.26863 22 8.6 22H15.4C15.7314 22 16 21.7314 16 21.4V17M16 7H13M16 7V12M16 12H13M16 12V17M16 17H13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span>замер</span></li></ul><ul class="tag-row"><li>e-commerce</li><li>PHP</li><li>импорт данных</li><li>оплата и доставка</li></ul></li><li class="card"><p class="card-coord"><span>W-04</span><span class="card-kind">Кейс</span></p><h2 class="card-title"><a href="/ru/work/enforced-architecture-boundary/">Архитектурная граница стала падающей проверкой</a></h2><p class="card-summary">Разделить Python-монолит легко на схеме и трудно в жизни. Я вынес внешние системы за порты и адаптеры, а затем написал AST-проверку, чтобы направление зависимостей пережило следующего человека в спешке.</p><p class="card-status"><span class="status-dot" aria-hidden="true"></span>Работает, поддерживается проверкой, которая роняет сборку<span class="card-sep" aria-hidden="true">/</span><time datetime="2026-09-07">проверено 2026-09-07</time></p><ul class="tag-row"><li>архитектура</li><li>порты и адаптеры</li><li>Python</li><li>статический анализ</li></ul></li><li class="card"><p class="card-coord"><span>W-05</span><span class="card-kind">Кейс</span></p><h2 class="card-title"><a href="/ru/work/false-positive-metric/">Продуктовая метрика считала отказ успешным ответом</a></h2><p class="card-summary">Проверка по подстроке показала 14 упоминаний из 15 там, где ручное чтение не нашло ни одного. Я заменил её калиброванной проверкой утверждений и не дал входу без основания превратиться в уверенный балл.</p><p class="card-status"><span class="status-dot" aria-hidden="true"></span>Проверено на небольшом размеченном наборе и в продуктовом пути<span class="card-sep" aria-hidden="true">/</span><time datetime="2026-09-07">проверено 2026-09-07</time></p><ul class="marks"><li><span class="mark mark-measured"><span class="mark-glyph" aria-hidden="true"><svg class="icon icon-measured" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M16 7V2.6C16 2.26863 15.7314 2 15.4 2H8.6C8.26863 2 8 2.26863 8 2.6V21.4C8 21.7314 8.26863 22 8.6 22H15.4C15.7314 22 16 21.7314 16 21.4V17M16 7H13M16 7V12M16 12H13M16 12V17M16 17H13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span>замер</span></li></ul><ul class="tag-row"><li>applied AI</li><li>продуктовые метрики</li><li>калибровка</li><li>Python</li></ul></li><li class="card"><p class="card-coord"><span>W-06</span><span class="card-kind">Кейс</span></p><h2 class="card-title"><a href="/ru/work/finance-bot-blind-spots/">Когда отсутствие ответа банка выглядело как отсутствие денег</a></h2><p class="card-summary">Я вёл финансовую часть рабочего Telegram-бэк-офиса, построенного поверх слабо документированного шлюза к Сберу и Альфа-Банку. Главная сложность была в том, чтобы пропавший ответ не превращался в ложный финансовый факт, пока записи всё равно попадали в живой банковский контур клиента.</p><p class="card-status"><span class="status-dot" aria-hidden="true"></span>Бот в проде, свидетельства проверены по 21 сентября 2026 года<span class="card-sep" aria-hidden="true">/</span><time datetime="2026-09-23">проверено 2026-09-23</time></p><ul class="marks"><li><span class="mark mark-measured"><span class="mark-glyph" aria-hidden="true"><svg class="icon icon-measured" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M16 7V2.6C16 2.26863 15.7314 2 15.4 2H8.6C8.26863 2 8 2.26863 8 2.6V21.4C8 21.7314 8.26863 22 8.6 22H15.4C15.7314 22 16 21.7314 16 21.4V17M16 7H13M16 7V12M16 12H13M16 12V17M16 17H13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span>замер</span></li></ul><ul class="tag-row"><li>Python</li><li>Telegram-бот</li><li>банковские API</li><li>семантика отказов</li></ul></li></ul>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Бекенд-разработка и инструменты, которые я делаю для своей работы.</p>
+    <p class="footer-legal">Текст сайта под <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Код проектов остаётся под лицензией своего репозитория.</p>
+  </div>
+  <nav aria-label="Навигация в подвале">
+    <ul><li><a href="/ru/library/">Указатель библиотеки</a></li><li><a href="/ru/collections/corrections-and-checks/">Как я проверяю свою работу</a></li><li><a href="/ru/collections/ai-agent-workflow/">Подборка про AI-контур</a></li><li><a href="/ru/colophon/">Выходные данные</a></li><li><a href="/work/" lang="en" hreflang="en">English version</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>
