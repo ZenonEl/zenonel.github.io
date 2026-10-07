@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Когда успешная проверка пропускает ошибку | ZenonEl</title>
+<meta name="description" content="Импорт каталога и продуктовая метрика могут пройти проверку и не решить задачу. В этих кейсах разбираю расхождение и то, что пришлось изменить.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101a24" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef3f6" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/ru/collections/corrections-and-checks/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/collections/corrections-and-checks/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/collections/corrections-and-checks/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/collections/corrections-and-checks/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="alternate" type="application/json" title="catalog" href="/catalog.json">
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css?v=aecd12e5aaa4">
+<script>/* the site's only script: the theme control, and the reading line it remembers */
+(function(){var k="theme",L="line",d=document.documentElement;
+function sync(){var c=d.dataset.theme||"auto";var n=d.querySelectorAll("[data-theme-set]");
+for(var i=0;i<n.length;i++){n[i].setAttribute("aria-pressed",String(n[i].dataset.themeSet===c));}
+var l=d.dataset.line,r=l?d.querySelector('.route[data-line="'+l+'"]'):null;
+if(r){r.classList.add("is-chosen");r.parentNode.classList.add("has-choice");}}
+try{var v=localStorage.getItem(k);if(v==="light"||v==="dark"){d.dataset.theme=v;}
+var w=localStorage.getItem(L);if(w){d.dataset.line=w;}}catch(e){}
+d.addEventListener("click",function(e){var q=e.target.closest?e.target.closest("[data-line-set]"):null;
+if(q){try{localStorage.setItem(L,q.dataset.lineSet);}catch(e){}}
+var t=e.target.closest?e.target.closest("[data-theme-set]"):null;
+if(!t){return;}var v=t.dataset.themeSet;
+if(v==="auto"){delete d.dataset.theme;try{localStorage.removeItem(k);}catch(e){}}
+else{d.dataset.theme=v;try{localStorage.setItem(k,v);}catch(e){}}sync();});
+document.addEventListener("DOMContentLoaded",sync);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="Когда успешная проверка пропускает ошибку">
+<meta property="og:description" content="Импорт каталога и продуктовая метрика могут пройти проверку и не решить задачу. В этих кейсах разбираю расхождение и то, что пришлось изменить.">
+<meta property="og:url" content="https://zenonel.github.io/ru/collections/corrections-and-checks/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://zenonel.github.io/assets/img/avatar.jpg">
+<meta property="og:image:alt" content="ZenonEl">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc">
+<script async data-analytics src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
+<script data-analytics>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XFXVE7BPP');</script>
+<script defer data-analytics src="https://app.rybbit.io/api/script.js" data-site-id="430"></script>
+<script defer data-analytics src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+<script defer data-analytics src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Когда успешная проверка пропускает ошибку", "description": "Импорт каталога и продуктовая метрика могут пройти проверку и не решить задачу. В этих кейсах разбираю расхождение и то, что пришлось изменить.", "url": "https://zenonel.github.io/ru/collections/corrections-and-checks/", "inLanguage": "ru", "dateModified": "2026-10-01", "author": {"@type": "Person", "name": "ZenonEl", "url": "https://zenonel.github.io/", "sameAs": ["https://github.com/ZenonEl"]}, "keywords": ["проверка", "измерения", "ревью", "отчётность"], "isPartOf": {"@type": "WebSite", "name": "ZenonEl", "url": "https://zenonel.github.io/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://zenonel.github.io/ru/"}, {"@type": "ListItem", "position": 2, "name": "Подборка", "item": "https://zenonel.github.io/ru/collections/"}, {"@type": "ListItem", "position": 3, "name": "Когда успешная проверка пропускает ошибку", "item": "https://zenonel.github.io/ru/collections/corrections-and-checks/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">К содержанию</a>
+<header class="masthead">
+  <a class="brand" href="/ru/">
+    <img class="brand-mark" src="/assets/img/avatar.jpg" width="96" height="96"
+         alt="" loading="eager" decoding="async">
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Бэкенд-разработчик</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Основная навигация">
+    <ul><li><a href="/ru/work/">Кейсы</a></li><li><a href="/ru/projects/">Проекты</a></li><li><a href="/ru/collections/" aria-current="page">Подход</a></li><li><a href="/ru/#lines">Схема</a></li><li><a href="/ru/cv/">Резюме</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <div class="theme-switch" role="group" aria-label="Тема оформления">
+      <button type="button" data-theme-set="auto" aria-pressed="true">Авто</button>
+      <button type="button" data-theme-set="light" aria-pressed="false">Светлая</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Тёмная</button>
+    </div>
+    <a class="lang-switch" href="/collections/corrections-and-checks/" lang="en" hreflang="en">EN</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<article class="entry collection">
+  <nav class="breadcrumbs" aria-label="Хлебные крошки"><ol><li><a href="/ru/">Главная</a></li><li><a href="/ru/collections/">Подборка</a></li><li><span>Когда успешная проверка пропускает ошибку</span></li></ol></nav><header class="entry-head"><p class="entry-coord">C-02<span class="entry-kind entry-kind-collection"><svg class="icon icon-collection" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M7 18H10.5H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14H7.5H8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10H8.5H10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 2L16.5 2L21 6.5V19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 20.5V6.5C3 5.67157 3.67157 5 4.5 5H14.2515C14.4106 5 14.5632 5.06321 14.6757 5.17574L17.8243 8.32426C17.9368 8.43679 18 8.5894 18 8.74853V20.5C18 21.3284 17.3284 22 16.5 22H4.5C3.67157 22 3 21.3284 3 20.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 5V8.4C14 8.73137 14.2686 9 14.6 9H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Подборка</span></p><h1>Когда успешная проверка пропускает ошибку</h1><p class="entry-lead">Импорт каталога и продуктовая метрика могут пройти проверку и не решить задачу. В этих кейсах разбираю расхождение и то, что пришлось изменить.</p></header>
+
+  <details class="story-mobile-contents"><summary>На этом листе</summary><ol><li><a href="#why">Проверка прошла, а задача не решена</a></li><li><a href="#reading">Что можно разобрать подробнее</a></li><li><a href="#members">Кейсы и инструменты</a></li></ol></details>
+  <div class="entry-grid">
+  <div class="entry-main">
+  <div class="entry-body"><section class="entry-section" id="why" aria-labelledby="h-why"><h2 id="h-why"><span class="section-num" aria-hidden="true">01</span>Проверка прошла, а задача не решена</h2><p>При импорте каталога оказалось недостаточно искать одинаковые атрибуты. Размер, записанный точкой, и тот же размер в виде диапазона были разными строками. Оба сохранялись, и каталог разрастался, хотя проверка дублей возвращала ноль.</p><p>У продуктовой метрики была другая проблема: она считала наличие имени в ответе, в том числе в ответе с отказом предоставить нужную информацию. Счётчик мог правильно найти текст и при этом неверно оценить результат.</p></section><section class="entry-section" id="reading" aria-labelledby="h-reading"><h2 id="h-reading"><span class="section-num" aria-hidden="true">02</span>Что можно разобрать подробнее</h2><p>В кейсе про каталог есть сам сбой, восстановление базы и изменение порядка преобразований. В кейсе про метрику разбираю, что вообще должно считаться результатом, прежде чем сравнивать баллы.</p><p>Кейс про стоимость и поиск относится уже к оценке вариантов: более дешёвое решение полезно, если оно всё ещё находит нужный материал. Страница mnemo показывает другую часть той же работы: как сохранить исходник, к которому придётся вернуться при пересмотре решения.</p></section>
+  <section class="entry-section" id="members" aria-labelledby="members-title">
+    <h2 id="members-title"><span class="section-num" aria-hidden="true">03</span>Кейсы и инструменты</h2>
+    <ol class="members"><li class="member"><h3><a href="/ru/work/ecommerce-scenarios/">Живые заказы до официального запуска</a></h3><p class="member-role">Нормализация данных</p><p>Почему импорт, не нашедший повторяющихся размеров, увеличил каталог с 1263 до 1857 вариантов и что изменилось после отката.</p></li><li class="member"><h3><a href="/ru/work/false-positive-metric/">Продуктовая метрика считала отказ успешным ответом</a></h3><p class="member-role">Отрицательный контроль</p><p>Метрика показала 14 упоминаний из 15 там, где модель бренда вообще не знала. После чтения самих ответов поиск имени заменили судьёй.</p></li><li class="member"><h3><a href="/ru/work/llm-cost-and-search-quality/">Цена ответа: кеш, узкая проверка и поиск, который не прошёл замер</a></h3><p class="member-role">Замер, который отклонил решение</p><p>Сегментный поиск, который руководство просило проверить ради экономии, на наборе из 37 вопросов находил нужную запись хуже всех вариантов, и его не внедрили.</p></li><li class="member"><h3><a href="/ru/projects/mnemo/">mnemo</a></h3><p class="member-role">Публичная история исправлений</p><p>Механизм отката прошёл несколько итераций, включая одну с опасным окном, которое закрыла следующая версия.</p></li></ol>
+  </section>
+  </div>
+  <nav class="route-strip" aria-labelledby="route-title"><h2 id="route-title">Где вы на схеме</h2><div class="routes"><div class="route tone-collection" data-line="engineer"><p class="route-name"><span class="bullet" aria-hidden="true">2</span>Линия инженера <span>3 / 6</span></p><ol class="stations" style="--n:6"><li class="is-transfer"><a href="/ru/work/ecommerce-scenarios/" data-line-set="engineer"><span class="st-code">W-01</span><span class="st-name">Магазин до запуска</span></a></li><li class="is-transfer"><a href="/ru/work/finance-bot-blind-spots/" data-line-set="engineer"><span class="st-code">W-02</span><span class="st-name">Уведомления о деньгах</span></a></li><li class="is-here"><a href="/ru/collections/corrections-and-checks/" aria-current="page" data-line-set="engineer"><span class="st-code">C-02</span><span class="st-name">Пропущенная ошибка</span></a></li><li><a href="/ru/work/false-positive-metric/" data-line-set="engineer"><span class="st-code">W-04</span><span class="st-name">Метрика считала отказ</span></a></li><li><a href="/ru/work/llm-cost-and-search-quality/" data-line-set="engineer"><span class="st-code">W-05</span><span class="st-name">Цена ответа</span></a></li><li class="is-transfer"><a href="/ru/collections/ai-agent-workflow/" data-line-set="engineer"><span class="st-code">C-01</span><span class="st-name">AI-контур</span></a></li></ol><a class="route-next" href="/ru/work/false-positive-metric/" data-line-set="engineer"><span class="bullet" aria-hidden="true">2</span><span class="sign-text"><span class="sign-label">Следующая станция</span><span class="sign-name">W-04 Метрика считала отказ</span></span><span class="sign-arrow" aria-hidden="true">&#8594;</span></a></div></div><p class="route-all"><a href="/ru/#lines">Вся схема: все станции всех линий</a></p></nav>
+  <nav class="related" aria-labelledby="related-title"><h2 id="related-title"><svg class="icon icon-related" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M14 11.9976C14 9.5059 11.683 7 8.85714 7C8.52241 7 7.41904 7.00001 7.14286 7.00001C4.30254 7.00001 2 9.23752 2 11.9976C2 14.376 3.70973 16.3664 6 16.8714C6.36756 16.9525 6.75006 16.9952 7.14286 16.9952" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.9976C10 14.4893 12.317 16.9952 15.1429 16.9952C15.4776 16.9952 16.581 16.9952 16.8571 16.9952C19.6975 16.9952 22 14.7577 22 11.9976C22 9.6192 20.2903 7.62884 18 7.12383C17.6324 7.04278 17.2499 6.99999 16.8571 6.99999" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Связанные материалы</h2><ul><li class="rel-collection"><a href="/ru/collections/ai-agent-workflow/"><span class="rel-coord">C-01</span><span class="rel-title">Как удержать контекст, когда сессии короче проекта</span><span class="rel-kind">Подборка</span></a></li><li class="rel-case"><a href="/ru/work/false-positive-metric/"><span class="rel-coord">W-04</span><span class="rel-title">Продуктовая метрика считала отказ успешным ответом</span><span class="rel-kind">Кейс</span></a></li><li class="rel-case"><a href="/ru/work/llm-cost-and-search-quality/"><span class="rel-coord">W-05</span><span class="rel-title">Цена ответа: кеш, узкая проверка и поиск, который не прошёл замер</span><span class="rel-kind">Кейс</span></a></li><li class="rel-project"><a href="/ru/projects/mnemo/"><span class="rel-coord">P-01</span><span class="rel-title">mnemo</span><span class="rel-kind">Проект</span></a></li><li class="rel-case"><a href="/ru/work/ecommerce-scenarios/"><span class="rel-coord">W-01</span><span class="rel-title">Живые заказы до официального запуска</span><span class="rel-kind">Кейс</span></a></li><li class="rel-case"><a href="/ru/work/finance-bot-blind-spots/"><span class="rel-coord">W-02</span><span class="rel-title">Финансовый бот, который говорит о деньгах только то, что знает</span><span class="rel-kind">Кейс</span></a></li></ul></nav>
+  </div>
+  <aside class="record-rail"><nav class="rail-block rail-contents" aria-label="На этом листе"><h2>На этом листе</h2><ol><li><a href="#why"><span class="rail-num" aria-hidden="true">01</span>Проверка прошла, а задача не решена</a></li><li><a href="#reading"><span class="rail-num" aria-hidden="true">02</span>Что можно разобрать подробнее</a></li><li><a href="#members"><span class="rail-num" aria-hidden="true">03</span>Кейсы и инструменты</a></li></ol></nav></aside>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Бэкенд-разработка и инструменты, которые я делаю для своей работы.</p>
+    <p class="footer-legal">Текст сайта под <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Код проектов остаётся под лицензией своего репозитория.</p>
+  </div>
+  <nav class="footer-lines" aria-labelledby="footer-lines-title">
+    <h2 id="footer-lines-title">Линии чтения</h2>
+    <ul><li class="tone-case"><span class="bullet" aria-hidden="true">1</span><a href="/ru/cv/" data-line-set="hr">Линия HR</a><span>5 станций</span></li><li class="tone-collection"><span class="bullet" aria-hidden="true">2</span><a href="/ru/work/ecommerce-scenarios/" data-line-set="engineer">Линия инженера</a><span>6 станций</span></li><li class="tone-project"><span class="bullet" aria-hidden="true">3</span><a href="/ru/collections/ai-agent-workflow/" data-line-set="tools">Линия инструментов</a><span>11 станций</span></li></ul>
+  </nav>
+  <nav class="footer-map" aria-labelledby="footer-map-title">
+    <h2 id="footer-map-title">Все разделы</h2>
+    <ul><li><a href="/ru/work/">Кейсы</a></li><li><a href="/ru/projects/">Проекты</a></li><li><a href="/ru/collections/">Подход</a></li><li><a href="/ru/#lines">Схема</a></li><li><a href="/ru/cv/">Резюме</a></li><li><a href="/ru/about/">Обо мне</a></li><li><a href="/ru/library/">Указатель библиотеки</a></li><li><a href="/ru/colophon/">Выходные данные</a></li><li><a href="/collections/corrections-and-checks/" lang="en" hreflang="en">English version</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>

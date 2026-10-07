@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Выходные данные | ZenonEl</title>
+<meta name="description" content="Как устроен сайт: контентная модель в JSON, генератор на стандартной библиотеке, локальные ресурсы и проверки готового результата.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101a24" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef3f6" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/ru/colophon/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/colophon/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/colophon/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/colophon/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="alternate" type="application/json" title="catalog" href="/catalog.json">
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css?v=aecd12e5aaa4">
+<script>/* the site's only script: the theme control, and the reading line it remembers */
+(function(){var k="theme",L="line",d=document.documentElement;
+function sync(){var c=d.dataset.theme||"auto";var n=d.querySelectorAll("[data-theme-set]");
+for(var i=0;i<n.length;i++){n[i].setAttribute("aria-pressed",String(n[i].dataset.themeSet===c));}
+var l=d.dataset.line,r=l?d.querySelector('.route[data-line="'+l+'"]'):null;
+if(r){r.classList.add("is-chosen");r.parentNode.classList.add("has-choice");}}
+try{var v=localStorage.getItem(k);if(v==="light"||v==="dark"){d.dataset.theme=v;}
+var w=localStorage.getItem(L);if(w){d.dataset.line=w;}}catch(e){}
+d.addEventListener("click",function(e){var q=e.target.closest?e.target.closest("[data-line-set]"):null;
+if(q){try{localStorage.setItem(L,q.dataset.lineSet);}catch(e){}}
+var t=e.target.closest?e.target.closest("[data-theme-set]"):null;
+if(!t){return;}var v=t.dataset.themeSet;
+if(v==="auto"){delete d.dataset.theme;try{localStorage.removeItem(k);}catch(e){}}
+else{d.dataset.theme=v;try{localStorage.setItem(k,v);}catch(e){}}sync();});
+document.addEventListener("DOMContentLoaded",sync);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="Выходные данные">
+<meta property="og:description" content="Как устроен сайт: контентная модель в JSON, генератор на стандартной библиотеке, локальные ресурсы и проверки готового результата.">
+<meta property="og:url" content="https://zenonel.github.io/ru/colophon/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://zenonel.github.io/assets/img/avatar.jpg">
+<meta property="og:image:alt" content="ZenonEl">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc">
+<script async data-analytics src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
+<script data-analytics>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XFXVE7BPP');</script>
+<script defer data-analytics src="https://app.rybbit.io/api/script.js" data-site-id="430"></script>
+<script defer data-analytics src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+<script defer data-analytics src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+</head>
+<body>
+<a class="skip-link" href="#content">К содержанию</a>
+<header class="masthead">
+  <a class="brand" href="/ru/">
+    <img class="brand-mark" src="/assets/img/avatar.jpg" width="96" height="96"
+         alt="" loading="eager" decoding="async">
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Бэкенд-разработчик</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Основная навигация">
+    <ul><li><a href="/ru/work/">Кейсы</a></li><li><a href="/ru/projects/">Проекты</a></li><li><a href="/ru/collections/">Подход</a></li><li><a href="/ru/#lines">Схема</a></li><li><a href="/ru/cv/">Резюме</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <div class="theme-switch" role="group" aria-label="Тема оформления">
+      <button type="button" data-theme-set="auto" aria-pressed="true">Авто</button>
+      <button type="button" data-theme-set="light" aria-pressed="false">Светлая</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Тёмная</button>
+    </div>
+    <a class="lang-switch" href="/colophon/" lang="en" hreflang="en">EN</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<article class="entry static-page">
+  <nav class="breadcrumbs" aria-label="Хлебные крошки"><ol>
+    <li><a href="/ru/">Главная</a></li>
+    <li><span>Выходные данные</span></li>
+  </ol></nav>
+  <header class="entry-head">
+    <p class="entry-coord">Выходные данные</p>
+    <h1>Выходные данные</h1>
+    <p class="entry-lead">Статический HTML, собранный из контентной модели скриптом на Python без зависимостей. Своего кода на страницах один скрипт: он переключает тему и помнит выбранную линию чтения. Схема рабочего контура открывается отдельным документом со своими скриптами, рядом лежит её текстовая версия.</p>
+<p class="page-reviewed"><span>Обновлено</span> <time datetime="2026-10-01">2026-10-01</time></p>
+  </header>
+  <details class="story-mobile-contents"><summary>На этом листе</summary>
+  <ol><li><a href="#rules"><span class="rail-num" aria-hidden="true">01</span>Чего держится сайт</a></li><li><a href="#build"><span class="rail-num" aria-hidden="true">02</span>Как он собран</a></li><li><a href="#marks"><span class="rail-num" aria-hidden="true">03</span>Источники, пробелы и скрытые детали</a></li><li><a href="#stack"><span class="rail-num" aria-hidden="true">04</span>Чего здесь нет</a></li><li><a href="#type"><span class="rail-num" aria-hidden="true">05</span>Шрифт, поверхность и чернила</a></li><li><a href="#sheet"><span class="rail-num" aria-hidden="true">06</span>Форма записи</a></li><li><a href="#icons"><span class="rail-num" aria-hidden="true">07</span>Иконки и то, чего им нельзя</a></li><li><a href="#checks"><span class="rail-num" aria-hidden="true">08</span>Проверки</a></li><li><a href="#licence"><span class="rail-num" aria-hidden="true">09</span>Лицензия</a></li></ol></details>
+  <div class="page-layout">
+    <div class="entry-body"><section class="entry-section" id="rules" aria-labelledby="h-rules"><h2 id="h-rules"><span class="section-num" aria-hidden="true">01</span>Чего держится сайт</h2><p>У каждой цифры на сайте есть источник в моих приватных файлах доказательств: коммит, дейлик, лог прода или отчёт кассы. Клиентов, компании и людей я не называю. Что пошло не так, остаётся на странице рядом с тем, что получилось.</p></section><section class="entry-section" id="build" aria-labelledby="h-build"><h2 id="h-build"><span class="section-num" aria-hidden="true">02</span>Как он собран</h2><p>Каждая запись это JSON-файл с блоками <code>en</code> и <code>ru</code>. Генератор на стандартной библиотеке Python читает их, проверяет по схемам кейса и проекта и собирает весь сайт.</p><p>У историй свои заголовки. Сборка проверяет, что разделы есть на обоих языках и идут в одном порядке, текст не пуст, а у старых якорных ссылок осталось назначение. Все кейсы и проекты теперь истории; подборки и служебные страницы пока используют исходную фиксированную схему.</p><p>Самое новое правило роняет сборку и на обязательном разделе, в котором нет ничего, кроме маркера owner input. Одного лишь структурного присутствия оказалось слишком легко добиться, а пустой раздел под настоящим заголовком читается как ответ.</p></section><section class="entry-section" id="marks" aria-labelledby="h-marks"><h2 id="h-marks"><span class="section-num" aria-hidden="true">03</span>Источники, пробелы и скрытые детали</h2><p>В модели хранятся источники и ограничения публикации для редакторской проверки. На публичных страницах эти внутренние метки больше не выводятся бейджами.</p><p>Если важно число, соседний текст объясняет, что именно измеряли и где проходит граница вывода. Намеренно пропущенная деталь объясняется там, где она нужна. Настоящий пробел остаётся явным <code>TODO: owner input</code>, пока факт нельзя проверить.</p></section><section class="entry-section" id="stack" aria-labelledby="h-stack"><h2 id="h-stack"><span class="section-num" aria-hidden="true">04</span>Чего здесь нет</h2><ul><li>Нет фреймворка и сборочной цепочки. У генератора нет зависимостей вне стандартной библиотеки.</li><li>Нет фреймворка приложения и общего рантайма сайта. Интерактивные схемы выполняются только внутри собственных same-origin документов.</li><li>Нет рекламы и встроек.</li><li>Один веб-шрифт, отданный с этого же сайта, под открытой лицензией, в двух подмножествах.</li><li>Один набор иконок, 26 файлов, положенных в репозиторий и вставленных в разметку. Иконочного шрифта нет.</li><li>Схема рабочего контура это интерактивная карта в отдельном документе внутри страницы. Под ней лежит текстовая версия, поэтому схема читается и без стилей, и без скриптов.</li></ul></section><section class="entry-section" id="type" aria-labelledby="h-type"><h2 id="h-type"><span class="section-num" aria-hidden="true">05</span>Шрифт, поверхность и чернила</h2><p>Сайт следует системной теме читателя: ночью графит, днём мягкая бумага. Если браузер не сообщает предпочтение, по умолчанию включается графит. Геометрия, шрифт и иерархия между ними не двигаются, поэтому это две палитры одного дизайна.</p><p>В обеих палитрах три поверхности: страница, вложенная панель и лист поверх панели. На графите текст почти белый, на бумаге тёмный с зелёным подтоном. Структуру держат волосяные линии толщиной в один пиксель в двух весах: тише внутри списка, плотнее там, где начинается раздел.</p><p>Текст и заголовки набраны шрифтом Onest, гротеском, который рисовали сразу под кириллицу и латиницу; он опубликован под SIL Open Font License. Шрифт отдаётся с этого сайта в латинском и кириллическом подмножествах, поэтому русские и английские заголовки из одной рисовки. Метаданные набраны системным моноширинным.</p><p class="note">Мягкость возникает из воздуха и скруглений, а не из размытия. В стилях нет ни одной тени и ни одного декоративного знака. Каждая линия на странице что-то разделяет, соединяет или классифицирует.</p><p>Единственный ботанический зелёный акцент отдельно настроен для графита и бумаги. Он появляется только там, где несёт смысл: текущая страница, ссылка под курсором, воротца на схеме и номер раздела. Каждый цвет текста проверяется по WCAG 2.2 AA на всех трёх поверхностях обеих палитр, а линии, несущие информацию, проходят порог 3 к 1 для нетекстового контраста.</p><p>Для печати используется третья палитра, обычный чёрный на белом. Навигация исчезает, а адреса внешних ссылок дописываются в текст, поэтому распечатанное резюме или кейс не зависит от экранного оформления.</p></section><section class="entry-section" id="sheet" aria-labelledby="h-sheet"><h2 id="h-sheet"><span class="section-num" aria-hidden="true">06</span>Форма записи</h2><p>Подробная запись оставляет историю в одной колонке, а рядом держит спокойную навигацию. В поле остаются только ссылки на разделы и полезные внешние адреса; редакторские статусы и учёт источников остаются в контентной модели.</p><p>На узком экране содержание превращается в компактный раскрывающийся блок перед текстом. Порядок чтения при этом не меняется.</p></section><section class="entry-section" id="icons" aria-labelledby="h-icons"><h2 id="h-icons"><span class="section-num" aria-hidden="true">07</span>Иконки и то, чего им нельзя</h2><p>На сайте используются 26 иконок Iconoir: в навигации, карточках проектов, полосах с фактами, ссылках и схемах. В репозиторий положены только эти 26 файлов под лицензией MIT.</p><p>Иконочного шрифта нет, запроса тоже. Каждая иконка вставляется в страницу при сборке одним помощником, поэтому понятие всюду нарисовано одинаково, а добавить новое значит положить файл, а не скопировать разметку.</p><p>Иконка поддерживает подпись и никогда её не заменяет. Декоративная иконка спрятана от вспомогательных технологий прямо в разметке, слово рядом остаётся, а валидатор роняет сборку на ссылке, внутри которой нет ничего, кроме иконки.</p><p>Лицензия лежит рядом с ними: <a href="/assets/icons/LICENSE.txt">/assets/icons/LICENSE.txt</a>.</p></section><section class="entry-section" id="checks" aria-labelledby="h-checks"><h2 id="h-checks"><span class="section-num" aria-hidden="true">08</span>Проверки</h2><p><code>tools/build.py</code> отказывается собирать контент, который нарушает схему. <code>tools/validate.py</code> проверяет собранный сайт: внутренние ссылки и якоря, метаданные страниц, соответствие языков, схему разделов в готовой разметке, тире и короткий список штампованных оборотов, единственный разрешённый скрипт, внешние запросы, объявления self-hosted шрифта и границу публикации.</p><p>Проверка приватности хранится как хеши основ, а не как слова, потому что линтер, который выписывает защищаемые идентификаторы, уже их опубликовал. Хешировать основы, а не слова целиком, нужно как раз чтобы поймать словоформу. Отдельное слово можно проверить командой <code>tools/validate.py --check-token</code>.</p><p>Валидация HTML запускается отдельно через html-validate, команды есть в README.</p></section><section class="entry-section" id="licence" aria-labelledby="h-licence"><h2 id="h-licence"><span class="section-num" aria-hidden="true">09</span>Лицензия</h2><p>Текст сайта опубликован под <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Код проектов остаётся под лицензией своего репозитория.</p><p>Права на Onest принадлежат The Onest Project Authors, шрифт используется по SIL Open Font License 1.1. Полный текст лицензии лежит рядом со шрифтом: <a href="/assets/fonts/OFL.txt">/assets/fonts/OFL.txt</a>.</p><p>Интерактивная схема рабочего контура собрана на Archify, его код под лицензией MIT: <a href="/assets/diagrams/ARCHIFY-LICENSE.txt">/assets/diagrams/ARCHIFY-LICENSE.txt</a>. В схему встроен шрифт JetBrains Mono под SIL Open Font License 1.1, уведомление о правах лежит в самом документе схемы.</p></section></div>
+    <aside class="page-rail">
+      <nav aria-label="На этом листе">
+        <h2>На этом листе</h2>
+        <ol><li><a href="#rules"><span class="rail-num" aria-hidden="true">01</span>Чего держится сайт</a></li><li><a href="#build"><span class="rail-num" aria-hidden="true">02</span>Как он собран</a></li><li><a href="#marks"><span class="rail-num" aria-hidden="true">03</span>Источники, пробелы и скрытые детали</a></li><li><a href="#stack"><span class="rail-num" aria-hidden="true">04</span>Чего здесь нет</a></li><li><a href="#type"><span class="rail-num" aria-hidden="true">05</span>Шрифт, поверхность и чернила</a></li><li><a href="#sheet"><span class="rail-num" aria-hidden="true">06</span>Форма записи</a></li><li><a href="#icons"><span class="rail-num" aria-hidden="true">07</span>Иконки и то, чего им нельзя</a></li><li><a href="#checks"><span class="rail-num" aria-hidden="true">08</span>Проверки</a></li><li><a href="#licence"><span class="rail-num" aria-hidden="true">09</span>Лицензия</a></li></ol>
+      </nav>
+      <p class="rail-reviewed"><svg class="icon icon-reviewed" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M15 4V2M15 4V6M15 4H10.5M3 10V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V10H3Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10V6C3 4.89543 3.89543 4 5 4H7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 2V6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 10V6C21 4.89543 20.1046 4 19 4H18.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Обновлено</span> <time datetime="2026-10-01">2026-10-01</time></p>
+    </aside>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Бэкенд-разработка и инструменты, которые я делаю для своей работы.</p>
+    <p class="footer-legal">Текст сайта под <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Код проектов остаётся под лицензией своего репозитория.</p>
+  </div>
+  <nav class="footer-lines" aria-labelledby="footer-lines-title">
+    <h2 id="footer-lines-title">Линии чтения</h2>
+    <ul><li class="tone-case"><span class="bullet" aria-hidden="true">1</span><a href="/ru/cv/" data-line-set="hr">Линия HR</a><span>5 станций</span></li><li class="tone-collection"><span class="bullet" aria-hidden="true">2</span><a href="/ru/work/ecommerce-scenarios/" data-line-set="engineer">Линия инженера</a><span>6 станций</span></li><li class="tone-project"><span class="bullet" aria-hidden="true">3</span><a href="/ru/collections/ai-agent-workflow/" data-line-set="tools">Линия инструментов</a><span>11 станций</span></li></ul>
+  </nav>
+  <nav class="footer-map" aria-labelledby="footer-map-title">
+    <h2 id="footer-map-title">Все разделы</h2>
+    <ul><li><a href="/ru/work/">Кейсы</a></li><li><a href="/ru/projects/">Проекты</a></li><li><a href="/ru/collections/">Подход</a></li><li><a href="/ru/#lines">Схема</a></li><li><a href="/ru/cv/">Резюме</a></li><li><a href="/ru/about/">Обо мне</a></li><li><a href="/ru/library/">Указатель библиотеки</a></li><li><a href="/ru/colophon/">Выходные данные</a></li><li><a href="/colophon/" lang="en" hreflang="en">English version</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>

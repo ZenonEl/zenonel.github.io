@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RemoteGamepad | ZenonEl</title>
+<meta name="description" content="Телефон как беспроводной геймпад Xbox 360 для игр на Linux: ввод из браузера идёт по WebSocket, а система видит виртуальный геймпад.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101a24" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef3f6" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/ru/projects/remotegamepad/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/projects/remotegamepad/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/projects/remotegamepad/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/projects/remotegamepad/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="alternate" type="application/json" title="catalog" href="/catalog.json">
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css?v=aecd12e5aaa4">
+<script>/* the site's only script: the theme control, and the reading line it remembers */
+(function(){var k="theme",L="line",d=document.documentElement;
+function sync(){var c=d.dataset.theme||"auto";var n=d.querySelectorAll("[data-theme-set]");
+for(var i=0;i<n.length;i++){n[i].setAttribute("aria-pressed",String(n[i].dataset.themeSet===c));}
+var l=d.dataset.line,r=l?d.querySelector('.route[data-line="'+l+'"]'):null;
+if(r){r.classList.add("is-chosen");r.parentNode.classList.add("has-choice");}}
+try{var v=localStorage.getItem(k);if(v==="light"||v==="dark"){d.dataset.theme=v;}
+var w=localStorage.getItem(L);if(w){d.dataset.line=w;}}catch(e){}
+d.addEventListener("click",function(e){var q=e.target.closest?e.target.closest("[data-line-set]"):null;
+if(q){try{localStorage.setItem(L,q.dataset.lineSet);}catch(e){}}
+var t=e.target.closest?e.target.closest("[data-theme-set]"):null;
+if(!t){return;}var v=t.dataset.themeSet;
+if(v==="auto"){delete d.dataset.theme;try{localStorage.removeItem(k);}catch(e){}}
+else{d.dataset.theme=v;try{localStorage.setItem(k,v);}catch(e){}}sync();});
+document.addEventListener("DOMContentLoaded",sync);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="RemoteGamepad">
+<meta property="og:description" content="Телефон как беспроводной геймпад Xbox 360 для игр на Linux: ввод из браузера идёт по WebSocket, а система видит виртуальный геймпад.">
+<meta property="og:url" content="https://zenonel.github.io/ru/projects/remotegamepad/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://zenonel.github.io/assets/img/avatar.jpg">
+<meta property="og:image:alt" content="ZenonEl">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc">
+<script async data-analytics src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
+<script data-analytics>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XFXVE7BPP');</script>
+<script defer data-analytics src="https://app.rybbit.io/api/script.js" data-site-id="430"></script>
+<script defer data-analytics src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+<script defer data-analytics src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareSourceCode", "description": "Мост, который превращает телефон в беспроводной геймпад Xbox 360 для игр на Linux: браузер телефона шлёт ввод по WebSocket, а компьютер показывает системе виртуальный геймпад.", "url": "https://zenonel.github.io/ru/projects/remotegamepad/", "inLanguage": "ru", "dateModified": "2026-09-30", "author": {"@type": "Person", "name": "ZenonEl", "url": "https://zenonel.github.io/", "sameAs": ["https://github.com/ZenonEl"]}, "keywords": ["Linux", "WebSocket", "uinput"], "isPartOf": {"@type": "WebSite", "name": "ZenonEl", "url": "https://zenonel.github.io/"}, "name": "RemoteGamepad", "codeRepository": "https://github.com/ZenonEl/RemoteGamepad"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://zenonel.github.io/ru/"}, {"@type": "ListItem", "position": 2, "name": "Проекты", "item": "https://zenonel.github.io/ru/projects/"}, {"@type": "ListItem", "position": 3, "name": "RemoteGamepad", "item": "https://zenonel.github.io/ru/projects/remotegamepad/"}]}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#content">К содержанию</a>
+<header class="masthead">
+  <a class="brand" href="/ru/">
+    <img class="brand-mark" src="/assets/img/avatar.jpg" width="96" height="96"
+         alt="" loading="eager" decoding="async">
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Бэкенд-разработчик</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Основная навигация">
+    <ul><li><a href="/ru/work/">Кейсы</a></li><li><a href="/ru/projects/" aria-current="page">Проекты</a></li><li><a href="/ru/collections/">Подход</a></li><li><a href="/ru/#lines">Схема</a></li><li><a href="/ru/cv/">Резюме</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <div class="theme-switch" role="group" aria-label="Тема оформления">
+      <button type="button" data-theme-set="auto" aria-pressed="true">Авто</button>
+      <button type="button" data-theme-set="light" aria-pressed="false">Светлая</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Тёмная</button>
+    </div>
+    <a class="lang-switch" href="/projects/remotegamepad/" lang="en" hreflang="en">EN</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+<article class="entry story-entry"><nav class="breadcrumbs" aria-label="Хлебные крошки"><ol><li><a href="/ru/">Главная</a></li><li><a href="/ru/projects/">Проекты</a></li><li><span>RemoteGamepad</span></li></ol></nav><header class="entry-head"><p class="entry-coord">P-10<span class="entry-kind entry-kind-project"><svg class="icon icon-project" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M10.0503 10.6066L2.97923 17.6777C2.19818 18.4587 2.19818 19.7251 2.97923 20.5061V20.5061C3.76027 21.2872 5.0266 21.2872 5.80765 20.5061L12.8787 13.4351" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.1927 13.7994L21.071 17.6777C21.8521 18.4587 21.8521 19.7251 21.071 20.5061V20.5061C20.29 21.2872 19.0236 21.2872 18.2426 20.5061L12.0341 14.2977" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.73267 5.90381L4.61135 6.61092L2.49003 3.07539L3.90424 1.66117L7.43978 3.78249L6.73267 5.90381ZM6.73267 5.90381L9.5629 8.73404" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.0503 10.6066C9.2065 8.45359 9.37147 5.62861 11.111 3.8891C12.8505 2.14958 16.0607 1.76778 17.8285 2.82844L14.7878 5.86911L14.5052 8.98015L17.6162 8.69754L20.6569 5.65686C21.7176 7.42463 21.3358 10.6349 19.5963 12.3744C17.8567 14.1139 15.0318 14.2789 12.8788 13.435" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Проект</span></p><h1>Remote<wbr>Gamepad</h1><p class="entry-lead">Мост, который превращает телефон в беспроводной геймпад Xbox 360 для игр на Linux: браузер телефона шлёт ввод по WebSocket, а компьютер показывает системе виртуальный геймпад.</p><p class="made-with made-chat-agents"><svg class="icon icon-made-chat" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 10L12 10L16 10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14L10 14L12 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.8214 2.48697 15.5291 3.33782 17L2.5 21.5L7 20.6622C8.47087 21.513 10.1786 22 12 22Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Начат в веб-чате Gemini, доведён с Claude</span></p></header><section class="glance" aria-labelledby="glance-title-remotegamepad"><h2 class="glance-title" id="glance-title-remotegamepad">Коротко</h2><dl><div class="glance-row row-role"><dt>Роль</dt><dd>Автор. Начинал руками с веб-чатом Gemini, последние правки делал с Claude.</dd></div><div class="glance-row row-timeline"><dt>Сроки</dt><dd>Старт 11 сентября 2024 · v0.1.0 14 сентября · веб-интерфейс на Flask 15 сентября · FastAPI в августе 2025 · uv и Python 3.13 6 марта 2026</dd></div><div class="glance-row row-result"><dt>Результат</dt><dd>Телефон работает как геймпад Xbox 360 для Linux · подключение по QR-коду · <strong>49</strong> коммитов · тестов нет</dd></div><div class="glance-row row-critical"><dt>Требовало особого внимания</dt><dd>Чтобы игра видела обычный геймпад Xbox 360 и не требовала настроек</dd></div><div class="glance-row row-stack"><dt>Стек</dt><dd><ul class="glance-stack"><li style="--dot:#3572A5">Python</li><li>FastAPI</li><li>evdev</li><li>WebSocket</li><li>HTMX</li></ul></dd></div></dl></section><details class="story-mobile-contents"><summary>На этом листе</summary><ol><li><a href="#why">Телефон вместо геймпада</a></li><li><a href="#how-it-works">Как он устроен</a></li><li><a href="#rewrites">Три переписывания одного моста</a></li><li><a href="#current-state">Где он сейчас</a></li><li><a href="#how-it-is-built">Как устроено</a></li></ol></details><div class="story-layout"><div class="story-main"><div class="entry-body"><section class="entry-section" id="why" aria-labelledby="h-why"><span id="origin" class="story-anchor"></span><span id="audience" class="story-anchor"></span><span id="role" class="story-anchor"></span><h2 id="h-why">Телефон вместо геймпада</h2><p>Бывает, что контроллер не подключается к компьютеру напрямую: нет драйверов, не выходит пара по Bluetooth, но телефон его видит. Бывает, что физического геймпада нет вовсе. В обоих случаях телефон может стать геймпадом.</p><p>Первый коммит я сделал 11 сентября 2024 года, 14 сентября вышла стабильная v0.1.0 на pyxinput. Начинал руками с веб-чатом Gemini.</p></section><section class="entry-section" id="how-it-works" aria-labelledby="h-how-it-works"><span id="architecture" class="story-anchor"></span><span id="decisions" class="story-anchor"></span><span id="privacy" class="story-anchor"></span><h2 id="h-how-it-works">Как он устроен</h2><p>Телефон открывает страницу, браузер читает ввод через Web Gamepad API или экранные кнопки и шлёт его по WebSocket на сервер FastAPI. Сервер пишет настоящие события evdev в <code>/dev/uinput</code>, и система видит обычный геймпад Xbox 360, так что игре ничего настраивать не нужно.</p><p>При запуске сервер печатает в консоль QR-код с адресом в локальной сети: навёл камеру, и интерфейс открылся. Если задан внешний адрес туннеля, рядом печатается второй QR-код, и геймпадом можно пользоваться не только из дома.</p></section><section class="entry-section" id="rewrites" aria-labelledby="h-rewrites"><span id="correction" class="story-anchor"></span><h2 id="h-rewrites">Три переписывания одного моста</h2><p>Проект прошёл путь от pyxinput и веб-интерфейса на Flask в сентябре 2024 года к FastAPI в августе 2025-го. 6 марта 2026 года он переписан на uv и Python 3.13, а 11 мая с Claude исправлена раскладка кнопок X и Y и переписаны оба README.</p></section><section class="entry-section" id="current-state" aria-labelledby="h-current-state"><span id="tests" class="story-anchor"></span><span id="limitations" class="story-anchor"></span><span id="next" class="story-anchor"></span><span id="reproduce" class="story-anchor"></span><h2 id="h-current-state">Где он сейчас</h2><p>Я много раз играл через него в разные игры, и система видела телефон как обычный геймпад. Проект небольшой: 49 коммитов, тестов нет, работает только на Linux.</p></section><section class="entry-section tech-sheet" id="how-it-is-built" aria-labelledby="h-how-it-is-built"><h2 id="h-how-it-is-built">Как устроено</h2><dl><div class="glance-row tech-architecture"><dt>Архитектура</dt><dd><ul><li>Браузер телефона, WebSocket, сервер FastAPI, события evdev в <code>/dev/uinput</code>.</li><li>Виртуальное устройство представляется геймпадом Xbox 360.</li></ul></dd></div><div class="glance-row tech-infrastructure"><dt>Инфраструктура</dt><dd><ul><li>Python 3.13 с uv, интерфейс на HTMX, QR-коды в консоли.</li><li>Внешний адрес задаётся переменной окружения для любого туннеля.</li></ul></dd></div><div class="glance-row tech-decisions"><dt>Решения и допущения</dt><dd><ul><li>Системный геймпад вместо настроек в каждой игре.</li><li>Подключение по QR-коду вместо ввода адреса.</li></ul></dd></div></dl></section></div><nav class="route-strip" aria-labelledby="route-title"><h2 id="route-title">Где вы на схеме</h2><div class="routes"><div class="route tone-project" data-line="tools"><p class="route-name"><span class="bullet" aria-hidden="true">3</span>Линия инструментов <span>11 / 11</span></p><ol class="stations" style="--n:11"><li class="is-transfer"><a href="/ru/collections/ai-agent-workflow/" data-line-set="tools"><span class="st-code">C-01</span><span class="st-name">AI-контур</span></a></li><li><a href="/ru/projects/mnemo/" data-line-set="tools"><span class="st-code">P-01</span><span class="st-name">mnemo</span></a></li><li><a href="/ru/projects/herald/" data-line-set="tools"><span class="st-code">P-02</span><span class="st-name">herald</span></a></li><li><a href="/ru/projects/ephemeris/" data-line-set="tools"><span class="st-code">P-03</span><span class="st-name">ephemeris</span></a></li><li><a href="/ru/projects/kanon/" data-line-set="tools"><span class="st-code">P-04</span><span class="st-name">kanon</span></a></li><li><a href="/ru/projects/telegram-media-relay-bot/" data-line-set="tools"><span class="st-code">P-05</span><span class="st-name">TMRBot</span></a></li><li><a href="/ru/projects/zapret2-nix/" data-line-set="tools"><span class="st-code">P-06</span><span class="st-name">zapret2-nix</span></a></li><li><a href="/ru/projects/heartrender/" data-line-set="tools"><span class="st-code">P-07</span><span class="st-name">HeartRender</span></a></li><li><a href="/ru/projects/owlwhisper/" data-line-set="tools"><span class="st-code">P-08</span><span class="st-name">OwlWhisper</span></a></li><li><a href="/ru/projects/crabvoice/" data-line-set="tools"><span class="st-code">P-09</span><span class="st-name">CrabVoice</span></a></li><li class="is-here"><a href="/ru/projects/remotegamepad/" aria-current="page" data-line-set="tools"><span class="st-code">P-10</span><span class="st-name">RemoteGamepad</span></a></li></ol><a class="route-next" href="/ru/#lines"><span class="bullet" aria-hidden="true">3</span><span class="sign-text"><span class="sign-label">Линия закончилась</span><span class="sign-name">Вся схема: все станции всех линий</span></span><span class="sign-arrow" aria-hidden="true">&#8594;</span></a></div></div><p class="route-all"><a href="/ru/#lines">Вся схема: все станции всех линий</a></p></nav></div><aside class="story-aside"><nav aria-label="На этом листе"><h2>На этом листе</h2><ol><li><a href="#why">Телефон вместо геймпада</a></li><li><a href="#how-it-works">Как он устроен</a></li><li><a href="#rewrites">Три переписывания одного моста</a></li><li><a href="#current-state">Где он сейчас</a></li><li><a href="#how-it-is-built">Как устроено</a></li></ol></nav><div class="story-links"><h2>Ссылки</h2><ul><li><a href="https://github.com/ZenonEl/RemoteGamepad" rel="noopener">Репозиторий</a></li></ul></div></aside></div></article>
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Бэкенд-разработка и инструменты, которые я делаю для своей работы.</p>
+    <p class="footer-legal">Текст сайта под <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Код проектов остаётся под лицензией своего репозитория.</p>
+  </div>
+  <nav class="footer-lines" aria-labelledby="footer-lines-title">
+    <h2 id="footer-lines-title">Линии чтения</h2>
+    <ul><li class="tone-case"><span class="bullet" aria-hidden="true">1</span><a href="/ru/cv/" data-line-set="hr">Линия HR</a><span>5 станций</span></li><li class="tone-collection"><span class="bullet" aria-hidden="true">2</span><a href="/ru/work/ecommerce-scenarios/" data-line-set="engineer">Линия инженера</a><span>6 станций</span></li><li class="tone-project"><span class="bullet" aria-hidden="true">3</span><a href="/ru/collections/ai-agent-workflow/" data-line-set="tools">Линия инструментов</a><span>11 станций</span></li></ul>
+  </nav>
+  <nav class="footer-map" aria-labelledby="footer-map-title">
+    <h2 id="footer-map-title">Все разделы</h2>
+    <ul><li><a href="/ru/work/">Кейсы</a></li><li><a href="/ru/projects/">Проекты</a></li><li><a href="/ru/collections/">Подход</a></li><li><a href="/ru/#lines">Схема</a></li><li><a href="/ru/cv/">Резюме</a></li><li><a href="/ru/about/">Обо мне</a></li><li><a href="/ru/library/">Указатель библиотеки</a></li><li><a href="/ru/colophon/">Выходные данные</a></li><li><a href="/projects/remotegamepad/" lang="en" hreflang="en">English version</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,646 @@
+{
+  "name": "ZenonEl",
+  "url": "https://zenonel.github.io/",
+  "summary": "Backend engineer with about two years of commercial Python work. Public library of anonymised engineering cases, public projects, and the workflow around AI agents.",
+  "same_as": [
+    "https://github.com/ZenonEl"
+  ],
+  "lines": [
+    {
+      "id": "hr",
+      "number": 1,
+      "name": {
+        "en": "Hiring line",
+        "ru": "Линия HR"
+      },
+      "stations": [
+        "page:cv",
+        "case:ecommerce-scenarios",
+        "case:finance-bot-blind-spots",
+        "case:contract-path-backend",
+        "page:about"
+      ]
+    },
+    {
+      "id": "engineer",
+      "number": 2,
+      "name": {
+        "en": "Engineering line",
+        "ru": "Линия инженера"
+      },
+      "stations": [
+        "case:ecommerce-scenarios",
+        "case:finance-bot-blind-spots",
+        "collection:corrections-and-checks",
+        "case:false-positive-metric",
+        "case:llm-cost-and-search-quality",
+        "collection:ai-agent-workflow"
+      ]
+    },
+    {
+      "id": "tools",
+      "number": 3,
+      "name": {
+        "en": "Tools line",
+        "ru": "Линия инструментов"
+      },
+      "stations": [
+        "collection:ai-agent-workflow",
+        "project:mnemo",
+        "project:herald",
+        "project:ephemeris",
+        "project:kanon",
+        "project:telegram-media-relay-bot",
+        "project:zapret2-nix",
+        "project:heartrender",
+        "project:owlwhisper",
+        "project:crabvoice",
+        "project:remotegamepad"
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "case:ecommerce-scenarios",
+      "code": "W-01",
+      "type": "case",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Real orders and payments before the official launch",
+        "ru": "Живые заказы и оплаты до официального запуска"
+      },
+      "lines": [
+        "hr",
+        "engineer"
+      ],
+      "en": {
+        "title": "Real orders before the official launch",
+        "summary": "I led the build of a PrestaShop store on a stack that was new to me: AI agents wrote the code, and every change went through subagent review until LGTM before production. Work began on 24 July 2026 and the first real payment went through on 9 September. From 9 to 29 September, before the official launch and with the site hidden from search engines, the store took 101 orders, 70 of them paid, and 347,980 RUB passed through its online till.",
+        "url": "https://zenonel.github.io/work/ecommerce-scenarios/",
+        "tags": [
+          "e-commerce",
+          "PHP",
+          "data import",
+          "payments and delivery"
+        ]
+      },
+      "ru": {
+        "title": "Живые заказы до официального запуска",
+        "summary": "Я вёл разработку интернет-магазина на PrestaShop, новом для себя стеке: код писали AI-агенты, каждое изменение перед продом проходило ревью сабагентами до LGTM. Проект начался 24 июля 2026 года, первый настоящий платёж прошёл 9 сентября. С 9 по 29 сентября, до официального запуска и с сайтом, закрытым от поисковиков, магазин принял 101 заказ, 70 из них оплачены, через онлайн-кассу прошло 347 980 ₽.",
+        "url": "https://zenonel.github.io/ru/work/ecommerce-scenarios/",
+        "tags": [
+          "e-commerce",
+          "PHP",
+          "импорт данных",
+          "платежи и доставка"
+        ]
+      }
+    },
+    {
+      "id": "case:finance-bot-blind-spots",
+      "code": "W-02",
+      "type": "case",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Production bot; usage figures from production on 29 September 2026",
+        "ru": "Бот в проде; цифры использования с прода на 29 сентября 2026 года"
+      },
+      "lines": [
+        "hr",
+        "engineer"
+      ],
+      "en": {
+        "title": "A finance bot that says only what it knows about the money",
+        "summary": "I led the finance side of a Telegram back-office bot: balances, statements, scheduled payments and money notifications that the client sets up alone through a wizard. AI in the bot reads free text and writes a weekly summary; only code does the arithmetic. From 28 August to 29 September the bot sent 1,344 notifications, 1,005 of them on incoming payments, from six rules the client set up alone. What mattered most was never passing off a bank failure as an absence of money. Large sums pass through the client's accounts and a write to their bank cannot be undone, so company details and payments go through checks and gates: a wrong tax number or account has to stop before the bank, not after the money has gone to the wrong place.",
+        "url": "https://zenonel.github.io/work/finance-bot-blind-spots/",
+        "tags": [
+          "Python",
+          "Telegram bot",
+          "bank APIs",
+          "LLM with checks"
+        ]
+      },
+      "ru": {
+        "title": "Финансовый бот, который говорит о деньгах только то, что знает",
+        "summary": "Я вёл финансовую часть Telegram-бота бэк-офиса: остатки, выписку, плановые платежи и уведомления о деньгах, которые клиент настраивает сам через мастер. AI в боте разбирает свободный текст и пишет недельный пересказ, а деньги считает только код. С 28 августа по 29 сентября бот отправил 1 344 уведомления, 1 005 из них о поступлениях, по шести правилам, которые клиент завёл сам. Главным было не выдать отказ банка за отсутствие денег. По счетам клиента идут крупные суммы, а запись в его банк необратима, поэтому реквизиты и платежи проходят сверки и гейты: неверный ИНН или счёт должен остановиться до банка, а не после того, как деньги ушли не туда.",
+        "url": "https://zenonel.github.io/ru/work/finance-bot-blind-spots/",
+        "tags": [
+          "Python",
+          "Telegram-бот",
+          "банковские API",
+          "LLM с проверками"
+        ]
+      }
+    },
+    {
+      "id": "case:contract-path-backend",
+      "code": "W-03",
+      "type": "case",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "In production since 8 July 2026; three waves of client changes delivered",
+        "ru": "На боевом сервере с 8 июля 2026 года; три волны правок заказчика сданы"
+      },
+      "lines": [
+        "hr"
+      ],
+      "en": {
+        "title": "The contract path from order to fiscal receipt",
+        "summary": "I ran the backend of a contract project: a site where a client builds an order in a configurator, pays online and receives documents in a personal cabinet. In five weeks I took it from someone else's skeleton to a production server, then through three waves of client changes. I counted a payment as finished not on the gateway's word, but only when the internal state agreed and a fiscal receipt existed.",
+        "url": "https://zenonel.github.io/work/contract-path-backend/",
+        "tags": [
+          "payments",
+          "Python",
+          "Django",
+          "idempotency"
+        ]
+      },
+      "ru": {
+        "title": "Договорный путь от заказа до фискального чека",
+        "summary": "Я вёл бэкенд договорного проекта: сайт, где клиент собирает заказ в конфигураторе, платит онлайн и получает документы в личном кабинете. За пять недель я довёл его от чужого каркаса до боевого сервера, а потом провёл через три волны правок заказчика. Платёж я считал законченным не по ответу шлюза, а только когда внутреннее состояние сошлось и появился фискальный чек.",
+        "url": "https://zenonel.github.io/ru/work/contract-path-backend/",
+        "tags": [
+          "платежи",
+          "Python",
+          "Django",
+          "идемпотентность"
+        ]
+      }
+    },
+    {
+      "id": "case:false-positive-metric",
+      "code": "W-04",
+      "type": "case",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Production test stand; the project was dropped before a public launch",
+        "ru": "Прод-стенд; проект забросили до публичного запуска"
+      },
+      "lines": [
+        "engineer"
+      ],
+      "en": {
+        "title": "The product metric counted a refusal as a successful answer",
+        "summary": "This was my first project after coming back to the team, and the first where I learned to work with AI agents. In a SaaS that shows how AI assistants see a website, the main metric looked for the brand name in the model's answer and counted a refusal as a mention: 14 of 15 where there was not a single real one. I moved it to a verification service with a model judge and two rubrics, calibrated it on a 44-case set, and carried the same principle, no grounds means refusal, into article generation.",
+        "url": "https://zenonel.github.io/work/false-positive-metric/",
+        "tags": [
+          "applied AI",
+          "LLM judge",
+          "calibration",
+          "Python"
+        ]
+      },
+      "ru": {
+        "title": "Продуктовая метрика считала отказ успешным ответом",
+        "summary": "Это мой первый проект после возвращения в команду и первый, где я учился работать с AI-агентами. В SaaS, который показывает, как сайт видят AI-ассистенты, главная метрика искала имя бренда в ответе модели и засчитывала отказ как упоминание: 14 из 15 там, где содержательных не было ни одного. Я перевёл её на сервис проверки с моделью-судьёй и двумя рубриками, откалибровал на наборе из 44 случаев и довёл тот же принцип «нет основания, значит отказ» до генерации статей.",
+        "url": "https://zenonel.github.io/ru/work/false-positive-metric/",
+        "tags": [
+          "applied AI",
+          "LLM-судья",
+          "калибровка",
+          "Python"
+        ]
+      }
+    },
+    {
+      "id": "case:llm-cost-and-search-quality",
+      "code": "W-05",
+      "type": "case",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "In production in 20 franchise chats; figures from the work logs and a production snapshot on 29 September 2026",
+        "ru": "В проде в 20 чатах франшизы; цифры из рабочих журналов и среза прода 29 сентября 2026 года"
+      },
+      "lines": [
+        "engineer"
+      ],
+      "en": {
+        "title": "The cost of an answer: cache, a narrow check and a search that failed its measurement",
+        "summary": "The bot answers franchise staff in their work chats from a knowledge base and stays silent or calls a person on everything else. When the base grew nearly fourfold, from 85 to 337 entries, an answer took 22 seconds and cost $0.13. I found where the money went: the provider's cache worked every other time, and the verifier read the whole base for the sake of a few entries. On 8 August, on live traffic, an answer with a cache hit cost $0.0310 against $0.0968 without one, and segmented search, which management asked to check as a saving, was rejected by measurement.",
+        "url": "https://zenonel.github.io/work/llm-cost-and-search-quality/",
+        "tags": [
+          "applied AI",
+          "LLM cost",
+          "retrieval",
+          "Python"
+        ]
+      },
+      "ru": {
+        "title": "Цена ответа: кеш, узкая проверка и поиск, который не прошёл замер",
+        "summary": "Бот отвечает сотрудникам франшизы в их рабочих чатах по базе знаний, а на остальное молчит или зовёт человека. Когда база выросла почти вчетверо, с 85 до 337 записей, ответ стал стоить 22 секунды и $0.13. Я нашёл, куда уходят деньги: кеш провайдера работал через раз, а проверяющий читал всю базу ради нескольких записей. 8 августа на живом трафике ответ с попаданием в кеш стоил $0.0310 против $0.0968 без него, а сегментный поиск, который руководство просило проверить как способ экономии, замер отклонил.",
+        "url": "https://zenonel.github.io/ru/work/llm-cost-and-search-quality/",
+        "tags": [
+          "applied AI",
+          "стоимость LLM",
+          "поиск",
+          "Python"
+        ]
+      }
+    },
+    {
+      "id": "collection:ai-agent-workflow",
+      "code": "C-01",
+      "type": "collection",
+      "last_reviewed": "2026-10-01",
+      "status": {
+        "en": "In daily use at work and on my own projects",
+        "ru": "Использую каждый день в работе и на своих проектах"
+      },
+      "lines": [
+        "engineer",
+        "tools"
+      ],
+      "en": {
+        "title": "Keeping context when the sessions are shorter than the project",
+        "summary": "Four tools and one habit. Material crosses a single boundary, is stored with its source, and reaches the next session as addresses rather than a retelling.",
+        "url": "https://zenonel.github.io/collections/ai-agent-workflow/",
+        "tags": [
+          "applied AI",
+          "provenance",
+          "workflow"
+        ]
+      },
+      "ru": {
+        "title": "Как удержать контекст, когда сессии короче проекта",
+        "summary": "Четыре инструмента и одна привычка. Материал проходит через одну границу, хранится вместе с источником и приходит в следующую сессию адресами, а не пересказом.",
+        "url": "https://zenonel.github.io/ru/collections/ai-agent-workflow/",
+        "tags": [
+          "applied AI",
+          "провенанс",
+          "рабочий контур"
+        ]
+      }
+    },
+    {
+      "id": "collection:corrections-and-checks",
+      "code": "C-02",
+      "type": "collection",
+      "last_reviewed": "2026-10-01",
+      "status": {
+        "en": "A working practice, documented from real corrections",
+        "ru": "Рабочая практика, собранная из настоящих исправлений"
+      },
+      "lines": [
+        "engineer"
+      ],
+      "en": {
+        "title": "When a passing check misses the problem",
+        "summary": "Catalogue imports and product metrics can pass a check while failing the task. These cases explain the mismatch and what had to change.",
+        "url": "https://zenonel.github.io/collections/corrections-and-checks/",
+        "tags": [
+          "verification",
+          "measurement",
+          "review",
+          "reporting"
+        ]
+      },
+      "ru": {
+        "title": "Когда успешная проверка пропускает ошибку",
+        "summary": "Импорт каталога и продуктовая метрика могут пройти проверку и не решить задачу. В этих кейсах разбираю расхождение и то, что пришлось изменить.",
+        "url": "https://zenonel.github.io/ru/collections/corrections-and-checks/",
+        "tags": [
+          "проверка",
+          "измерения",
+          "ревью",
+          "отчётность"
+        ]
+      }
+    },
+    {
+      "id": "project:mnemo",
+      "code": "P-01",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Version 0.15.1-beta, used every day at work and on my own projects",
+        "ru": "Версия 0.15.1-beta, использую каждый день в работе и на своих проектах"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "mnemo",
+        "summary": "I made mnemo because project requirements kept arriving in messages, files, and later corrections. It gives Claude Code and Codex a local archive with links back to the source, plus records of requirements, open questions, and the work done against them.",
+        "url": "https://zenonel.github.io/projects/mnemo/",
+        "tags": [
+          "provenance",
+          "Python",
+          "agent tooling"
+        ]
+      },
+      "ru": {
+        "title": "mnemo",
+        "summary": "Я сделал mnemo, потому что требования к проектам приходят сообщениями, файлами и последующими правками. Плагин даёт Claude Code и Codex локальный архив со ссылками на исходный материал, а рядом ведёт требования, открытые вопросы и состояние работы.",
+        "url": "https://zenonel.github.io/ru/projects/mnemo/",
+        "tags": [
+          "провенанс",
+          "Python",
+          "инструменты для агентов"
+        ]
+      }
+    },
+    {
+      "id": "project:herald",
+      "code": "P-02",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Active; version 0.8.0 with capture, sending and Watch on main",
+        "ru": "Развивается: версия 0.8.0, захват, отправка и Watch в main"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "herald",
+        "summary": "A local MCP gateway between agent sessions and Telegram. It brings incoming messages and files into a session, sends prepared replies only along allowed routes, and through Watch lets me write to an already open session straight from the bot's private chat.",
+        "url": "https://zenonel.github.io/projects/herald/",
+        "tags": [
+          "MCP",
+          "Python",
+          "agent tooling"
+        ]
+      },
+      "ru": {
+        "title": "herald",
+        "summary": "Локальный MCP-шлюз между сессиями агентов и Telegram. Приносит в сессию входящие сообщения и файлы, отправляет подготовленные ответы только по разрешённым маршрутам, а через Watch даёт писать уже открытой сессии прямо из лички бота.",
+        "url": "https://zenonel.github.io/ru/projects/herald/",
+        "tags": [
+          "MCP",
+          "Python",
+          "инструменты для агентов"
+        ]
+      }
+    },
+    {
+      "id": "project:ephemeris",
+      "code": "P-03",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Version 0.8.1, used every working day",
+        "ru": "Версия 0.8.1, использую каждый рабочий день"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "ephemeris",
+        "summary": "A Claude Code plugin and Codex skill that keeps a work day in one issue. When an agent session ends, it leaves the next one not a retelling but the addresses of the source material: comments, commits, paths and links into the mnemo archive.",
+        "url": "https://zenonel.github.io/projects/ephemeris/",
+        "tags": [
+          "protocol",
+          "agent tooling"
+        ]
+      },
+      "ru": {
+        "title": "ephemeris",
+        "summary": "Плагин для Claude Code и навык для Codex, который ведёт рабочий день в одном issue. Когда сессия агента заканчивается, она оставляет следующей не пересказ, а адреса исходных материалов: комментарии, коммиты, пути и ссылки на архив mnemo.",
+        "url": "https://zenonel.github.io/ru/projects/ephemeris/",
+        "tags": [
+          "протокол",
+          "инструменты для агентов"
+        ]
+      }
+    },
+    {
+      "id": "project:kanon",
+      "code": "P-04",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Version 0.12.1, used daily; the repository is private for now",
+        "ru": "Версия 0.12.1, использую каждый день; репозиторий пока закрыт"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "kanon",
+        "summary": "A Claude Code plugin and Codex skill. Before work starts, it turns a task into a checklist of observable results and the proof each one needs. An item closes when proof is inserted; a tick is not enough.",
+        "url": "https://zenonel.github.io/projects/kanon/",
+        "tags": [
+          "Claude Code",
+          "Codex",
+          "acceptance"
+        ]
+      },
+      "ru": {
+        "title": "kanon",
+        "summary": "Плагин для Claude Code и навык для Codex. До начала работы превращает задачу в чеклист наблюдаемых результатов и доказательств к каждому. Пункт закрывается вставленным доказательством, одной галочки мало.",
+        "url": "https://zenonel.github.io/ru/projects/kanon/",
+        "tags": [
+          "Claude Code",
+          "Codex",
+          "приёмка"
+        ]
+      }
+    },
+    {
+      "id": "project:telegram-media-relay-bot",
+      "code": "P-05",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Active; 34 unit tests in CI, main is newer than the last release",
+        "ru": "Развивается; 34 unit-теста в CI, main новее последнего релиза"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "TelegramMediaRelayBot",
+        "summary": "A self-hosted .NET Telegram bot: it downloads media from a link through yt-dlp and gallery-dl and forwards it to contacts by their privacy rules. Started by hand in December 2024 and reworked in 2026; the download queue survives a restart.",
+        "url": "https://zenonel.github.io/projects/telegram-media-relay-bot/",
+        "tags": [
+          "C# 14",
+          ".NET 10",
+          "SQLite",
+          "self-hosted",
+          "Docker"
+        ]
+      },
+      "ru": {
+        "title": "TelegramMediaRelayBot",
+        "summary": "Self-hosted Telegram-бот на .NET: скачивает медиа по ссылке через yt-dlp и gallery-dl и пересылает его контактам по их правилам приватности. Начат руками в декабре 2024 года и переработан в 2026-м; очередь загрузок переживает перезапуск.",
+        "url": "https://zenonel.github.io/ru/projects/telegram-media-relay-bot/",
+        "tags": [
+          "C# 14",
+          ".NET 10",
+          "SQLite",
+          "self-hosted",
+          "Docker"
+        ]
+      }
+    },
+    {
+      "id": "project:zapret2-nix",
+      "code": "P-06",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Public v0.1; module, presets and checks work, weekly CI green",
+        "ru": "Публичная v0.1; модуль, пресеты и проверки работают, еженедельный CI зелёный"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "zapret2-nix",
+        "summary": "A declarative NixOS module and preset library for zapret2: a service on nftables or iptables, with the strategy switchable on a running machine without a rebuild.",
+        "url": "https://zenonel.github.io/projects/zapret2-nix/",
+        "tags": [
+          "NixOS",
+          "networking",
+          "systemd"
+        ]
+      },
+      "ru": {
+        "title": "zapret2-nix",
+        "summary": "Декларативный модуль NixOS и библиотека пресетов для zapret2: служба на nftables или iptables, стратегия меняется на работающей машине без пересборки.",
+        "url": "https://zenonel.github.io/ru/projects/zapret2-nix/",
+        "tags": [
+          "NixOS",
+          "сети",
+          "systemd"
+        ]
+      }
+    },
+    {
+      "id": "project:heartrender",
+      "code": "P-07",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Done for its task; last change in May 2026",
+        "ru": "Сделан под свою задачу, последнее изменение в мае 2026"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "HeartRender",
+        "summary": "A small Python pipeline that reads heart-rate data from the Gadgetbridge database and turns it into a PDF that can be printed and read. It is not a medical device and makes no diagnosis.",
+        "url": "https://zenonel.github.io/projects/heartrender/",
+        "tags": [
+          "Python",
+          "pandas",
+          "Telegram bot"
+        ]
+      },
+      "ru": {
+        "title": "HeartRender",
+        "summary": "Небольшой пайплайн на Python: читает пульс из базы Gadgetbridge и собирает PDF, который можно распечатать и разобрать. Это не медицинский прибор, диагнозов он не ставит.",
+        "url": "https://zenonel.github.io/ru/projects/heartrender/",
+        "tags": [
+          "Python",
+          "pandas",
+          "Telegram-бот"
+        ]
+      }
+    },
+    {
+      "id": "project:owlwhisper",
+      "code": "P-08",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Working MVP, halted on purpose in 2025",
+        "ru": "Рабочий MVP, остановлен осознанно в 2025 году"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "OwlWhisper",
+        "summary": "A serverless peer-to-peer messenger in Go. I took it to a working MVP in about six weeks and stopped when I saw what making it safe would take.",
+        "url": "https://zenonel.github.io/projects/owlwhisper/",
+        "tags": [
+          "Go",
+          "libp2p",
+          "WebRTC",
+          "encryption"
+        ]
+      },
+      "ru": {
+        "title": "OwlWhisper",
+        "summary": "P2P-мессенджер на Go без центрального сервера. Примерно за полтора месяца довёл его до рабочего MVP и остановил, когда увидел, чего будет стоить сделать его безопасным.",
+        "url": "https://zenonel.github.io/ru/projects/owlwhisper/",
+        "tags": [
+          "Go",
+          "libp2p",
+          "WebRTC",
+          "шифрование"
+        ]
+      }
+    },
+    {
+      "id": "project:crabvoice",
+      "code": "P-09",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Earlier project; v1.2.0 from April 2026, not actively developed",
+        "ru": "Ранний проект; v1.2.0 от апреля 2026 года, активно не развивается"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "CrabVoice",
+        "summary": "A Tauri app for Windows, Linux and Android that plays a synchronised voice-over translation on top of online video. Eleven days passed from the first commit to v1.0.0.",
+        "url": "https://zenonel.github.io/projects/crabvoice/",
+        "tags": [
+          "Rust",
+          "Tauri",
+          "TypeScript",
+          "desktop"
+        ]
+      },
+      "ru": {
+        "title": "CrabVoice",
+        "summary": "Приложение на Tauri для Windows, Linux и Android, которое проигрывает синхронную закадровую озвучку поверх онлайн-видео. От первого коммита до v1.0.0 прошло 11 дней.",
+        "url": "https://zenonel.github.io/ru/projects/crabvoice/",
+        "tags": [
+          "Rust",
+          "Tauri",
+          "TypeScript",
+          "desktop"
+        ]
+      }
+    },
+    {
+      "id": "project:remotegamepad",
+      "code": "P-10",
+      "type": "project",
+      "last_reviewed": "2026-09-30",
+      "status": {
+        "en": "Started in 2024, moved to uv and Python 3.13 in 2026",
+        "ru": "Начат в 2024 году, в 2026 переписан на uv и Python 3.13"
+      },
+      "lines": [
+        "tools"
+      ],
+      "en": {
+        "title": "RemoteGamepad",
+        "summary": "A bridge that turns a phone into a wireless Xbox 360 gamepad for games on Linux: the phone's browser sends input over a WebSocket, and the computer presents a virtual gamepad to the system.",
+        "url": "https://zenonel.github.io/projects/remotegamepad/",
+        "tags": [
+          "Linux",
+          "WebSocket",
+          "uinput"
+        ]
+      },
+      "ru": {
+        "title": "RemoteGamepad",
+        "summary": "Мост, который превращает телефон в беспроводной геймпад Xbox 360 для игр на Linux: браузер телефона шлёт ввод по WebSocket, а компьютер показывает системе виртуальный геймпад.",
+        "url": "https://zenonel.github.io/ru/projects/remotegamepad/",
+        "tags": [
+          "Linux",
+          "WebSocket",
+          "uinput"
+        ]
+      }
+    }
+  ]
+}

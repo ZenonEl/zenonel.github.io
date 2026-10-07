@@ -1,299 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc" />
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-7XFXVE7BPP');
-        </script>
-
-        <title>ZenonEl - Developer Portfolio | Портфолио разработчика</title>
-
-        <meta name="description" content="Open-source developer. Creator of CrabVoice (real-time AI voice translation for 55+ video platforms), RemoteGamepad & Telegram bots. Rust + TypeScript.">
-        <meta name="keywords" content="ZenonEl, developer, portfolio, github, crabvoice, voice translation, real-time dubbing, video translation, remote gamepad, telegram bot, tauri, rust, голосовой перевод, озвучка видео, разработчик, портфолио, проекты, удаленный геймпад">
-        <meta name="author" content="ZenonEl">
-
-        <link rel="canonical" href="https://zenonel.github.io/">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/favicon.svg">
-        <link rel="manifest" href="/manifest.webmanifest">
-        <link rel="alternate" type="text/plain" title="LLMs.txt" href="/llms.txt">
-        <link rel="alternate" type="text/plain" title="LLMs full context" href="/llms-full.txt">
-
-        <meta property="og:title" content="ZenonEl - Developer Portfolio">
-        <meta property="og:description" content="Open-source developer creating CrabVoice (real-time voice translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Tools in Rust, TypeScript, Python.">
-        <meta property="og:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
-        <meta property="og:url" content="https://zenonel.github.io/">
-        <meta property="og:site_name" content="ZenonEl">
-        <meta property="og:type" content="website">
-
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="ZenonEl - Developer Portfolio">
-        <meta name="twitter:description" content="Open-source developer creating CrabVoice (real-time voice translation for videos), RemoteGamepad, and TelegramMediaRelayBot. Tools in Rust, TypeScript, Python.">
-        <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/165126589?v=4">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/styles.css">
-
-        <script src="https://app.rybbit.io/api/script.js" data-site-id="430" defer></script>
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
-        <script defer src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
-
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "ZenonEl",
-            "url": "https://zenonel.github.io/",
-            "image": "https://avatars.githubusercontent.com/u/165126589?v=4",
-            "sameAs": [
-                "https://github.com/ZenonEl",
-                "https://mastodon.ml/@ZenonEl",
-                "https://lor.sh/@ZenonEl"
-            ],
-            "jobTitle": "Software Developer",
-            "knowsAbout": ["Rust", "TypeScript", "Python", "Tauri", "Open Source"]
-        }
-        </script>
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Who is ZenonEl?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "ZenonEl is an independent open-source developer focused on multimedia, gaming, and automation tools. Primary work includes CrabVoice (real-time video voice translation), RemoteGamepad, and TelegramMediaRelayBot."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What is CrabVoice?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "CrabVoice is a free, open-source desktop app for real-time voice-over translation of online videos. It works with 55+ platforms including YouTube, Twitch, VK, and TikTok, on Windows, Linux, and Android."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What tech stack does ZenonEl use?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Rust and Tauri v2 for desktop applications, TypeScript for web frontends, and Python for automation and Telegram bots. All projects are open-source."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "How can I contact ZenonEl?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Via GitHub (github.com/ZenonEl), Mastodon for personal content (mastodon.ml/@ZenonEl), or Mastodon for project updates (lor.sh/@ZenonEl)."
-                    }
-                }
-            ]
-        }
-        </script>
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "itemListElement": [
-                {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "item": {
-                        "@type": "SoftwareApplication",
-                        "name": "CrabVoice",
-                        "url": "https://zenonel.github.io/crabvoice/",
-                        "applicationCategory": "MultimediaApplication",
-                        "operatingSystem": "Windows, Linux, Android",
-                        "description": "Cross-platform real-time voice-over translation for online videos. Supports 55+ platforms including YouTube, Twitch, VK, TikTok.",
-                        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-                    }
-                },
-                {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "item": {
-                        "@type": "SoftwareApplication",
-                        "name": "RemoteGamepad",
-                        "url": "https://github.com/ZenonEl/RemoteGamepad",
-                        "applicationCategory": "GameApplication",
-                        "operatingSystem": "Linux",
-                        "description": "Transform your smartphone into a wireless gamepad for your PC with real-time control through a web interface."
-                    }
-                }
-            ]
-        }
-        </script>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZenonEl, backend engineer and tool builder</title>
+<meta name="description" content="Backends that reach production: payments, receipts, delivery, banks and LLMs. Five 2026 cases with numbers, my AI agent plugins and a CV.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101a24" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef3f6" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="alternate" type="application/json" title="catalog" href="/catalog.json">
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css?v=aecd12e5aaa4">
+<script>/* the site's only script: the theme control, and the reading line it remembers */
+(function(){var k="theme",L="line",d=document.documentElement;
+function sync(){var c=d.dataset.theme||"auto";var n=d.querySelectorAll("[data-theme-set]");
+for(var i=0;i<n.length;i++){n[i].setAttribute("aria-pressed",String(n[i].dataset.themeSet===c));}
+var l=d.dataset.line,r=l?d.querySelector('.route[data-line="'+l+'"]'):null;
+if(r){r.classList.add("is-chosen");r.parentNode.classList.add("has-choice");}}
+try{var v=localStorage.getItem(k);if(v==="light"||v==="dark"){d.dataset.theme=v;}
+var w=localStorage.getItem(L);if(w){d.dataset.line=w;}}catch(e){}
+d.addEventListener("click",function(e){var q=e.target.closest?e.target.closest("[data-line-set]"):null;
+if(q){try{localStorage.setItem(L,q.dataset.lineSet);}catch(e){}}
+var t=e.target.closest?e.target.closest("[data-theme-set]"):null;
+if(!t){return;}var v=t.dataset.themeSet;
+if(v==="auto"){delete d.dataset.theme;try{localStorage.removeItem(k);}catch(e){}}
+else{d.dataset.theme=v;try{localStorage.setItem(k,v);}catch(e){}}sync();});
+document.addEventListener("DOMContentLoaded",sync);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="ZenonEl, backend engineer and tool builder">
+<meta property="og:description" content="Backends that reach production: payments, receipts, delivery, banks and LLMs. Five 2026 cases with numbers, my AI agent plugins and a CV.">
+<meta property="og:url" content="https://zenonel.github.io/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zenonel.github.io/assets/img/avatar.jpg">
+<meta property="og:image:alt" content="ZenonEl">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc">
+<script async data-analytics src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
+<script data-analytics>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XFXVE7BPP');</script>
+<script defer data-analytics src="https://app.rybbit.io/api/script.js" data-site-id="430"></script>
+<script defer data-analytics src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+<script defer data-analytics src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "ZenonEl", "url": "https://zenonel.github.io/", "jobTitle": "Backend Engineer", "sameAs": ["https://github.com/ZenonEl"], "knowsAbout": ["Python", "Backend engineering", "Applied AI", "PostgreSQL", "Docker", "MCP"]}</script>
 </head>
 <body>
-    <main class="container">
-        <header>
-            <img src="https://avatars.githubusercontent.com/u/165126589?v=4" alt="ZenonEl Avatar" class="avatar" width="120" height="120" fetchpriority="high">
-            <h1>ZenonEl</h1>
-            <p class="tagline">Where ⌨️ keystrokes mutate into 🧩 Burroughs cut-ups 🧩 (and syntax becomes poetry 📚)</p>
-        </header>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="/">
+    <img class="brand-mark" src="/assets/img/avatar.jpg" width="96" height="96"
+         alt="" loading="eager" decoding="async">
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Backend engineer</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Primary">
+    <ul><li><a href="/work/">Cases</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Approach</a></li><li><a href="/#lines">Map</a></li><li><a href="/cv/">CV</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-set="auto" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+    </div>
+    <a class="lang-switch" href="/ru/" lang="ru" hreflang="ru">RU</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
 
-        <nav class="links" aria-label="Main navigation">
-            <a href="https://github.com/ZenonEl" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github" aria-hidden="true"></i>
-                GitHub
-            </a>
-            <a href="/crabvoice/">
-                <i class="fas fa-microphone" aria-hidden="true"></i>
-                CrabVoice
-            </a>
-            <a href="https://zenonel.github.io/TelegramMediaRelayBot-Site/" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-robot" aria-hidden="true"></i>
-                TelegramMediaRelayBot
-            </a>
-            <a href="https://mastodon.ml/@ZenonEl" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-mastodon" aria-hidden="true"></i>
-                My Life Blog on Mastodon
-            </a>
-            <a href="https://lor.sh/@ZenonEl" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-mastodon" aria-hidden="true"></i>
-                My Projects on Mastodon
-            </a>
-        </nav>
+<article class="home">
+  <header class="home-head">
+    <div class="home-hero">
+      <p class="home-status">Employed · not actively looking</p>
+      <div class="home-name"><img src="/assets/img/avatar.jpg" width="96" height="96" alt="">
+        <h1>ZenonEl</h1></div>
+      <p class="home-tagline">Backends that reach production: payments, receipts, delivery, banks and LLMs.</p>
+      <div class="home-lead"><p>In 2026 I took an online store from requirements to 101 orders with AI agents, before its official launch.</p></div>
+      <ul class="home-actions"><li><a href="/cv/"><svg class="icon icon-self-reported" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Read the CV</a></li><li><a href="https://github.com/ZenonEl" rel="me noopener"><svg class="icon icon-public-repo" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M17 7C18.1046 7 19 6.10457 19 5C19 3.89543 18.1046 3 17 3C15.8954 3 15 3.89543 15 5C15 6.10457 15.8954 7 17 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7C8.10457 7 9 6.10457 9 5C9 3.89543 8.10457 3 7 3C5.89543 3 5 3.89543 5 5C5 6.10457 5.89543 7 7 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21C8.10457 21 9 20.1046 9 19C9 17.8954 8.10457 17 7 17C5.89543 17 5 17.8954 5 19C5 20.1046 5.89543 21 7 21Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7V8C17 10.5 15 11 15 11L9 13C9 13 7 13.5 7 16V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>GitHub</a></li></ul>
+      <div class="home-principles"><div class="principle-row"><p class="principle-label">How I work</p><ul><li>Agents write the code, I answer for it</li><li>“Done” only after a live check</li><li>I take work through to release</li></ul></div></div>
+      <dl class="home-terms"><div><dt>Roles</dt><dd>Backend · Frontend · LLM features</dd></div><div><dt>Work</dt><dd>Remote · office in my city · no relocation</dd></div><div><dt>Salary</dt><dd>75,000 to 100,000 RUB a month</dd></div></dl>
+    </div>
+    <aside class="status-card" aria-label="Now"><ul class="status-stats"><li><span class="stat-label">Experience</span><span class="stat-value">~2 years</span><span class="stat-note">commercial development, mostly Python</span></li><li><span class="stat-label">Store</span><span class="stat-value">347,980 RUB</span><span class="stat-note">through the online till, before the official launch</span></li><li><span class="stat-label">Finance bot</span><span class="stat-value">1,344</span><span class="stat-note">notifications in a month, <strong>1,005</strong> on incoming payments</span></li><li><span class="stat-label">Tools</span><span class="stat-value">4</span><span class="stat-note">my own, for working with AI agents</span></li></ul></aside>
+  </header>
+  <section class="home-section home-work" aria-labelledby="sec-work"><header class="home-section-head"><p class="eyebrow"><span>01</span> / Work</p><h2 id="sec-work">Five cases from 2026</h2><p class="section-aside">Five notable projects from 2026 among those I can talk about: what I did, the numbers that came out and what went wrong. Clients stay unnamed.</p><a class="section-more" href="/work/">All cases <span aria-hidden="true">&#8594;</span></a></header><ol class="case-strips"><li class="case-strip"><a href="/work/ecommerce-scenarios/"><span class="case-code">W-01</span><span class="case-title">Real orders before the official launch</span><ul class="case-chips"><li><strong>70</strong> paid orders</li><li><strong>347,980 RUB</strong> through the online till</li><li>before the official launch</li></ul><span class="case-go" aria-hidden="true">&#8594;</span></a></li><li class="case-strip"><a href="/work/finance-bot-blind-spots/"><span class="case-code">W-02</span><span class="case-title">A finance bot that says only what it knows about the money</span><ul class="case-chips"><li><strong>1,344</strong> notifications in a month, <strong>1,005</strong> on incoming payments</li><li><strong>6</strong> rules set up by the client</li><li>a second client on its own instance</li></ul><span class="case-go" aria-hidden="true">&#8594;</span></a></li><li class="case-strip"><a href="/work/contract-path-backend/"><span class="case-code">W-03</span><span class="case-title">The contract path from order to fiscal receipt</span><ul class="case-chips"><li>Site running in production</li><li>change waves of <strong>7 of 7</strong>, <strong>11 of 11</strong> and <strong>5</strong></li><li>tests from <strong>26</strong> to <strong>684</strong></li></ul><span class="case-go" aria-hidden="true">&#8594;</span></a></li><li class="case-strip"><a href="/work/false-positive-metric/"><span class="case-code">W-04</span><span class="case-title">The product metric counted a refusal as a successful answer</span><ul class="case-chips"><li>False mentions on an unknown brand <strong>80% → 0%</strong></li><li>on a 44-case set, recall <strong>16 of 16</strong> with false positives at <strong>1 of 17</strong></li><li>an unusable brief or a truncated article no longer gets through</li></ul><span class="case-go" aria-hidden="true">&#8594;</span></a></li><li class="case-strip"><a href="/work/llm-cost-and-search-quality/"><span class="case-code">W-05</span><span class="case-title">The cost of an answer: cache, a narrow check and a search that failed its measurement</span><ul class="case-chips"><li>An answer with a cache hit <strong>$0.0310</strong> against <strong>$0.0968</strong> without one, <strong>85%</strong> of input from cache</li><li>the verifier <strong>13 times</strong> cheaper</li><li>all production to date <strong>$9.03</strong></li></ul><span class="case-go" aria-hidden="true">&#8594;</span></a></li></ol></section><section class="home-section home-tools" aria-labelledby="sec-tools"><header class="home-section-head"><p class="eyebrow"><span>02</span> / Tools</p><h2 id="sec-tools">Four plugins of my own for agents</h2><p class="section-aside">My own plugins for Claude Code and Codex: a requirements archive, a channel into the session, a day handover and an acceptance checklist.</p><a class="section-more" href="/collections/ai-agent-workflow/">How they work together <span aria-hidden="true">&#8594;</span></a></header><figure class="example-board"><figcaption class="board-head"><span class="board-title">Example: sorting out what was stuck, in mnemo</span><span class="board-sub">E-commerce project, 7 September 2026</span></figcaption><ol class="board-rows"><li><span>Records in the project archive</span><strong>80</strong></li><li><span>Done, waiting for acceptance</span><strong>33</strong></li><li><span>Assumptions with the cost of being wrong</span><strong>14</strong></li><li><span>Waiting on the other side</span><strong>7</strong></li><li><span>On me, in the acceptance plan</span><strong>9</strong></li><li class="board-mine"><span>Open questions for management</span><strong>2</strong></li></ol><p class="board-note">A real <code>mnemo_audit</code> snapshot from a work daily. The client is not named.</p></figure><ul class="project-grid workflow-grid"><li class="project-tile project-mnemo"><span class="project-symbol group-workflow"><svg class="icon icon-published-spec" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M4 19V5C4 3.89543 4.89543 3 6 3H19.4C19.7314 3 20 3.26863 20 3.6V16.7143" stroke="currentColor"  stroke-linecap="round"/><path d="M6 17L20 17" stroke="currentColor"  stroke-linecap="round"/><path d="M6 21L20 21" stroke="currentColor"  stroke-linecap="round"/><path d="M6 21C4.89543 21 4 20.1046 4 19C4 17.8954 4.89543 17 6 17" stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"/><path d="M9 7L15 7" stroke="currentColor"  stroke-linecap="round"/></svg></span><div class="project-copy"><h3><a href="/projects/mnemo/">mnemo</a></h3><p>Keeps project messages and files with their sources, so an agent can trace a requirement back to where it came from.</p></div></li><li class="project-tile project-herald"><span class="project-symbol group-workflow"><svg class="icon icon-related" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M14 11.9976C14 9.5059 11.683 7 8.85714 7C8.52241 7 7.41904 7.00001 7.14286 7.00001C4.30254 7.00001 2 9.23752 2 11.9976C2 14.376 3.70973 16.3664 6 16.8714C6.36756 16.9525 6.75006 16.9952 7.14286 16.9952" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11.9976C10 14.4893 12.317 16.9952 15.1429 16.9952C15.4776 16.9952 16.581 16.9952 16.8571 16.9952C19.6975 16.9952 22 14.7577 22 11.9976C22 9.6192 20.2903 7.62884 18 7.12383C17.6324 7.04278 17.2499 6.99999 16.8571 6.99999" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="project-copy"><h3><a href="/projects/herald/">herald</a></h3><p>Brings incoming material into an agent session and sends prepared replies through a configured communication channel.</p></div></li><li class="project-tile project-ephemeris"><span class="project-symbol group-workflow"><svg class="icon icon-release" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M20 5.99999L20 18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6C4 4.89543 4.89543 4 6 4H18C19.1045 4 19.9999 4.89543 20 5.99999Z" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/><path d="M12 9V4" stroke="currentColor"   stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="project-copy"><h3><a href="/projects/ephemeris/">ephemeris</a></h3><p>Keeps the work day in an issue and helps the next session pick up from source links and the current state.</p></div></li><li class="project-tile project-kanon"><span class="project-symbol group-workflow"><svg class="icon icon-acceptance" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8.5 4H6C4.89543 4 4 4.89543 4 6V20C4 21.1046 4.89543 22 6 22H12" stroke="currentColor"  stroke-linecap="round"/><path d="M15.5 4H18C19.1046 4 20 4.89543 20 6V15" stroke="currentColor"  stroke-linecap="round"/><path d="M8 6.4V4.5C8 4.22386 8.22386 4 8.5 4C8.77614 4 9.00422 3.77604 9.05152 3.50398C9.19968 2.65171 9.77399 1 12 1C14.226 1 14.8003 2.65171 14.9485 3.50398C14.9958 3.77604 15.2239 4 15.5 4C15.7761 4 16 4.22386 16 4.5V6.4C16 6.73137 15.7314 7 15.4 7H8.6C8.26863 7 8 6.73137 8 6.4Z" stroke="currentColor"  stroke-linecap="round"/><path d="M15.5 20.5L17.5 22.5L22.5 17.5" stroke="currentColor"  stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="project-copy"><h3><a href="/projects/kanon/">kanon</a></h3><p>Turns a task into a file of results and the proof each one needs, before the work starts.</p></div></li></ul></section><section class="home-section home-lines"><p class="eyebrow"><span>03</span> / Routes</p><section class="lines" id="lines" aria-labelledby="lines-title"><h2 id="lines-title">Choose how to read</h2><p class="lines-intro">Every record here is a station and every route is a line. A filled station is a transfer: you can change lines there.</p><ol class="doors"><li class="door tone-case"><a href="/cv/" data-line-set="hr"><span class="bullet" aria-hidden="true">1</span><span class="door-text"><span class="door-line">Hiring line</span><strong class="door-title">I'm hiring</strong><span class="door-body">The CV and the three strongest cases. Each case opens with a short block: role, timeline and numbers.</span><span class="door-meta">5 stations · 10 minutes skimmed, about an hour in full</span></span><span class="door-rail" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i></span><span class="door-start">Start with the CV <span aria-hidden="true">&#8594;</span></span></a></li><li class="door tone-collection"><a href="/work/ecommerce-scenarios/" data-line-set="engineer"><span class="bullet" aria-hidden="true">2</span><span class="door-text"><span class="door-line">Engineering line</span><strong class="door-title">I'm an engineer</strong><span class="door-body">Cases by the kind of difficulty, and how I check that the work is right.</span><span class="door-meta">6 stations · 10 minutes skimmed, about an hour in full</span></span><span class="door-rail" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i></span><span class="door-start">Start with the store <span aria-hidden="true">&#8594;</span></span></a></li><li class="door tone-project"><a href="/collections/ai-agent-workflow/" data-line-set="tools"><span class="bullet" aria-hidden="true">3</span><span class="door-text"><span class="door-line">Tools line</span><strong class="door-title">What did you build?</strong><span class="door-body">My own tools for working with agents, then the projects I made along the way.</span><span class="door-meta">11 stations · 10 minutes skimmed, about an hour in full</span></span><span class="door-rail" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i></span><span class="door-start">Start with the workflow <span aria-hidden="true">&#8594;</span></span></a></li></ol><details class="metro-map"><summary>The whole map: every station on every line</summary><section class="metro-line tone-case" aria-label="Hiring line"><h3><span class="bullet" aria-hidden="true">1</span>Hiring line</h3><ol class="stations" style="--n:5"><li><a href="/cv/" data-line-set="hr"><span class="st-code"></span><span class="st-name">CV</span></a></li><li class="is-transfer"><a href="/work/ecommerce-scenarios/" data-line-set="hr"><span class="st-code">W-01</span><span class="st-name">Store before launch</span></a></li><li class="is-transfer"><a href="/work/finance-bot-blind-spots/" data-line-set="hr"><span class="st-code">W-02</span><span class="st-name">Money alerts</span></a></li><li><a href="/work/contract-path-backend/" data-line-set="hr"><span class="st-code">W-03</span><span class="st-name">The contract path</span></a></li><li><a href="/about/" data-line-set="hr"><span class="st-code"></span><span class="st-name">About me</span></a></li></ol></section><section class="metro-line tone-collection" aria-label="Engineering line"><h3><span class="bullet" aria-hidden="true">2</span>Engineering line</h3><ol class="stations" style="--n:6"><li class="is-transfer"><a href="/work/ecommerce-scenarios/" data-line-set="engineer"><span class="st-code">W-01</span><span class="st-name">Store before launch</span></a></li><li class="is-transfer"><a href="/work/finance-bot-blind-spots/" data-line-set="engineer"><span class="st-code">W-02</span><span class="st-name">Money alerts</span></a></li><li><a href="/collections/corrections-and-checks/" data-line-set="engineer"><span class="st-code">C-02</span><span class="st-name">A check that missed</span></a></li><li><a href="/work/false-positive-metric/" data-line-set="engineer"><span class="st-code">W-04</span><span class="st-name">A metric that counted refusals</span></a></li><li><a href="/work/llm-cost-and-search-quality/" data-line-set="engineer"><span class="st-code">W-05</span><span class="st-name">Cost per answer</span></a></li><li class="is-transfer"><a href="/collections/ai-agent-workflow/" data-line-set="engineer"><span class="st-code">C-01</span><span class="st-name">The AI workflow</span></a></li></ol></section><section class="metro-line tone-project" aria-label="Tools line"><h3><span class="bullet" aria-hidden="true">3</span>Tools line</h3><ol class="stations" style="--n:11"><li class="is-transfer"><a href="/collections/ai-agent-workflow/" data-line-set="tools"><span class="st-code">C-01</span><span class="st-name">The AI workflow</span></a></li><li><a href="/projects/mnemo/" data-line-set="tools"><span class="st-code">P-01</span><span class="st-name">mnemo</span></a></li><li><a href="/projects/herald/" data-line-set="tools"><span class="st-code">P-02</span><span class="st-name">herald</span></a></li><li><a href="/projects/ephemeris/" data-line-set="tools"><span class="st-code">P-03</span><span class="st-name">ephemeris</span></a></li><li><a href="/projects/kanon/" data-line-set="tools"><span class="st-code">P-04</span><span class="st-name">kanon</span></a></li><li><a href="/projects/telegram-media-relay-bot/" data-line-set="tools"><span class="st-code">P-05</span><span class="st-name">TMRBot</span></a></li><li><a href="/projects/zapret2-nix/" data-line-set="tools"><span class="st-code">P-06</span><span class="st-name">zapret2-nix</span></a></li><li><a href="/projects/heartrender/" data-line-set="tools"><span class="st-code">P-07</span><span class="st-name">HeartRender</span></a></li><li><a href="/projects/owlwhisper/" data-line-set="tools"><span class="st-code">P-08</span><span class="st-name">OwlWhisper</span></a></li><li><a href="/projects/crabvoice/" data-line-set="tools"><span class="st-code">P-09</span><span class="st-name">CrabVoice</span></a></li><li><a href="/projects/remotegamepad/" data-line-set="tools"><span class="st-code">P-10</span><span class="st-name">RemoteGamepad</span></a></li></ol></section></details></section></section><section class="home-section home-contact" aria-labelledby="sec-contact"><header class="home-section-head"><p class="eyebrow"><span>04</span> / Contact</p><h2 id="sec-contact">Get in touch</h2><p class="section-aside">Find me on GitHub.</p></header><ul class="home-actions"><li><a href="https://github.com/ZenonEl" rel="me noopener"><svg class="icon icon-public-repo" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M17 7C18.1046 7 19 6.10457 19 5C19 3.89543 18.1046 3 17 3C15.8954 3 15 3.89543 15 5C15 6.10457 15.8954 7 17 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7C8.10457 7 9 6.10457 9 5C9 3.89543 8.10457 3 7 3C5.89543 3 5 3.89543 5 5C5 6.10457 5.89543 7 7 7Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21C8.10457 21 9 20.1046 9 19C9 17.8954 8.10457 17 7 17C5.89543 17 5 17.8954 5 19C5 20.1046 5.89543 21 7 21Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 7V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 7V8C17 10.5 15 11 15 11L9 13C9 13 7 13.5 7 16V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>GitHub</a></li><li><a href="/cv/"><svg class="icon icon-self-reported" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M5 20V19C5 15.134 8.13401 12 12 12V12C15.866 12 19 15.134 19 19V20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>CV on this site</a></li></ul></section>
+</article>
 
-        <section class="project-section" aria-labelledby="crabvoice-title">
-            <h2 id="crabvoice-title" class="project-trigger" role="button" tabindex="0" onclick="toggleProjectInfo('crabvoiceInfo')" onkeydown="handleKeyDown(event, 'crabvoiceInfo')">
-                <i class="fas fa-microphone" aria-hidden="true"></i>
-                CrabVoice
-                <span class="version-badge">v1.0.0</span>
-            </h2>
-
-            <article class="project-info" id="crabvoiceInfo" hidden>
-                <header>
-                    <h3 class="project-title">
-                        <i class="fas fa-microphone" aria-hidden="true"></i>
-                        CrabVoice
-                        <span class="version-badge">v1.0.0</span>
-                    </h3>
-                </header>
-
-                <p class="project-description">
-                    Real-time voice-over translation for online videos. Watch YouTube, Twitch, VK, TikTok and 55+ other platforms in your language with instant AI-powered dubbing. Built with Rust and Tauri v2.
-                </p>
-
-                <ul class="project-features" role="list">
-                    <li class="feature">🎙️ Real-time Dubbing</li>
-                    <li class="feature">🌐 55+ Platforms</li>
-                    <li class="feature">⏭️ SponsorBlock</li>
-                    <li class="feature">🔒 Proxy Support</li>
-                    <li class="feature">💻 Win / Linux / Android</li>
-                    <li class="feature">🦀 Rust + Tauri v2</li>
-                </ul>
-
-                <footer class="project-links">
-                    <a href="https://github.com/ZenonEl/CrabVoice" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                        GitHub
-                    </a>
-                    <a href="/crabvoice/">
-                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                        Learn More
-                    </a>
-                    <a href="https://github.com/ZenonEl/CrabVoice/releases" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-download" aria-hidden="true"></i>
-                        Download
-                    </a>
-                </footer>
-            </article>
-        </section>
-
-        <section class="project-section" aria-labelledby="project-title">
-            <h2 id="project-title" class="project-trigger" role="button" tabindex="0" onclick="toggleProjectInfo('projectInfo')" onkeydown="handleKeyDown(event, 'projectInfo')">
-                <i class="fas fa-gamepad" aria-hidden="true"></i>
-                RemoteGamepad
-                <span class="beta-badge">BETA</span>
-            </h2>
-
-            <article class="project-info" id="projectInfo" hidden>
-                <header>
-                    <h3 class="project-title">
-                        <i class="fas fa-gamepad" aria-hidden="true"></i>
-                        RemoteGamepad
-                        <span class="beta-badge">BETA</span>
-                    </h3>
-                </header>
-
-                <p class="project-description">
-                    Transform your smartphone into a wireless gamepad for your PC! Real-time control with minimal latency through a web interface. Perfect for situations where you can't connect a gamepad directly to your PC.
-                </p>
-
-                <ul class="project-features" role="list">
-                    <li class="feature">🎮 Full Basic Gamepad Support</li>
-                    <li class="feature">🌐 Web-based Interface</li>
-                    <li class="feature">📱 Cross-platform</li>
-                    <li class="feature">🔌 Virtual Device</li>
-                    <li class="feature">🎨 Modern UI</li>
-                    <li class="feature">🌍 Multi-language</li>
-                </ul>
-
-                <footer class="project-links">
-                    <a href="https://github.com/ZenonEl/RemoteGamepad" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github" aria-hidden="true"></i>
-                        GitHub
-                    </a>
-                    <a href="https://github.com/ZenonEl/RemoteGamepad/blob/main/README.md" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                        English README
-                    </a>
-                    <a href="https://github.com/ZenonEl/RemoteGamepad/blob/main/README.ru.md" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                        Русский README
-                    </a>
-                </footer>
-            </article>
-        </section>
-
-        <footer class="site-footer">
-            <nav aria-label="Site map">
-                <a href="/">Home</a>
-                <span aria-hidden="true">·</span>
-                <a href="/crabvoice/">CrabVoice (EN)</a>
-                <span aria-hidden="true">·</span>
-                <a href="/crabvoice/ru/">CrabVoice (RU)</a>
-                <span aria-hidden="true">·</span>
-                <a href="https://github.com/ZenonEl" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </nav>
-            <p class="copyright">© <span id="year">2026</span> ZenonEl · Content licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></p>
-        </footer>
-    </main>
-    <script>
-        function toggleProjectInfo(id) {
-            const projectInfo = document.getElementById(id);
-            const isHidden = projectInfo.hidden;
-
-            if (isHidden) {
-                projectInfo.hidden = false;
-                projectInfo.classList.add('show');
-            } else {
-                projectInfo.classList.remove('show');
-                setTimeout(() => {
-                    projectInfo.hidden = true;
-                }, 400);
-            }
-        }
-
-        function handleKeyDown(event, id) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleProjectInfo(id);
-            }
-        }
-    </script>
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Backend development and tools I build for my own work.</p>
+    <p class="footer-legal">Site text under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of each repository.</p>
+  </div>
+  <nav class="footer-lines" aria-labelledby="footer-lines-title">
+    <h2 id="footer-lines-title">Reading lines</h2>
+    <ul><li class="tone-case"><span class="bullet" aria-hidden="true">1</span><a href="/cv/" data-line-set="hr">Hiring line</a><span>5 stations</span></li><li class="tone-collection"><span class="bullet" aria-hidden="true">2</span><a href="/work/ecommerce-scenarios/" data-line-set="engineer">Engineering line</a><span>6 stations</span></li><li class="tone-project"><span class="bullet" aria-hidden="true">3</span><a href="/collections/ai-agent-workflow/" data-line-set="tools">Tools line</a><span>11 stations</span></li></ul>
+  </nav>
+  <nav class="footer-map" aria-labelledby="footer-map-title">
+    <h2 id="footer-map-title">Every section</h2>
+    <ul><li><a href="/work/">Cases</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Approach</a></li><li><a href="/#lines">Map</a></li><li><a href="/cv/">CV</a></li><li><a href="/about/">About me</a></li><li><a href="/library/">Library index</a></li><li><a href="/colophon/">Colophon</a></li><li><a href="/ru/" lang="ru" hreflang="ru">Русская версия</a></li></ul>
+  </nav>
+</footer>
 </body>
 </html>

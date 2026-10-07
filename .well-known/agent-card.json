@@ -1,9 +1,9 @@
 {
   "$schema": "https://a2a-protocol.org/schemas/agent-card/v0.3.0/schema.json",
   "name": "ZenonEl Portfolio Agent",
-  "description": "Information agent for ZenonEl's developer portfolio. Provides details about open-source projects: CrabVoice (real-time voice translation for videos), RemoteGamepad, and TelegramMediaRelayBot.",
+  "description": "Information about ZenonEl, a backend engineer: anonymised engineering cases from 2026, public projects including tools for working with AI agents, and a CV.",
   "url": "https://zenonel.github.io/",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "provider": {
     "name": "ZenonEl",
     "url": "https://zenonel.github.io/"
@@ -18,21 +18,30 @@
   "defaultOutputModes": ["text/plain", "text/markdown"],
   "skills": [
     {
-      "id": "project-info",
-      "name": "Project Information",
-      "description": "Provides information about ZenonEl's open-source projects, their features, supported platforms, and installation instructions.",
-      "tags": ["portfolio", "open-source", "rust", "tauri", "typescript", "python"],
+      "id": "case-info",
+      "name": "Engineering cases",
+      "description": "Anonymised cases from commercial work in 2026: what was built, the numbers, the decisions and what went wrong. Clients are not named.",
+      "tags": ["backend", "payments", "e-commerce", "llm", "python"],
       "examples": [
-        "What is CrabVoice?",
-        "What platforms does CrabVoice support?",
-        "How do I install RemoteGamepad?"
+        "What did ZenonEl build for an online store?",
+        "How did ZenonEl lower the cost of an LLM answer?"
+      ]
+    },
+    {
+      "id": "project-info",
+      "name": "Public projects",
+      "description": "Public projects: plugins for Claude Code and Codex (mnemo, herald, ephemeris, kanon), a self-hosted .NET Telegram media relay, a NixOS module and earlier work.",
+      "tags": ["portfolio", "open-source", "ai-agents", "mcp", "dotnet", "nixos"],
+      "examples": [
+        "What is mnemo?",
+        "How do ZenonEl's agent tools fit together?"
       ]
     },
     {
       "id": "contact-info",
-      "name": "Contact Information",
-      "description": "Provides ways to contact ZenonEl through GitHub, Mastodon, and other channels.",
-      "tags": ["contact", "social"]
+      "name": "Contact",
+      "description": "ZenonEl is reachable through GitHub: https://github.com/ZenonEl",
+      "tags": ["contact"]
     }
   ]
 }

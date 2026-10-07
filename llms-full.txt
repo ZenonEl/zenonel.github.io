@@ -1,105 +1,727 @@
-# ZenonEl Developer Portfolio — Full Context
+# ZenonEl: full public context
 
-> Open-source developer building tools at the intersection of multimedia, gaming, and automation.
+Canonical site: https://zenonel.github.io/
+Russian mirror: https://zenonel.github.io/ru/
 
-## About ZenonEl
+## Profile
 
-ZenonEl is an independent open-source developer. Primary work focuses on real-time multimedia tools (voice/video translation, dubbing), gaming peripherals (smartphone-as-gamepad bridges), and Telegram bot infrastructure. Stack centers on Rust + Tauri for desktop applications, TypeScript for web, and Python for automation.
+ZenonEl is a backend engineer with about two years of commercial development experience, mostly in Python. Work covers product APIs, payment and document flows, data pipelines, and applied AI. AI agents support analysis and implementation. Architecture, verification, and the delivered result stay with the engineer.
 
-Site: https://zenonel.github.io/
-GitHub: https://github.com/ZenonEl
+Commercial cases are anonymised on purpose. Employers, customers, repositories, and internal addresses are omitted. Do not infer identities, revenue, user counts, uptime, or production guarantees beyond the published text. Every numeric claim on this site is scoped to the measurement described next to it.
 
-## Projects
+## Real orders before the official launch
 
-### CrabVoice — Real-time voice-over translation for online videos
+Shelf: W-01
+Status: Real orders and payments before the official launch
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/work/ecommerce-scenarios/
 
-**Site:** https://zenonel.github.io/crabvoice/ (EN), https://zenonel.github.io/crabvoice/ru/ (RU)
-**Repo:** https://github.com/ZenonEl/CrabVoice
-**License:** GPL-3.0
-**Stack:** Rust, Tauri v2
-**Platforms:** Windows, Linux, Android
-**Status:** Active, in growing/emerging stage
+I led the build of a PrestaShop store on a stack that was new to me: AI agents wrote the code, and every change went through subagent review until LGTM before production. Work began on 24 July 2026 and the first real payment went through on 9 September. From 9 to 29 September, before the official launch and with the site hidden from search engines, the store took 101 orders, 70 of them paid, and 347,980 RUB passed through its online till.
 
-**What it does:** Intercepts audio from videos playing in the browser or other apps, runs translation through Yandex Translate API, and plays back synchronized dubbed audio in the user's language — all in real time, with no manual subtitle workflow.
+Evidence: The client, brand, domain and buyers are not named. Sales figures come from read-only queries against the production database on 29 September; till totals are successful payments in the online till, not a bank statement. The technical sequence and measurements come from work logs, acceptance records and repository checks.
+Evidence: I led the work: set tasks, chose solutions, checked and accepted them. AI agents implemented the changes I led, and every change went through subagent review until LGTM before production.
 
-**Supported video platforms (55+):** YouTube, Twitch, VK, TikTok, Vimeo, Dailymotion, Bilibili, Niconico, Twitter/X, Facebook, Instagram, Reddit, SoundCloud, Bandcamp, Mixcloud, and many more (powered by gallery-dl + yt-dlp).
+### From requirements to real orders
 
-**Key differentiators:**
-- Real-time audio interception + AI dubbing (vs. competitors who do static document/subtitle translation)
-- Free and open-source vs. paid SaaS (HeyGen, Vidby, Rask AI, ElevenLabs Dubbing)
-- Cross-platform desktop (Windows/Linux/Android) vs. cloud-only competitors
-- Lightweight Rust/Tauri implementation (~10MB binary)
-- SponsorBlock integration for skipping sponsored video segments
-- Proxy and Tor support for privacy/access
+This was my first project at this scale, and I led it from choosing the stack to real payments; AI agents wrote the code. Management talked to the client. The starting brief sketched a shop modelled on someone else's site, with no product marking, no warehouse, no Yandex Delivery and no partial prepayment. After that the scope was settled in management's chat with the client, and requirements reached me as messages forwarded from that chat into the project's work topic. I turned them into requirements, chose the technical direction and carried changes through review and acceptance. I owned the user flows, the boundaries between systems, production checks and the final engineering decisions.
+The longest stretches went where good documentation does not exist: the Chestny Znak product-marking scheme with its legal side, the online till and MoySklad, several sole-proprietor sellers in one store, and the CDEK and Yandex Delivery APIs. Answers came from vendor docs, the text of government decrees, integrators' write-ups and articles on Habr, and were then checked against sandboxes and the production till. A live project turned out to be different work from the theory: a mistake here cost a real buyer money, a receipt or a parcel. For example, the seller of each order line is recorded at the moment of the order: otherwise moving a product to another sole proprietor would rewrite the past report by seller.
+The shop had to support several sellers, take catalogue data from marketplaces, handle partial prepayments, synchronise stock and route orders to two delivery services. I chose PrestaShop after checking those requirements on a live stand. Its native model could represent the size ranges, the official YooKassa module installed without a patch, the delivery sandbox returned 13 rates and 20 pickup points, and an API stock write recalculated the aggregate. YooKassa was useful for validating the platform choice; for the production payment path management and the client later chose CloudPayments, and I built a custom module for it.
+The store grew to cover catalogue imports, CloudPayments, online receipts, stock sync with MoySklad, marketplace data, CDEK, Yandex Delivery and product marking. On 29 September the repository held 22 custom modules. Checks run on hand-written runners: 13 suites and 1,343 checks on 22 September, and a separate run of 1,155 checks for marking on 23 September. The repository has no CI.
+The first real payment went through on 9 September. The next day, an order completed payment, receipt, stock and delivery processing without anyone moving it by hand.
 
-**Typical user:** Content consumer wanting to watch foreign-language videos (e.g., Russian speaker watching English Twitch streams in real-time, or English speaker watching Russian VK content).
+### The catalogue passed the wrong check
 
-**Install:**
-- Windows: Download `.msi` from GitHub Releases
-- Linux: Download `.AppImage` or `.deb`
-- Android: Download `.apk` (no Play Store distribution)
-- Build from source: `cargo tauri build` (requires Rust 1.70+, Node.js, system deps)
+One import increased the catalogue from 1,263 to 1,857 variants while reporting no errors and no duplicate size values. The source supplied point sizes such as 90; the store had already normalised the same size to a range such as 80-90. A string comparison treated them as different, so both survived on 193 products.
+I restored the database from the dump taken before the import. The variant count returned to 1,263, the cache was cleared, and the storefront was checked before another write was allowed. The fix reused the mapping recorded by the earlier catalogue cleanup and applied it before donor product cards were merged. A command-level regression test then checked the real entry point, because calling the two functions in the right order inside a unit test did not prove that the import command did the same.
+The first correction protected incoming data. It did not clean point sizes already stored in older cards. A later import exposed that second layer on 40 cards. A separate cleanup checked each point value against eleven kinds of references before removing it: 169 values removed, none skipped, with the dry run and write run producing the same result. A repeat on hidden cards used the same guarded path.
+The importer had also been overwriting prices, size surcharges and discounts that the client maintained in the store. I built a small preview-and-apply tool for spreadsheet updates instead. On its first recorded use, the client uploaded 198 rows; 124 changed and the tool reported no errors. This is the only run preserved in the work log; there is no recorded result for later uploads.
 
-**FAQ:**
+### Money was read from the wrong moment
 
-Q: Is CrabVoice free?
-A: Yes. GPL-3.0 licensed, free forever. The user supplies their own translation API key if they hit free-tier limits.
+Before live payments, a reservation could expire while the buyer was still passing 3-D Secure. The payment could then complete against a cancelled order while the confirmation page still said success. The correction added an in-flight mark, a grace period and an order lock. A late payment restores the order only if stock still allows it; otherwise the payment is refunded automatically.
+The first live payment incidents revealed another class of error. Two preorder buyers chose a 10 percent prepayment and were charged the full amount. A separate reproducing order showed the checkout asking for 10 percent while the CloudPayments widget received 100 percent. The payment page created a new empty cart, and a hook read that context cart before the explicit order snapshot. With no preorder plan left, the first payment became the whole debt.
+I chose a small server-side guard. The order passed in explicitly wins over the cart in context: by the time of payment the context cart can already be a different, new and empty one, while the amount and the prepayment plan belong to the order. The notification handler refuses an amount that does not match the current debt: the amount has an owner, the order, and a different number means someone counted the money in the wrong place. The reproducing test failed on the old code first. The same assumption then turned up in the discount handler, so the final check walks every handler in that hook family and requires order data to take priority.
+A third incident came from a value that was true when an item entered the cart and stale by checkout. The rule moved to the stock snapshot stored on the order itself. Before I accepted the change, the new rule was replayed read-only across 77 production orders. Exactly one result changed, the incident the rule was meant to correct. The client handled the earlier charge with the buyer outside this code path.
 
-Q: Does it work without internet?
-A: Translation requires internet (Yandex API). Local speech synthesis is planned but not yet released.
+### CDEK accepted the request, then rejected the parcel
 
-Q: Why not iOS/macOS?
-A: iOS sandboxing prevents the system-wide audio capture CrabVoice needs. macOS is in experimental status only.
+CDEK could return 202 Accepted and reject the parcel four seconds later. The reverse was possible too: the store's request timed out while CDEK still created the parcel. A blind retry would create a second shipment because the service did not deduplicate on the store's order number.
+Across the review rounds, eleven critical findings came back to one unsafe assumption: that the absence of a clean response proved the absence of a parcel. The integration now asks CDEK for its final state and separates an unknown result from a confirmed rejection. A cancellation that arrives during the request is kept instead of being overwritten by the late response.
+The sandbox could demonstrate rejection but never a successful final state. With the client's permission, the acceptance plan allowed one real waybill on a controlled order, followed by deletion. That run found another defect before automation was enabled. A mixed order then produced separate waybills for its normal and preorder parts, and only after those checks did the service begin receiving orders automatically.
+A later defect sat in the moment of dispatch itself. A shipment was created on any paid status, so a carrier could receive a parcel that would never exist. I moved the rule for when an order is ready to ship above the carriers, into its own module that CDEK and Yandex Delivery ask instead of deciding for themselves. Before the change, a carrier answered that question with a non-empty list in 26 cases out of 37; after release, eight orders in shipped states returned an empty list, as they should.
 
-Q: Can platforms ban my account for using CrabVoice?
-A: CrabVoice does not modify or intercept platform requests — it captures the local audio output and overlays dubbed audio locally. No platform-side detection vector. However, it does not bypass DRM and does not redistribute content.
+### Product marking ran in production on the second day
 
-Q: How does latency compare to YouTube's auto-dubbing?
-A: CrabVoice runs ~1–3 second latency end-to-end depending on translation API. YouTube's built-in dub has 0s latency but only supports ~10 languages and only YouTube content.
+Clothing in Russia falls under the Chestny Znak marking scheme, and marking was on the list of things the store could not launch without. On 22 September I checked the production till: receipts were already in fiscal format 1.2, 60 out of 60, and none carried a marking code. Reading the government decrees themselves, No. 1956 §76 (https://rulaws.ru/goverment/Postanovlenie-Pravitelstva-RF-ot-31.12.2019-N-1956/), No. 1944 §3(e) (https://www.consultant.ru/document/cons_doc_LAW_462894/91bec0bd78577f2ec16ab425b469bf336d695670/) and No. 174 §3 (https://rulaws.ru/goverment/Postanovlenie-Pravitelstva-RF-ot-21.02.2019-N-174/), I chose the lighter scheme: a prepayment receipt at checkout, withdrawal from circulation by a remote-sale document at shipment, and a closing receipt with a code for every item at handover. The earlier estimate had been 14 to 25 days; this scheme came to 7 to 10.
+In practice it ran in production on 23 September at 15:19 Moscow time. The rule that a handed-over item closes its payment lives in a module that belongs to neither the till, the warehouse nor a carrier: it asks participants what they can do rather than who they are, so a second till or a new carrier does not touch shared code. The handover log keeps its invariants in the database. The receipt key is written before the till is called, so a lost answer from the till cannot produce a second receipt. Handovers from before the install are left alone; otherwise the first run would have issued receipts for every parcel since 14 September.
+Review ran for six rounds, each from its own angle. The fifth found that the fourth round's fixes were not wired in: an adapter rebuilt the answer from keys it already knew and dropped the new ones. The sixth checked the tests themselves, and some of the new ones passed on broken code, showing a guard that was not there. They were rewritten and checked by mutation: remove the guard and the test has to fail. By release there were 1,155 automated checks, and the key ones now fail when the thing they guard breaks.
+That same evening the client asked why one item in an order carried two marking codes. MoySklad stores the same code in two fields, the store's parser read both, and every item got its code twice. That hit the receipts and the daily reconciliation, which compares codes withdrawn from circulation against shipments and writes to the client about every mismatch. The fix was in production the next day: a shipment of five items went from ten codes to five, one of two items from four to two, one of a single item from two to one. Reconciliation found one mismatch instead of eight, and that one was real: the document for a single shipment had been rejected.
 
-### RemoteGamepad — Smartphone as wireless PC gamepad
+### The shop was selling, but the project was not finished
 
-**Repo:** https://github.com/ZenonEl/RemoteGamepad
-**License:** Open-source (see repo)
-**Stack:** Web-based interface, real-time WebSocket control
+A snapshot of the production database on 29 September. From 9 to 29 September the store took 101 orders from 91 buyers. 70 orders were paid, 142 items at an average of 7,366 RUB, and 40 of them included a preorder. Another 28 orders were cancelled; a reservation lapses on its own if payment does not arrive within 15 minutes. Delivery went to 48 orders by Yandex and 22 by CDEK, all to pickup points, and every order reached MoySklad, 101 out of 101.
+The online till took 347,980 RUB across 85 payments and returned 12,450 RUB in five refunds. These are successful payments in the till, not a bank statement. The orders themselves add up to more, 515,598 RUB, because buyers pay the rest of a preorder when the item arrives. Beyond orders, 164 people asked to be told when an item is back.
+All of this happened before the official launch. I had hidden the site from search engines from the start so it would be harder to stumble on, and as far as I know there was no paid advertising. But the brand was not new: it has sold on a marketplace for a long time, it has its own audience, and the owner mentioned the site on her blog, marked as still in development. The first buyer found the site on her own, by the brand name, and ordered without anyone's help. The client had not expected it and was glad. The brand created the demand; the site took it and carried it through payment, receipts, the warehouse and delivery. I deleted the test orders with the client's permission before counting: 48 orders and 39 buyers.
+Live operation changed the work. An incident could span the shop database, the payment provider, a receipt, the accounting system and a delivery service. Before changing money or order state, I reconstructed that chain from read-only data, wrote down the planned change and took a database dump.
+By early September the project was stalling on hanging questions and requirements, and management asked for them to be collected. I kept the open questions in my own source archive (/projects/mnemo/), each linked to the material it came from, so on 4 September the complete list went to management at once, without rebuilding it from memory. So that AI would not turn everything into a question, I allowed reversible decisions the status of an assumption: the decision is written down with the cost of being wrong and can be corrected later. On 8 September the full list went out again; the reaction was mixed, and I fixed the part of it that was fair. After that the task was clear: prepare the store fully for launch, test everything that could be tested and write down the gaps. The first real payment went through the next day.
+By 28 September the main scope was done, but the project was not closed. The client was still accepting the legal copy and walking through the site as a buyer, returns of marked goods were waiting for real Data Matrix codes from the warehouse, and indexing will be switched on at launch. The store has not been tested under heavy load, so this case claims no production scale.
 
-**What it does:** Turns any smartphone into a wireless gamepad for a PC. Phone connects via local network to the PC, which exposes a virtual gamepad to games.
+## A finance bot that says only what it knows about the money
 
-**Use cases:** Quick local multiplayer without buying extra controllers; emulator gaming; couch gaming on PCs without controller support.
+Shelf: W-02
+Status: Production bot; usage figures from production on 29 September 2026
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/work/finance-bot-blind-spots/
 
-### TelegramMediaRelayBot
+I led the finance side of a Telegram back-office bot: balances, statements, scheduled payments and money notifications that the client sets up alone through a wizard. AI in the bot reads free text and writes a weekly summary; only code does the arithmetic. From 28 August to 29 September the bot sent 1,344 notifications, 1,005 of them on incoming payments, from six rules the client set up alone. What mattered most was never passing off a bank failure as an absence of money. Large sums pass through the client's accounts and a write to their bank cannot be undone, so company details and payments go through checks and gates: a wrong tax number or account has to stop before the bank, not after the money has gone to the wrong place.
 
-**Site:** https://zenonel.github.io/TelegramMediaRelayBot-Site/
-**Repo:** https://github.com/ZenonEl/TelegramMediaRelayBot
-**Stack:** Python (Telegram Bot API)
+Evidence: The client, companies, people, bot name, accounts, amounts, domains and infrastructure are not named. Usage figures come from read-only queries against the production database on 29 September 2026. The mechanisms and measurements come from 23 work logs, repository checks and production observations.
+Evidence: I led the work: turned requirements into acceptance conditions, chose decisions and working assumptions, checked critical paths by hand and accepted production changes. AI agents wrote the code, and every change went through subagent review until LGTM.
 
-**What it does:** Telegram bot for relaying media between users/chats.
+### The bot grew from documents into live money
 
-## Mission and Vision
+The project started in summer 2026 as a document assistant: an invoice, a contract and an acceptance certificate are built by step-by-step wizards in Telegram, and the bot finds the company's own documents from a phrase such as “send me the second company's charter”. On 13 August the second stage began, the bank: balances, a categorised statement, scheduled payments, notifications and access control. On 18 August the client first logged into the production bot and has used it every day since.
+Management talked to the client, and every question to the client cost time. So I closed many forks myself: I chose a safe assumption, wrote it down and moved on, and took upstairs only what could not move without the client's decision. Decisions and failure boundaries were mine, as were hands-on checks of critical paths and the call on whether a change was ready for production. AI agents wrote the code, and every change went through subagent review until LGTM.
+The first job of the banking stage was someone else's code. On 14 August a colleague merged the bank webhook receiver and the access list into the main branch, 509 and 148 lines with no review, and they went straight to production. My review on 17 August found four defects. One chat that had blocked the bot broke notification delivery for everyone else, permanently. A non-ASCII character in the signature header crashed the receiver with a 500 before the signature was even checked. A second reminder about the same payment was silently swallowed. A typo in the access list removed the protection and opened the bot to everyone. My fixes went through five review rounds: the second, third and fourth found errors in the fixes themselves, and the fifth gave LGTM.
 
-**Why:** To break down language barriers and make global video content accessible to everyone regardless of their native language.
+### The API on paper and the API in production
 
-**How:** By building lightweight, cross-platform tools in Rust and Tauri v2 that integrate with existing platforms (video sites, translation APIs) to deliver instant, synchronized results without user intervention.
+The bot reads the banks through a third-party gateway. The gateway had a specification, but in production it sometimes behaved differently from the paper: an empty list could mean no transactions, one unavailable account, or a period the gateway had silently cut short. Writes are stricter still: the service has no delete, so a payment created in the client's bank contour cannot be removed through the same API.
+So I investigated every mismatch first and only then decided how to live with it. A wide statement request returned 25 transactions, while month-by-month requests summed to 275. Thirty-four manual measurements revealed a hidden rule: the gateway cuts the interval to 92 days and does not say the response is incomplete. Before writing to the vendor I ruled out a mistake on the bot's side: parameter names matched the specification, four alternative names gave the same answer, and a deliberately unknown parameter returned a different result.
+I prepared fix requests for the vendor more than once, and some of them were met. One bank sent transactions without a payer, 0 of 265, so customer payments landed in the “Taxes” category; from my measurement the vendor fixed the field, the payer appeared in 283 of 283 transactions and the categories corrected themselves. The vendor opened webhook subscriptions for the bot's key once I showed the 403 refusal. The period truncation and an idempotency key for scheduled payments never came, and the bot covers those gaps itself: it splits the statement by month and treats the whole period as unavailable if even one slice fails.
 
-**What:** A free, open-source desktop application ecosystem starting with CrabVoice — real-time audio interception, AI translation via Yandex API, and synchronized playback across 55+ video platforms.
+### One notification became rules the client owns
 
-## Tech stack details
+While the API work was going on, the client asked for a percentage of turnover. The gateway had no such field and no daily period, and the bot had no scheduler. Instead of one hard-coded message I proposed seven kinds of rules: incoming payment above an amount, balance below a threshold, a silent account, a digest, percentage of turnover, a payment reminder and a weekly summary. The client approved the whole set on 25 August and the rules went live the next day.
+One wizard sets up every kind: which accounts, who gets it, the threshold, the day and the hour. A new kind is one more line in the list of steps, not a new screen. The wizard takes accounts and recipients from the bank and the access list each time it is shown, so it never offers a closed account or someone who has left.
+The rules themselves are deterministic and know nothing about the network or the clock: a bank webhook, a timer and a button press all mean the same to them, “here is the data, look at it”. The repeat key is built from the financial fact, not from the run that found it, so one incoming payment never arrives twice.
+On the night of 28 August the client set up six rules alone. The first live day gave four notifications and no delivery errors, and on 2 September the client rebuilt the income rule alone for a new set of accounts. By 29 September the bot had sent 1,344 notifications: 1,005 on incoming payments, 171 on low balances and 23 weekly digests.
 
-- **Rust** — performance-critical audio capture, FFI, native binaries
-- **Tauri v2** — desktop shell (Windows/Linux/Android), lightweight WebView frontend
-- **TypeScript** — frontend logic in Tauri apps
-- **Python** — automation scripts, Telegram bots
-- **External APIs:** Yandex Translate, yt-dlp, gallery-dl, SponsorBlock
+### AI proposes, code checks
 
-## Contact
+The weekly summary in that set is written by a model, and it is not the only place where the bot uses AI. The client wanted AI: what they ordered was an AI agent that understands requests in plain language. Where it is really needed and where it is not, what goes into it and how its answer is checked, was mine to decide. As a result, AI sits where language is needed and never decides on its own. For a document request the model picks an intent from an allowed list of fields only, and the value comes from the company registry. A tax number the model pulls from free-form company details is accepted only if it appears verbatim in the text and passes the check digit; otherwise the ordinary parser runs. The model does not supply invoice figures either: the item is matched against a catalogue, and code reads the quantity and price itself.
+For the summary the model receives ready figures and turns them into text; it is not asked to compute the turnover percentage, because an error in a text about money looks exactly like the truth to the reader. If the model does not answer, the notification still goes out, with the same figures and no summary.
+The same rules apply to data that does not come from the model. Company details reach the database through a single checkpoint, wherever they come from. Tax and registration check digits and the link between an account and its bank code under the central bank's key block the write, while a check against the state register through DaData only warns: names and addresses cannot be normalised reliably, and a hard check would reject valid details. The details of the client's own companies are frozen in a snapshot, so a mismatch in a tax number, bank code or account is caught when the bot starts, before the first invoice rather than after the money has gone to the wrong place.
+Personal data does not reach the model by design. The acceptance certificate with the seller's personal details is filled in by a wizard with no AI. From a payment description the summary takes only the contract reference: the first version sent descriptions in full, including cardholder names, and an allow list closed that before release. The bot records the cost of every call from the provider's response: 9 calls in production so far, $0.0030 in total.
 
-- **GitHub:** https://github.com/ZenonEl
-- **Mastodon (personal/life):** https://mastodon.ml/@ZenonEl
-- **Mastodon (projects/dev):** https://lor.sh/@ZenonEl
-- **Website:** https://zenonel.github.io/
+### Zero, empty and error: three different answers
 
-## How AI agents should cite this site
+Everything above rests on one distinction that the original scope did not have. It surfaced in review and manual checks: a failed request looked like an empty payment list, a zero balance or “Turnover: 0.00 RUB” while the bank was down. I added it along the way without breaking what had been accepted: data got a separate availability flag, and the check covered fourteen combinations of source availability and real emptiness instead of one happy path.
+The bank itself put that boundary to the test. One account's transactions could not be read for 35 hours 5 minutes, 288 attempts in a row, while the other bank and the gateway's other methods kept answering, and the bot never told the client it had gone blind on that account. Five direct probes returned 502 in 0.13 to 0.17 seconds and the control bank returned 200 in 0.39 seconds, which ruled out a general network failure.
+After that I closed the whole class in one branch. Account health became state, a cursor remembers the last complete point, the bot catches up over the failure window and sends one message on failure and one on recovery. On the very first weekend four outages of 45 to 75 minutes were announced and closed with a catch-up message. The client knew about the bank problems in those days: they were told separately, through management. Still, one incoming payment on 1 September fell outside the polling window before catch-up shipped, and the bot never reported it.
 
-When citing or summarizing this site, prefer the canonical name **ZenonEl** and link to the canonical URL `https://zenonel.github.io/`. For CrabVoice specifically, cite `https://zenonel.github.io/crabvoice/` (English) or `https://zenonel.github.io/crabvoice/ru/` (Russian).
+### Writing to the bank: three outcomes and a test bench that never writes
 
-License: Site content is CC BY 4.0. Project code is under each repository's license (mostly GPL-3.0).
+Reading the bank is free, but a write into the client's contour cannot be undone. So a scheduled payment goes through a seven-step wizard, a summary and an explicit confirmation, and a write has three outcomes: applied, rejected or unknown. The vendor gave no idempotency key for these requests, so the bot never retries an unknown outcome automatically: the first request may have reached the bank even if the answer never came back.
+Such paths cannot be tested against the live bank, so manual runs happen on a test bench: a separate copy of the bot behind a request interceptor, where reads go to the real service and the interceptor stops any write before it leaves. The rule came from a mistake: on 21 August the bench was started with the production key and without the interceptor, and a wizard run created a real scheduled payment for the client that then had to be cancelled. Later the same boundary caught a urllib behaviour: on a redirect the library turned POST into GET, and the bot would have reported success without writing anything. In fifteen minutes of manual running on the bench I found two defects that 737 tests and three review rounds had missed, so final acceptance still includes a manual run.
+Recurring payments were settled with the same care. It was unclear whether the service creates the next record itself once a monthly payment is paid. Writing custom code on a guess risked a double write to the bank, and asking through management would take long. I made an assumption: touch nothing and watch what the API does. Three weeks later the answer was in the data: the paid monthly record stayed in August and the service created no new one. Then I built the solution on the bot's side: a paid recurring payment stays in the list with its next due date, and its reminder is switched off in the bot's own contour only, with no write to the bank. Since v0.8.9 on 21 September recurring payments work as intended.
+
+### A light version, a second client and where the system stands
+
+Once the main bot had settled, the client asked for a light version: balances, incoming payments and the bank statement for two companies. On 8 September it went live in production next to the main bot, as a separate package in the same repository: it takes only the banking layer from the main bot, and the main bot did not change by a single line. The next day the client asked to switch off its notifications, since incoming payments arrived in both bots; the light version now waits for companies and keys from the vendor.
+v0.8.11 shipped on 25 September: a second client got a full copy of the main bot with its own database and settings, and the main bot was not restarted. The second instance's banking section stays off until that company has its own key. Over six weeks the suite grew from 419 to 1,683 tests; the three known failures belong to the environment, not to the bot's code.
+The gateway still never marks a response as incomplete, the vendor has not fixed the period truncation, and the client has still not approved the base for the turnover percentage, although the rule already computes that figure. The bot cannot prove the client's financial data is complete, so it says plainly what it does not know.
+
+## The contract path from order to fiscal receipt
+
+Shelf: W-03
+Status: In production since 8 July 2026; three waves of client changes delivered
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/work/contract-path-backend/
+
+I ran the backend of a contract project: a site where a client builds an order in a configurator, pays online and receives documents in a personal cabinet. In five weeks I took it from someone else's skeleton to a production server, then through three waves of client changes. I counted a payment as finished not on the gateway's word, but only when the internal state agreed and a fiscal receipt existed.
+
+Evidence: The product, the client and the payment provider are not named, because together they would identify the project.
+Evidence: The record rests on work logs, the repository, the test count history and a read-only snapshot of the production database on 29 September 2026. The real payment was checked on the test server; there was no external security audit.
+
+### The project started before me
+
+The first commits in spring 2026 were not mine: a Django skeleton, pages built from a prototype, price lists from spreadsheets. Until 22 May production was edited outside git. On 1 June I took over the project with a specification in five stages, and the client paid the first advance the same day.
+The work ran along a chain of three links. Our client was itself a contractor for its own client, and requirements, answers and acceptance went through it and through my management; they reached me as forwarded messages. The end client took a long time to agree on anything, so every decision took days and sometimes weeks, and the project stretched out further than its scope required.
+I began with a read-only survey of the servers. It showed that the code in production was newer than the repository; a colleague synced production with git and I checked the result line for line. Only then did work go stage by stage: accounts, pricing, payment, emails, the cabinet.
+I ran the project alone. AI agents wrote the code, every change went through subagent review until LGTM, and money and sign-in also had a second reviewer from another model: on 10 June it twice caught what the first one missed. On 11 June the separate frontend was cancelled and my Django interface became the final one, so the client side joined the backend.
+
+### The price came from the browser
+
+On 5 June price calculation moved to the server. Five days later it turned out not to be enough: the storefront still sent orders to an old handler where the browser supplied the price, and the order was not linked to the cabinet. Anyone who opened the developer tools could have paid whatever they liked.
+On 15 June the client-side calculation was removed completely. A value from the browser became input for display, not the amount to pay: only the server computes the amount, and the payment handler checks against that same figure.
+
+### A payment is finished when there is a receipt
+
+I treated the gateway's success response as an intermediate event. The notification handler checks the signature first, then locks the payment and order rows, checks the amount and only then changes state. A repeated notification gets an “accepted” answer and changes nothing, and a failure in one subscriber to the payment event does not break the payment itself.
+I drew the boundary myself and wrote it down: refunds and fiscalisation stay on the gateway's side, and the site stores the receipt data and links to it. That way the project took on nothing it should not do and was not left without proof of payment.
+Before real money the path went through a simulated signed notification with the real secret: a repeat gives the same payment, a broken signature is refused. On 23 June I checked it with a real payment on the test server. One item's price was lowered to 100 RUB for the test, the order went through the storefront, then payment, notification, “paid” status, a 54-FZ receipt with fiscal keys from the operator, and the emails.
+The rest of the path surrounds the payment. Emails to the client go out only when the status visible to them changes, and only after the transaction commits: review caught a task queued inside the transaction that could have sent an email about a change that never happened. Document scans sit outside public storage and are served only to staff and the order's owner; on the old production site five such scans had been open to a direct link.
+
+### Audit, release and the first deployment mistake
+
+On 25 June four subagents reviewed the code by area: orders and payments, configurators and prices, sign-in, core and content. The payment core came through with no findings, and I closed the other P1 and P2 findings. One P2 I left on purpose: the regression risk outweighed the benefit.
+On 8 July the project went to the production server. I created the database there from scratch so the user model would not have to change on live data. Two days later came the first deployment mistake: a stray ./ in an rsync command overwrote the settings file and broke the Python environment, and the site was down for a few minutes. The database was untouched, and a rule stayed: deployment uses an explicit list of files only.
+
+### Three waves of changes and a bug the project made itself
+
+After that the client sent changes in waves: 7 items on 22 to 24 July, 11 items on 31 July, 5 more at the end of September. All were closed; by the end of the second wave there were 663 tests.
+The nastiest turned out to be a bug the project introduced itself on 1 July. The delivery price went from a template into JavaScript as a number with a decimal comma. In two configurators that killed the whole script, and in the third courier delivery cost 0 RUB. From 8 July the bug lived in production until I found and fixed it on 24 July. A day earlier the same comma in another constant had left the personal cabinet empty; that one surfaced from the client's screenshot.
+Urgent orders needed automatic cancellation when unpaid. The server has no queue worker, so instead of a delayed task that would pile up dead, I made a scheduled command plus a guard in the payment itself: an expired urgent order cannot be paid. At the client's request the window later grew from 5 to 15 minutes.
+I deployed the third wave on 28 and 29 September with the new deployment script and its dry run for the first time; by then there were 684 tests.
+
+### After handover: what the logs showed
+
+On 13 August, with the client silent for a week after a wave was handed over, I went through 13 days of production logs. One endpoint's response size jumped between 82 and 5,327 bytes. The cause was the API settings: the renderer list was not set, so any request from a browser got the debug interface instead of data. A public reference endpoint returned 10,751 bytes instead of 1,767. I set the list explicitly, and the debug interface is now switched on by an environment variable.
+The same review found the deployment script inherited from the first commits. It synced the directory with --delete and on its first run would have wiped the database backups from the server, including the copy taken before the change wave. It had not yet been run against production. I rewrote it to an explicit list of paths, and review found two places in the new script where an rsync or static-build failure was reported as success; both were reproduced with a real failure and closed. I did not make the new script's first run against production: I updated production by hand with the same explicit list.
+
+### A new stage: agree first, build later
+
+Since 15 September a new stage has been under negotiation: cabinets for companies and for partners with branches. No code is written for it until what to build is agreed. The first document was a technical confirmation for the client: one Django application with no separate partner program, separation by role, organisation and branch on the server side, a future CRM as a separate internal contour, and company sign-in by tax number or by a login issued by an administrator.
+Next I put together my own contractor's specification and estimate, compared the client's specification with what already existed, and reproduced in production eight of the client's remarks about delivered work, two of them about money. When the mock-ups arrived the estimate grew from 65.5 to 77.5 working days, with a separate sheet of open questions.
+On 28 September a new package arrived: 19 annotated screenshots and a call recording. Two annotations contradicted decisions already confirmed: when an order enters the partner's report, and what the final chain of statuses with a refund looks like. I did not send the question around again through management; I wrote down a working interpretation with its reasoning. An order enters the report on its first move to “In progress”, because the note right on the report screen is more specific than a general arrow from the checkout button. “Issued”, “Documents at the partner” and “Client received” became three separate events. Both interpretations went on the agenda for a joint review.
+The same package lowered the load requirement from 1,000 to 100 concurrent users, and I researched the integration with the companies' bank first. The bank's documentation covers exchanging payment documents and statuses, but there is no public API for creating an invoice in its cabinet. Hence the baseline: the site generates the invoice, and the payment status comes from the bank and is matched by amount and description, estimated at 7 to 12 working days. The digital rouble and cards from CIS countries went to a future backlog.
+The client package on 28 September: a 34-page album of screens, two pages of questions and a 25-page specification. Five urgent configurator changes stood in it as a separate stage not yet done, but the next day management decided to ship them at once, and on 29 September they went to production. Negotiation of the main stage continues.
+
+### Where the project stands
+
+The site has run on the production server since 8 July. By 29 September it held 16 orders, but no real payment has yet gone through in production: the only real payment happened on the test server, whose database was not carried over. Meanwhile the new stage is being negotiated.
+There is no load on the site yet, and the reason is the same chain rather than the technology. From 3 to 7 August the client tested the site closely, and then the calculations in the logs stopped; two changes they had asked for themselves were still unchecked by mid-August. From mid-August to mid-September the project left my desk altogether: it was being discussed further up the chain while I worked on other projects. It came back as a new stage.
+There was no external security audit and no load test, and the response-time criterion for a hundred users was never measured. Backup recovery was rehearsed as a migration on a copy of the database, not as a production restore. A small drift between the repository and the server remains in the auto-cancel schedule and the application server port, and it is written down.
+
+## The product metric counted a refusal as a successful answer
+
+Shelf: W-04
+Status: Production test stand; the project was dropped before a public launch
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/work/false-positive-metric/
+
+This was my first project after coming back to the team, and the first where I learned to work with AI agents. In a SaaS that shows how AI assistants see a website, the main metric looked for the brand name in the model's answer and counted a refusal as a mention: 14 of 15 where there was not a single real one. I moved it to a verification service with a model judge and two rubrics, calibrated it on a 44-case set, and carried the same principle, no grounds means refusal, into article generation.
+
+Evidence: The product, the client and the brands are not named. The story comes from work logs, commits in the repository and a read-only snapshot of the production stand on 29 September 2026.
+Evidence: The calibration figures belong to a synthetic set of hand-written cases described below. They are not a general model benchmark and not a measurement on users.
+
+### My first project on the team
+
+This product was my first project after I came back to the team in March 2026. It was also where I started working with Claude Code in a terminal: I had almost no experience with agent-driven development, and the team did not use Codex yet. Dailies for the project only appeared on 6 May, a month after the start.
+Another project came before it, a content production pipeline for SEO agencies. From 20 March to 10 April it gathered 398 commits, and then it got stuck. Management looked into it and found serious problems in the architecture, although I had managed to keep some parts in good shape. On management's decision a new project started on 8 April, built on the first one's groundwork; that is the one this case describes.
+The main lesson of that period is about data: every value has one source, and the interface shows what that source returned, not a guess of its own. The metric story below is about exactly such a guess.
+
+### The product and who worked on it
+
+The product checks how ChatGPT, Perplexity, Gemini and Copilot see a website: a checkup runs as a graph of 19 steps, and the content side writes articles that are not published without human approval. One of the report's main figures showed whether the models mention the client's brand.
+It was a team project. Management set the direction and approved production releases, and a colleague ran the content plan service. The backend and the AI side were mine, along with the final say on merging changes. Work ran in several agent chats, separately for frontend, backend and CI; AI agents wrote the code, and every change went through subagent review until LGTM. Of the project's 858 commits, 626 are mine.
+
+### 14 of 15 where there were none
+
+On 14 May I ran the product against my own personal site: the models certainly do not know its brand, so the honest answer would be “I don't know”. A subagent acting as an outside consultant read all 15 answers. It found no real mention at all, yet the tool reported 14 of 15, that is 93%.
+Inside, the picture was worse than the figure: in 11 answers the model refused outright, in three it confused or invented things, and one was a correct denial. Five refusals were even scored as positive sentiment. The root was a single line: a mention counted if the brand name appeared in the answer text, and “I don't know brand X” contains it. The issue went to P0.
+
+### A judge instead of a substring
+
+Management set the direction: do not patch the heuristic with yet another list of denial phrases, build verification services for the whole class of tasks that need a judge rather than a text search. On 15 May the service went live. Every claim passes through a verification gateway, every call is logged, and a run has a budget of $0.10. The judge returns one of five outcomes: a real mention, a bare name, a pivot to another brand, a refusal or an invention; only the first counts.
+The same day the product path moved to the service, and the substring search and the denial list were deleted. Two decisions here were mine. First, the service's state (did it run?) is kept apart from the verdict (what did the judge decide?), so a failure never looks like “not mentioned”. Second, if the product is less than 0.6 sure about the brand itself, the probes do not run and the report says plainly that the brand was not recognised.
+
+### Strictness broke the well-known brands
+
+On 18 May the judge got a strict rubric and brand facts from the shared board of verified facts; by default an answer counted as an invention. Across five sites with 15 probes each, false mentions on an unknown brand fell from 80% to zero. But a well-known brand then got only 8 of 15, so false rejections appeared.
+On 19 May there were two rubrics: one for a known brand and a strict one for an unknown brand, while the service's outside contract stayed the same. I wrote the acceptance criteria in advance: recall on known brands at least 80%, false mentions on unknown ones at most 10%. The second reviewer found that the mode could switch to “known” on a single hint about the niche; now without at least one verified fact from the board the brand counts as unknown.
+I checked this on a synthetic set: 40 hand-written cases, 25 known and 15 unknown. The strict prompt gave 64.3% recall, the two rubrics gave 100%, and there were no false positives on unknown brands in either. The final version on an extended set of 44 cases: recall 16 of 16, one false mention of 17, about a cent per run. I accepted the three remaining classification errors on purpose: their outcome is the same, the brand is not mentioned.
+On 25 May one more loose end closed: if the probes did not run, the brand authority score cannot rise above 60. On a live run it fell from 100 to 60, which was the right figure.
+
+### No grounds means refusal
+
+On 18 June management set a rule for article generation: do not invent. Where to hold it was my decision. The gate sits in the run itself, before the graph is built: a brief without the required structure is rejected, the model is not called, no internal currency is charged, and the run keeps a reason code.
+On 29 and 30 June the other side of the same problem appeared: Russian articles broke off mid-word and still went on to review. Every step hit its own token limit, 4,000 for the draft and 6,000 for polishing. I derived the budget from the article length: the tokens needed equal the word count times 1.5 times a language factor (2.0 for Cyrillic), and the budget is twice what is needed, within 4,000 to 16,000. The limit here caps cost rather than setting length: only actual use is paid for. Ten unit tests hold the formula.
+If the model still hits the limit, the run no longer pretends the article is finished: it is rejected with a “text truncated” code.
+
+### Splitting the orchestrator: a live run found what the tests missed
+
+In late May, after management's directive of one engine for two markets, the checkup job itself came up. The code map showed one 976-line file with seven responsibilities, and six imports led from the domain layer straight into the database. On 26 and 27 May I split it in five phases: six use cases in the application layer with 24 tests, ports for sites and progress, and a save node that issues a command instead of writing to the database. At the merge the file weighed 661 lines and tests went to 3,104. The second reviewer found that when saving failed, a run stayed in the “running” status forever, and that was closed before the merge.
+On 28 May a live run showed that the split had silently broken saving results: the LangGraph graph dropped a key not declared in the state description, and the tests called the node directly and did not see it. The fix went out the same day, and a rule stayed: a graph is tested through a real graph, not by calling a single function.
+The same change added a test that reads the domain files and fails if any of them imports the database session at module level. The rule is deliberately narrow: ORM models and some utilities still lived in infrastructure then, and other imports remained. The test ran locally and before every push; the project's GitHub CI pipelines never got going. Following the same pattern, the article brief and localisation were extracted by mid-June, and by 11 June the services directory held 15 contexts, some written almost entirely by the colleague.
+
+### Where it stands
+
+The product runs as a production stand without a public launch. The 29 September snapshot shows 5 tenants, 8 checkups averaging 154 seconds and $0.074, and 15 article generations: one published, 11 waiting for human approval, two rejected and one failed. Cost is visible for each of the 23 steps that call a model.
+The result has limits. The calibration set is synthetic and small. The original 14 of 15 run was not repeated on the same site after the fix: the brand recognition gate simply did not launch the probes. The effect on users' decisions was not measured.
+The project went better than the first version, but at some point it was simply dropped and never reached a public launch. For me it remained the main project of that period: it is where I learned to work with agents.
+
+## The cost of an answer: cache, a narrow check and a search that failed its measurement
+
+Shelf: W-05
+Status: In production in 20 franchise chats; figures from the work logs and a production snapshot on 29 September 2026
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/work/llm-cost-and-search-quality/
+
+The bot answers franchise staff in their work chats from a knowledge base and stays silent or calls a person on everything else. When the base grew nearly fourfold, from 85 to 337 entries, an answer took 22 seconds and cost $0.13. I found where the money went: the provider's cache worked every other time, and the verifier read the whole base for the sake of a few entries. On 8 August, on live traffic, an answer with a cache hit cost $0.0310 against $0.0968 without one, and segmented search, which management asked to check as a saving, was rejected by measurement.
+
+Evidence: The client, the franchise and the people are not named. Figures come from per-call accounting in the bot's database, the work logs and a read-only production snapshot on 29 September 2026.
+Evidence: Several measurements are small or computed rather than controlled; each one says so on this page.
+
+### The bot and who built it
+
+The bot lives in the work groups of a flower shop franchise. It has three agents: a gatekeeper decides whether the question is its business, a responder answers from the knowledge base, and a verifier checks the answer against the base. The whole base sits right in the prompt; there is no separate search. Outside its competence the bot stays silent. On sensitive topics, whether money, royalties, revenue, prices, personal data or other categories the client sets up in the admin panel, it answers only with an approved template, and if there is none, it calls an operator.
+The base in the prompt was a deliberate choice. At the start, one franchisee's chat history gave 231 question-and-answer pairs, about 64 of them genuinely recurring, and at that size separate search is unnecessary: the model sees the whole base and finds an answer by meaning rather than by matching words. Search over the base was planned for later, after 300 entries.
+A colleague built most of the first version, the three-agent pipeline and the base in the prompt. On 17 June I audited that MVP, extended it and ran a live test in a group, and after that I mostly refined the bot. On 13 July the bot went to production and on 15 July live mode was switched on. Management set tasks and made decisions, the colleague wrote 50 of the 139 commits, and a representative on the client side tested it. AI agents wrote the code, every change went through subagent review until LGTM, and production releases went out only on an explicit go, in a quiet window, with a database backup.
+From 7 July every model call recorded the model, tokens, latency and the real cost from the provider's response. Without that accounting there would have been nothing to measure later.
+
+### On 29 July the bill hit the limit
+
+That day the production key ran out of limit. The investigation found several causes at once. Every answer reserved 65,536 tokens because no answer limit was set. The base had grown from 85 to 337 entries, and about 43 thousand tokens went into every request. An answer cost $0.13 and took 22 seconds, and the provider's prompt cache hardly ever hit.
+
+### The cache lived on one route
+
+A measurement cost about 30 roubles and showed that the provider's cache turns on by itself but lives on a specific route, while requests are balanced across routes, so hits came every other time. I pinned the route but kept a fallback: if the main one is down, the bot answers at a higher price, but it answers.
+The change went to production the same day. The first 9 requests cost 79 roubles instead of the 207 they would have cost without the cache: minus 62%. That is a computed comparison on the same requests, not a separate before run, and the questions came in a dense burst, so for a month I forecast about 40%. The cache hardly affects speed.
+Two things surfaced later. On 30 July management changed the model lineup: an answer cost 14.5 roubles instead of 31.9 and took 11 seconds instead of 21.5, but the new verifier's automatic cache did not work at all, zero hits across 495 thousand tokens. And any edit to the base reset the cache for everyone: a new entry in the middle of the prompt raised a call from $0.0153 to $0.0705, so the colleague moved fresh entries to the end.
+On 8 August, on live traffic, 85% of input came from the cache, and an answer with a cache hit cost $0.0310 against $0.0968 without one and arrived in 9.4 seconds instead of 15.3.
+
+### An answer scheme of our own, checked in steps
+
+Making an answer cheaper without losing accuracy did not work at the first attempt, and by 31 July I had put together a scheme in steps. First I labelled the live logs: 17 verifier rejections and 55 refusals. The most frequent class of real errors turned out to be invented promises. In parallel, nine research reports went through the options, from vector search to custom detectors, and I dropped everything that does not pay off at our volume: own hardware, a vector database, cascades of three or more steps, fine-tuning on refusals.
+In this scheme the responder returns claims with entry numbers and verbatim quotes, and code checks that the entry exists and contains the quote. The verifier reads not the whole base but the cited entries plus a few entries found by the draft's text, which also catches entries the answer contradicts. If the narrow check rejects an answer, it is checked against the full base, and the decision to answer fully, partly or hand over to a person is made by code against a threshold; money, deadlines and accounting stay on a strict policy.
+I wrote the answer contract myself on 5 August, and it went through seven review rounds. The next day a $1.34 output-length measurement showed that at a 4096-token limit an answer in the new format gets truncated, so the limit went up to 8192 and the contract was switched on at 12:51. The three-outcome gate went to production on 6 August in shadow mode: it computes and logs its decision but does not affect sending. It was never made live: in the second half of August two questions came in over eight days, so there were no statistics to switch on.
+
+### The verifier read the whole base for a few entries
+
+The narrow check gave the most visible saving. Two thirds of the bill came from the verifier: like the responder, it was given the whole base. I proposed giving it only the entries the answer cited, plus a lexical backstop in case a citation was missed: about fifteen hundred tokens instead of 42 thousand. The colleague implemented it and I reviewed it. If the narrow check rejects an answer, it is rechecked against the full base, so the saving cannot silently reject a correct answer.
+On 6 August I switched the flag on. The verifier went from $0.0600 to $0.0045 per call, input fell from 38,268 to 2,970 tokens, and latency from 7.6 to 2.7 seconds. The sample is small: 37 calls before and 5 after.
+
+### Segmented search failed its measurement
+
+Management asked me to check segmented search: split the base by topic and give the model only the relevant part. I put together a set of 37 questions, 25 already answered and 12 from the queue. A model labelled the reference against the full base and I spot-checked it by hand; the labelling itself cost 42 roubles.
+The segmented scheme came out worst: the right entry in the top five in 59% of cases against 76, 82 and 82% for lexical, vector and hybrid search and 100% for the full base, answer coverage at 40% against 49, 62 and 57%, and 4.4 seconds per request. It guessed the topic in 71% of cases, a wrong topic cannot be recovered, and half of the answers draw on entries from different topics.
+It was the only question on which all nine reports agreed. On 31 July I recommended not adopting search and wrote down when to come back to it: coverage of at least 95% in the top twenty. The specification planned a switch to search after 300 entries, and the base had already passed that, but with the full base in the prompt and a working cache there is no point changing the scheme before the base grows three to five times. So RAG was deliberately left out and our own mechanics stayed: the full base in the prompt, the cache and the checks in steps.
+
+### Where the bot stands
+
+The bot works in 20 franchise chats. From 14 July to 18 September it received 163 questions: it answered 59 itself, passed 80 to a person, stayed silent 21 times because the question was outside its area, and made three errors. Ratings are 21 positive and 6 negative. The base holds 359 entries, and all of production to date cost $9.03 across 397 model calls.
+The bot saw little use: 163 questions over a little more than two months across 20 chats. Management never told me why. The base hardly grew either: the client's materials had been awaiting approval since 14 July. There was almost no live feedback from the client, unlike projects where the client tested the product and sent feedback themselves, even if through management. That is why some figures here are small: minus 62% was computed on nine requests as “would have been without the cache”, and the verifier difference was taken on five calls after the switch.
+
+## mnemo
+
+Shelf: P-01
+Status: Version 0.15.1-beta, used every day at work and on my own projects
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/mnemo/
+
+I made mnemo because project requirements kept arriving in messages, files, and later corrections. It gives Claude Code and Codex a local archive with links back to the source, plus records of requirements, open questions, and the work done against them.
+
+Evidence: Public repository: github.com/ZenonEl/mnemo (https://github.com/ZenonEl/mnemo).
+Evidence: The standard is published next to the code under SPEC (https://github.com/ZenonEl/mnemo/tree/main/SPEC).
+
+### A forwarded message is part of the project too
+
+In my commercial work, management handles the client relationship. I do the implementation, often working from a forwarded message, a document, or a video showing what someone has configured. Before changing the code, I need to understand what was requested and how it relates to the earlier discussion.
+I wanted to keep that material in a form I could return to: who said what, when it arrived, what it referred to, and which later decision relied on it. Saving the chat history helps, but it does not tell the next agent session which requirement changed or where to look for the original explanation.
+That became mnemo. I wrote the archive format, the Python tools, and a plugin for working with the archive from Claude Code and Codex. I use it on my own projects. It keeps the source material alongside the records I need to continue the work.
+
+### What happens to a new piece of feedback
+
+An import keeps the material with its source information and gives it an address inside the project archive. A requirement or decision can then refer to that entry. The original stays available when the shorter working record is no longer enough to explain a detail.
+Suppose a forwarded screenshot asks to change how a delivery option appears. The screenshot belongs in the archive as a source. The interpretation of the request belongs in a separate requirement linked to it. If a later message changes the condition, that message should have its own entry; it should not erase the earlier wording.
+The format separates fidelity from attribution. A screenshot may preserve visible text exactly while leaving it unclear who originally wrote it. A machine transcript may help find the relevant part of a recording without being suitable for a verbatim quotation. One confidence score would blur those differences.
+Mnemo cannot recover an author or source that was never supplied. It can retain that uncertainty with the material so that a later summary does not silently turn it into a fact.
+
+### Keeping the files does not settle the task
+
+Preserving material and figuring out what remains to be done are separate jobs. Mnemo has a work-state skill for requirements, open questions, and checks of completion claims against the archived evidence.
+In the delivery-option example, importing the screenshot does not make the requested change complete. The requirement still needs an implementation and a check tied to that request. A question also needs to explain what is unclear and what has already been tried, instead of sending every uncertainty back to the person.
+I keep those records linked to the archive because the next session needs both sides: the current work and the source behind it. The plugin helps maintain the records and check them. Deciding what a request means, whether an answer is sufficient, and whether the result is acceptable still involves me.
+
+### Herald brings material in; ephemeris carries the day forward
+
+I use herald (/projects/herald/) for the communication side. It captures incoming material in a local buffer, where an agent can pick it up for import into mnemo. It also lets an agent prepare and send an update through a configured channel. The capture buffer is temporary; mnemo holds the project history.
+Ephemeris (/projects/ephemeris/) handles the daily record. In my workflow that means the daily issue, its body and development-log comments, with links back to the relevant mnemo entries. That gives the next session somewhere to start without having to reconstruct the entire day from chat.
+The projects can be read separately, but this is why I built them to work together. A new message has a route into the archive, work has a place to be recorded, and the next session has references to follow. The workflow page (/collections/ai-agent-workflow/) shows that route across the tools.
+I made the links between them soft on purpose: herald, ephemeris and kanon (/projects/kanon/) plug into mnemo when installed and are not needed for it to work.
+
+### A live project corrected the archive itself
+
+On 4 September 2026, when the e-commerce project had stalled and management asked for everything left hanging, I used mnemo to assemble every open question on it, with a source address beside each one, and put the complete list in front of management. On 8 September the full list went out again, and the reply to it exposed one conclusion drawn too quickly, so I returned to the primary source and corrected it.
+On 14 September, work on the same project exposed two defects in mnemo's reconciliation logic. I fixed both that day and released them as 0.15.1-beta. The project supplied material to the archive and showed where the archive's own rules were wrong.
+
+### The archive's own write path needed work
+
+Importing material safely took several corrections in the public history. An early rollback fix still had a bad window: an interruption after the manifest had been saved could make the importer treat a completed import as unfinished and remove its files.
+In the next fix I based that decision on the manifest state on disk rather than on signal-handler timing. Then I limited the saved-state check to material belonging to the current operation.
+The published standard describes the archive rules. A self-check compares the standard and the implementation, while the test suite exercises their behaviour. On main f2cc78b the suite has 126 tests, twice as many as at 5e0417c in early September.
+To try mnemo, start with the repository README (https://github.com/ZenonEl/mnemo#readme). It gives installation instructions for both hosts; the Python tools use the standard library. The format specification (https://github.com/ZenonEl/mnemo/tree/main/SPEC) is available separately if you want to inspect how the records work before installing the plugin. The archive is local working material, so using mnemo does not make private project files suitable for publication.
+
+## herald
+
+Shelf: P-02
+Status: Active; version 0.8.0 with capture, sending and Watch on main
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/herald/
+
+A local MCP gateway between agent sessions and Telegram. It brings incoming messages and files into a session, sends prepared replies only along allowed routes, and through Watch lets me write to an already open session straight from the bot's private chat.
+
+Evidence: Public repository: github.com/ZenonEl/herald (https://github.com/ZenonEl/herald).
+Evidence: On main 8860f88 (version 0.8.0) the test suite has 192 tests, and the CI run on that commit, tests plus package build, is green. This is a snapshot, not a coverage claim.
+
+### Why a separate gateway
+
+Agent sessions need to receive working material and, less often, send something back. My material arrives as forwards from work chats, and replies go to management. If that runs through whatever channel is at hand, the agent is one mistake away from writing to the wrong person.
+I wanted communication to be a small component with an explicit boundary, not an ability smeared across prompts. The first public release came out on 13 August 2026, and on 26 August herald became installable as a plugin for Claude Code and Codex. Claude and Codex sessions wrote the code; the boundary decisions and acceptance were mine.
+
+### Incoming: a temporary buffer, the archive in mnemo
+
+Herald captures messages from the chosen Telegram topics together with reply context and files and puts them into a temporary local buffer. mnemo (/projects/mnemo/) takes them from there and keeps them with their source, so herald does not become a second archive.
+Since 14 September a message in the buffer counts as handled only when there is proof it was archived. The link to mnemo is still soft: captured material can be exported anywhere, and herald works on its own.
+
+### Outgoing: allowed routes only
+
+In the other direction herald sends material the agent has prepared, but only to addresses and directories written in a configuration outside the repository. The public code names no real channel, and the decision whether to write at all stays with a person.
+On 14 August a problem turned up in the instructions themselves: an agent preparing one message could add other projects' problems and questions about next steps. Fix b0bff52 made the subject of the request a hard boundary and limited questions to the first unknown dependency that blocks the next action; tests pin both wordings.
+Later came copy-ready messages, file albums, named message batches, and packs of up to 100 files split into groups of 10. A send whose outcome is not confirmed is never retried automatically: it may have arrived.
+The writing rules live in the configuration and are set per project. herald suggests the humanizer skill out of the box, and my rules add no-ai-slop to it. The link is soft: without the skills the message is still prepared and sent under the same rules.
+
+### Watch: light remote control
+
+Watch appeared on 2 September, and since version 0.8.0 on 25 September it is on main. I write to the bot in a private chat with a profile tag, the message reaches an already open agent session, and the reply goes to a set topic. It is built from what herald already had: the inbox buffer, the list of allowed sources and the routes. Since 25 September attachments and voice messages reach the session too.
+Watch does not start or wake sessions: only the session that took the profile and polls its queue answers, and a duty with no sign of life is released after 15 minutes. I deliberately kept it inside the gateway's boundaries: commands are accepted only from the owner in the configuration, and replies go out along the same routes.
+Next, a thought out loud that I have not checked thoroughly. With one shared agent terminal running Watch, it could wake the others itself: Claude and Codex can resume a saved session and pass it a message, and Claude has its own tools for writing to other open chats. Then it would be enough to write to one terminal, and it would hand the task out to the working ones, even those without Watch. That would make a rather interesting remote control without complex infrastructure.
+
+### Where it stands
+
+On 30 September 2026 herald is at version 0.8.0: 192 tests on main 8860f88, CI green. It carries communication in my work every day; in my work dailies from 18 to 28 September it is mentioned in 18 of 21. Together with mnemo and ephemeris (/projects/ephemeris/) it covers one path: a message arrives through herald, the material goes into the archive, and ephemeris keeps the course of the day. The links between them are soft, and each works on its own.
+It runs locally and is meant for one operator, not a team deployment. The address list limits where material can go but does not judge whether it should be sent, and it does not protect a machine that is already under someone else's control.
+
+## ephemeris
+
+Shelf: P-03
+Status: Version 0.8.1, used every working day
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/ephemeris/
+
+A Claude Code plugin and Codex skill that keeps a work day in one issue. When an agent session ends, it leaves the next one not a retelling but the addresses of the source material: comments, commits, paths and links into the mnemo archive.
+
+Evidence: Public repository: github.com/ZenonEl/ephemeris (https://github.com/ZenonEl/ephemeris).
+Evidence: Usage figures come from my work dailies from 18 to 28 September 2026.
+
+### First there were just dailies
+
+Ephemeris grew out of a habit. In May 2026 management wanted to know what had been done each day without a call and without asking everyone by hand every evening. On 6 May I set up a separate repository for dailies: one issue per pair of date and project. There were no standards at all then, only the idea.
+A GitHub repository with issues as dailies turned out to be close to ideal. They are linked to the team's projects, commits, tasks and other dailies can point to them, and GitHub takes care of storage, edit history and versions. On 11 May a README with rules appeared, on 14 May a body template, and in July rules for labels, for links between repositories, and for writing the body for people while the details go into comments.
+Over time management seems to have stopped reading the dailies, and I kept writing them. As far as I know nobody else on the team treats them this way, yet the dailies and git gave me an almost complete history of my projects: I can go back to any day, and together with the mnemo (/projects/mnemo/) archive the source material behind the decisions is visible too. On 30 September 2026 the work repository held 236 of them.
+
+### From habit to protocol
+
+By late July the dailies had a settled standard, section order and recurring wording, and it became clear they could be kept by rules rather than from scratch each time. My work day is longer than one agent session: the context gets compacted, the session ends, and the next one has to continue from the same place without rereading the whole conversation. Without rules every session kept the daily its own way.
+The ephemeris concept appeared on 31 July 2026 and the first commands on 6 August. There are five now: open a daily, update it during the day, hand over a session, hand in the day, and resume from a handoff.
+
+### A handoff is an address map, not a retelling
+
+The main rule of ephemeris is that a handoff says where things are: a comment number, an issue or PR, a commit, a file path, a link to a record in mnemo. The next session goes through each address, opens what it needs and names aloud whatever did not open.
+A retelling would be a second copy of what is already written nearby, and over time it would drift from the original. An address costs almost nothing, and the choice of what to read stays with whoever continues the work, not with whoever wrote the handoff yesterday.
+
+### Work and personal apart, several sessions in one day
+
+Work and personal dailies live in different repositories, not under different labels in one. The repository addresses sit in a configuration outside the package. If the project does not make the contour clear, the agent has to ask rather than choose.
+On 31 August markup for several sessions in one daily arrived. Each session keeps its own block between markers and leaves the others alone, and in the shared lines the owner of a task is named by the session's name rather than “mine”. The day is handed in by whichever session does it first, and the others add their own handoff below. A “ready to close” label and a weekly cleanup close old dailies only after confirmation.
+
+### Instructions, not an application
+
+There is no service and no background process inside: only the skill, the commands and one script that checks the version across three manifests and two README badges. Both hosts compare only the version number, and a stale manifest means an update never reaches installed copies while the update command reports everything as current.
+Ephemeris reads the daily template from the README of the dailies repository every time and keeps no copy of it: reporting formats change, and a copy inside the plugin would fall behind in silence. Since 26 August the package installs from the Claude Code and Codex marketplaces.
+
+### Where it stands
+
+The latest version, 0.8.1, came out on 22 September. Ephemeris keeps my work days and the days of this site; in my work dailies from 18 to 28 September its markup appears in 15 of 21.
+Together with mnemo and herald (/projects/herald/) it covers one path: a message arrives through herald, the material goes into mnemo, and ephemeris keeps the course of the day and the addresses for the next session.
+From the start I planned the links between the tools in this set to be soft. Ephemeris writes addresses in the mnemo format and uses skills such as humanizer when they are installed, but depends on none of them: without mnemo there is simply no archive link, without humanizer the text stays as it is.
+
+## kanon
+
+Shelf: P-04
+Status: Version 0.12.1, used daily; the repository is private for now
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/kanon/
+
+A Claude Code plugin and Codex skill. Before work starts, it turns a task into a checklist of observable results and the proof each one needs. An item closes when proof is inserted; a tick is not enough.
+
+Evidence: The repository is private until it is published; the figures here come from it and from my own project folders.
+
+### Where it came from
+
+kanon appeared after yet another complaint from a colleague: he gathered material with Claude, discussed everything, and then Claude did it its own way. It happens to me too, but noticeably less often, so I went to find out where the difference was.
+Shortly before that I had read about the harness: an agent is a model plus everything around it, instructions, context, tools, memory and checks. When an agent does the wrong thing, “is the model stupid?” is almost always premature: first ask whether it knew the rule, whether it could learn that it had done badly, and whether it could see what it needed. I went through the idea with Claude together with my own tools, mnemo (/projects/mnemo/) and the rest, and saw a gap they do not close. Agents usually get plenty of instructions and almost no checks that go red, and the usual cure is yet another paragraph of instructions.
+
+### Gathering eats the context window
+
+Before the work, an agent gathers material, and that eats the context window. The work itself runs on what is left. The agent does not ignore what it gathered; it can no longer see it. Hence the familiar symptoms: “I did it from memory”, one screen checked out of ten, one version where several were asked for, and “what next?” after every step.
+Post-mortems of such failures usually blame character: rushed, read it carelessly. That cannot be fixed. The cause is the same in every case: between “understood the task” and “started working” there was no step that turns the task into a list where a shortfall is visible.
+
+### A checklist before the work
+
+kanon adds that step. Three questions, and each has to produce lines in a file. What must exist for the task to count as done: results, not actions, and a number in the task becomes a number of lines. What proves each item: a command, a screenshot path, a commit hash. What from the gathered material has to reach the result.
+Then one rule that holds the rest together: an item is closed by inserting proof, not by a tick. “Done”, “checked” and “works” without proof read as an open item. The file survives what the context does not: compaction, a new session, a different agent.
+
+### This is not a to-do list
+
+A to-do list answers “what to do”. A kanon checklist answers a different question: “how will I know it is done”. Each item names its check, closes with proof, and the number of lines is compared with what the task asked for. It is written before the work, while the gathered context is still fresh.
+Compared with familiar documents, a PRD says what we build, a plan says how we build it, and kanon says how we accept it: what counts as proof and on what grounds an item can be closed.
+Any session comes back to that file: after context compaction, a new one, or someone else's entirely. Even when the agent's context has swollen and something has dropped out, the agent does not try to remember; it looks at the file and checks against it. And checklists do not pile up: each has a lifetime, open, closed or stale, and a separate script proposes what to do with it next.
+
+### A program checks the rules
+
+A rule nobody watches holds for about a week, so code checks the rules that can be checked. The linter refuses a tick without proof, proof from a list of empty claims, and a line count that does not match the task. A separate script works out a checklist's lifetime, open, closed or stale, and proposes an outcome, but deletes nothing by itself.
+Hooks speak at the start of a session, once before the first write without a checklist, including through the shell, and at stop if items are still open. Nothing blocks: a hook that gets in the way gets uninstalled with the plugin, so a hook that crashes exits with zero in silence. A checklist can be written in any language; the machine words have aliases, currently in Russian and English.
+
+### Three days and six review rounds
+
+I built it in three days, 2 to 4 September 2026: 20 commits up to version 0.12.1. On 2 September alone there were six review rounds, three of my own and three independent ones from a second model; one of them found a P0: a hard link bypassed a fix that was already in. On 3 September the hooks started working under Codex, and a live session confirmed the stop hook. On 4 September two rules from someone else's analysis of similar failures were added.
+The checks rest on a test bench: 43 mutations break the linter and verify that the tests notice, the self-test makes 61 checks, and a separate suite checks file parsing. CI is green on the latest commit.
+
+### What it deliberately does not do
+
+kanon does not judge taste and does not check how well a task is split into items: a badly split task gives a green checklist over a bad split. It does not replace review: a closed checklist means “nothing was forgotten”, not “this is good”. The boundary is deliberate: a tool that promises more than it verifies is worse than none, because a green list starts being read as a guarantee.
+The repository is private for now, and I will open it later. I keep kanon checklists on my work projects and in the work on this site.
+The link to mnemo is soft, like everything in this set: a checklist item may carry a requirement number from the archive, and then a closed item gives ready proof for that requirement. But kanon works without mnemo, and mnemo without kanon.
+
+## TelegramMediaRelayBot
+
+Shelf: P-05
+Status: Active; 34 unit tests in CI, main is newer than the last release
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/telegram-media-relay-bot/
+
+A self-hosted .NET Telegram bot: it downloads media from a link through yt-dlp and gallery-dl and forwards it to contacts by their privacy rules. Started by hand in December 2024 and reworked in 2026; the download queue survives a restart.
+
+Evidence: Public repository: github.com/ZenonEl/TelegramMediaRelayBot (https://github.com/ZenonEl/TelegramMediaRelayBot).
+Evidence: Every figure here is read from the repository itself: the project files, the test files, the CI workflow, and the commit named in the correction below.
+Evidence: The at least once delivery boundary is stated in the code that removes a finished job, not inferred from the design.
+
+### Started by hand
+
+I made the first commit on 4 December 2024. The idea is simple: a person sends the bot a link, the bot downloads the media and forwards it to contacts, and each contact has its own rules about what it wants to receive. Most of the first version was written by hand: the database, contact invitations, privacy, muting a contact.
+v0.1.0-beta came out on 26 December and v0.2.0-beta on 20 January 2025. In 2025 I was working with the Gemini web chat, and v0.3.0-beta came out by 27 July. The busiest months were December and January: 49 and 85 commits.
+
+### The 2026 rework
+
+From 27 to 30 March 2026 I reworked the project with Claude, through a branch and a pull request for each change. MySQL, a separate Tor library and dead code went away; errors started coming back as a result type rather than exceptions; Docker and a self-hosted Bot API server arrived, along with a test project, downloads in group chats, user states in the database and a download queue with a configurable concurrency limit.
+On 17 July 2026 the project moved to .NET 10 and C# 14, and the same day the queue moved from memory to disk. The repository holds 376 commits in all.
+
+### A queue that survives a restart
+
+Until July 2026 the queue lived only in memory. A crash or a reboot dropped whatever had been requested, and the person who asked got neither the file nor an explanation. The design read as durable on a diagram and was not durable in operation.
+Now each request is written into a DownloadJobs row before the download begins, the row is deleted on completion, and at startup a resume service re-enqueues whatever is left and tells the requester what is happening.
+I checked it by hand as well as with tests: I inserted a job, restarted the bot, the download resumed, the media arrived and the row was gone afterwards. Delivery came out at least once: a crash between sending and deleting the row repeats the job, and the recipient may see a duplicate. The code records this as an accepted trade: a repeat is better than a lost download.
+
+### How it works
+
+The downloaders stand in a chain behind one interface: yt-dlp for video, gallery-dl for galleries, and the next one is tried if the previous one fails. Sites break and tools change, and a new downloader is added without touching the queue or delivery.
+Concurrency is capped by a semaphore from the configuration: three downloads at once by default, twenty at most. Files up to 2 GB go through an optional local Bot API server: it lifts the hosted API's limit but is one more component the operator has to keep running, so it is off by default. Proxies can be set per site: HTTP, SOCKS5 or Tor.
+
+### Where it stands
+
+On 30 September 2026 the project has 34 unit tests on xUnit with NSubstitute. On every push CI builds the project, runs the tests and then runs the bot for about two minutes so that a configuration error cannot pass as a green build; the last run is green. The latest release, v0.3.0-beta from 27 July 2025, is older than main, so the tag is not passed off as the current version.
+The documentation site was built in July 2025 and still describes the previous version; the update sits in a separate branch. The downloaders depend on third-party sites that change without warning, and the project has had no external security audit.
+
+## zapret2-nix
+
+Shelf: P-06
+Status: Public v0.1; module, presets and checks work, weekly CI green
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/zapret2-nix/
+
+A declarative NixOS module and preset library for zapret2: a service on nftables or iptables, with the strategy switchable on a running machine without a rebuild.
+
+Evidence: Public repository and usage guide: github.com/ZenonEl/zapret2-nix (https://github.com/ZenonEl/zapret2-nix).
+Evidence: The repository contains Nix checks for preset evaluation, nftables, iptables and the DPI test path.
+
+### Why a module
+
+nixpkgs has the zapret2 package but no NixOS module for it at all. The stock services.zapret targets the first version and refuses to configure nftables, so on NixOS you end up wiring systemd units and firewall rules by hand. I wanted to describe all of it declaratively, in one configuration.
+v0.1 came out on 27 July 2026: the module, a preset library and checks on GitHub Actions. Claude and Codex agents wrote the code.
+
+### Available apart from active
+
+The module separates what is available from what is switched on. Available presets are built into the Nix store from the configuration, and the active preset is a link in /var/lib/zapret2 that zapret2ctl switches. The nfqws2 service reads the active link, and firewall rules send the matching traffic to NFQUEUE.
+The ports for the rules are derived from the presets themselves, so the rules cannot drift from the strategies. Bypass strategies go stale quickly and rebuilding the system for every attempt is painful, so zapret2ctl switch changes the strategy without a rebuild. There are four ready presets: YouTube, Discord and two general ones.
+
+### A check that does not lie
+
+The awkward cases are part of the design. A running bypass service distorts a strategy test, so the wrapper stops it for the duration of the test. A VPN makes even an empty strategy look like it works, so the check refuses to run through a tunnel and does not accept it as evidence.
+On 31 July two bugs were found and closed: reloading the firewall failed when there were no rules yet, and zapret2ctl status without root showed a store path and misreported the state. On 6 August a second family of strategies, narrowing to the WAN interface and list export for blockcheck2 were added; the quick check mode takes minutes instead of hours.
+
+### Where it stands
+
+On 30 September 2026 CI runs three virtual machine checks: preset evaluation, the nftables path and the iptables path, with 14 steps in the shared scenario. CI also runs once a week, and the last run on 28 September is green.
+A preset still depends on the ISP and can stop working when its DPI changes. An interface with automatic strategy discovery is planned for v0.2; for now discovery goes through blockcheck2 and zapret2ctl.
+
+## HeartRender
+
+Shelf: P-07
+Status: Done for its task; last change in May 2026
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/heartrender/
+
+A small Python pipeline that reads heart-rate data from the Gadgetbridge database and turns it into a PDF that can be printed and read. It is not a medical device and makes no diagnosis.
+
+Evidence: Public repository: github.com/ZenonEl/HeartRender (https://github.com/ZenonEl/HeartRender).
+
+### Get the data and print it
+
+I needed to get the band's data, which the Gadgetbridge app already keeps in its database, and print it for analysis. Band apps smooth their charts and hide short spikes, while anyone reading the data needs hours, minimums, and what was happening at that moment.
+I built it by hand with the Gemini web chat. The first version appeared on 25 February 2026, the reports on 28 February and the diary bot on 1 March; all of it took five days.
+
+### What it builds
+
+The script reads samples from the Gadgetbridge table with plain SQL and builds a report for the chosen period: trend charts at four days per page and an hourly table of minimum, mean and maximum. There is also a monthly summary with the average heart rate during sleep hours, 22:00 to 06:00.
+A Telegram bot keeps a symptom diary, and its entries go straight into the PDF next to the charts, so you can see what was happening when the heart rate jumped. All of it is 519 lines of Python.
+
+### Not a medical device
+
+The README says plainly that this is not a medical device and replaces no examination. The report helps prepare the data for a conversation with whoever reads it, but it makes no diagnosis.
+
+### Where it stands
+
+The project is done for its task and works. The last change was on 4 May 2026: the Docker build was aligned with the uv lockfile. There are no tests, and the data is read only from the Gadgetbridge database and for one type of band.
+
+## OwlWhisper
+
+Shelf: P-08
+Status: Working MVP, halted on purpose in 2025
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/owlwhisper/
+
+A serverless peer-to-peer messenger in Go. I took it to a working MVP in about six weeks and stopped when I saw what making it safe would take.
+
+Evidence: Public repository: github.com/ZenonEl/OwlWhisper (https://github.com/ZenonEl/OwlWhisper).
+
+### A messenger without a server
+
+I wanted to see how far a messenger with no central server could go: nodes find each other and talk directly. I built it by hand with the Gemini web chat, on my own.
+I made the first commit on 19 August 2025, the first network, protocol and storage layers appeared on 20 August, and reaching a working MVP took about six weeks, to the end of September: a Fyne interface arrived on 7 September, followed by work on the core and the interface. August and September 2025 brought 99 commits and about 5,000 lines of Go.
+
+### How it works
+
+Two instances on a network find each other through libp2p and a Kademlia DHT and talk over my own protocol of eight protobuf modules. One-to-one chats are encrypted with standard primitives, X25519, HKDF and AES-256-GCM, with no home-made cryptography. Files go in chunks, and calls run over WebRTC with Opus.
+The layers are separate: the network, services with the logic, and the interface, which talks to the core only through interfaces and receives events from a typed channel, so the network never blocks the window.
+
+### Why I stopped
+
+Past that point two problems of a different size were waiting: group end-to-end encryption at the level of Signal or MLS, and hiding who talks to whom from someone who can watch the traffic. I tried running libp2p over Tor and dropped it: it was complex, too slow for calls, and still left traffic correlation open.
+I decided against shipping a messenger that only looks safe and halted the project in September 2025.
+
+### Where it stands
+
+In 2026 I wrote a review of my own code into the repository: there are no tests, there is no forward secrecy because one key covers a whole session, the quic-go dependency panics after about a minute, part of the code sits outside Go conventions, and one mutex guards too much. If I come back to it, I start with tests, the Noise protocol for the handshake and MLS for groups.
+
+## CrabVoice
+
+Shelf: P-09
+Status: Earlier project; v1.2.0 from April 2026, not actively developed
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/crabvoice/
+
+A Tauri app for Windows, Linux and Android that plays a synchronised voice-over translation on top of online video. Eleven days passed from the first commit to v1.0.0.
+
+Evidence: Public repository: github.com/ZenonEl/CrabVoice (https://github.com/ZenonEl/CrabVoice).
+Evidence: Platform support is described the way the repository README describes it, with verified platforms separated from detected but untested ones.
+
+### Voice-over instead of subtitles
+
+You can watch a video in an unfamiliar language if you accept subtitles or a separate browser extension. I wanted an app that plays a synchronised voice track over the original, on a computer and on Android.
+I made the first commit on 10 March 2026. I started with the Gemini web chat and continued with Claude. On 11 March the translation request to a third-party service worked, with request signing and retries; on 14 March a second version arrived on the vot.js library with a cross-platform architecture; and on 21 March v1.0.0 came out. March brought 59 commits and nine releases.
+
+### How it works
+
+The app wraps a WebView and injects a layer into the page that finds the video element with the vot.js library. A translation is requested for the detected video, and the returned track stays in step with the video: pause, seeking and speed are synchronised.
+Injecting into a WebView instead of a browser extension gave one place where I control playback and one behaviour on every platform, at the cost of the trust an installed app asks for. Rust and Tauri 2 provide the shell, the injected layer is TypeScript, and part of the Android side is Kotlin. Versions 1.1 and 1.2 in April 2026 added Android features: opening shared links from other apps, picture in picture and background playback.
+
+### Verified and detected are different things
+
+Detecting a video on a site does not mean the voice-over works there. The README separates the verified platforms, YouTube, VK and Vimeo, from those that are detected but untested: TikTok, Twitch, Twitter/X, Reddit, Rutube and others.
+An early wording counted any detection as support and promised “55+ platforms”. On 30 September 2026 that was fixed at the top of the README too: it now also says what is verified and what is only detected.
+
+### Where it stands
+
+The latest release is v1.2.0 from 25 April 2026, with builds on the releases page. There are no automated tests; the build process packages the app without a test step.
+Translation goes through a third-party service via an integration made by reverse engineering, so it can stop working without any change on my side. The app sends that service the video's identity, which is a property of the feature itself. No active development is planned; if I come back, I will start by describing platform support afresh against the service's current behaviour.
+
+## RemoteGamepad
+
+Shelf: P-10
+Status: Started in 2024, moved to uv and Python 3.13 in 2026
+Last reviewed: 2026-09-30
+Address: https://zenonel.github.io/projects/remotegamepad/
+
+A bridge that turns a phone into a wireless Xbox 360 gamepad for games on Linux: the phone's browser sends input over a WebSocket, and the computer presents a virtual gamepad to the system.
+
+Evidence: Public repository: github.com/ZenonEl/RemoteGamepad (https://github.com/ZenonEl/RemoteGamepad).
+
+### A phone instead of a gamepad
+
+Sometimes a controller will not connect to the computer directly: no drivers, Bluetooth pairing fails, but the phone can see it. Sometimes there is no physical gamepad at all. In both cases the phone can become the gamepad.
+I made the first commit on 11 September 2024, and on 14 September a stable v0.1.0 on pyxinput came out. I started by hand with the Gemini web chat.
+
+### How it works
+
+The phone opens a page, the browser reads input through the Web Gamepad API or on-screen buttons and sends it over a WebSocket to a FastAPI server. The server writes real evdev events into /dev/uinput, and the system sees an ordinary Xbox 360 pad, so the game needs no configuration.
+On startup the server prints a QR code with the local network address to the console: point the camera and the interface opens. If an external tunnel address is set, a second QR code is printed next to it, and the gamepad works away from home too.
+
+### Three rewrites of one bridge
+
+The project went from pyxinput and a Flask web interface in September 2024 to FastAPI in August 2025. On 6 March 2026 it moved to uv and Python 3.13, and on 11 May, with Claude, the X and Y button mapping was fixed and both READMEs were rewritten.
+
+### Where it stands
+
+I have played many different games through it, and the system saw the phone as an ordinary gamepad. The project is small: 49 commits, no tests, Linux only.
+
+## Keeping context when the sessions are shorter than the project
+
+Shelf: C-01
+Status: In daily use at work and on my own projects
+Last reviewed: 2026-10-01
+Address: https://zenonel.github.io/collections/ai-agent-workflow/
+
+Four tools and one habit. Material crosses a single boundary, is stored with its source, and reaches the next session as addresses rather than a retelling.
+
+Evidence: Three public repositories: mnemo (https://github.com/ZenonEl/mnemo), herald (https://github.com/ZenonEl/herald), ephemeris (https://github.com/ZenonEl/ephemeris). The kanon repository is still private.
+Evidence: The tools exchange links and published formats. They do not share a runtime, a database, or a library.
+
+### Why this exists
+
+Agent sessions are short and the project is long. Without something outside the session, each new one starts from a retelling of the previous one, and the further you go the less of the original material survives.
+Nothing errors when this happens. The requirement drifts from what the client actually said, and by the time that matters the original message is three tools away.
+
+### How the loop runs
+
+- Material arrives from people and project channels and crosses one boundary, herald, into a local buffer.
+- Mnemo imports it and stores it raw with its source, date, and attribution, and links it to requirements, decisions, and open questions.
+- I work with agents against that material. Before the work starts, a kanon checklist records what the result will be accepted on. Agents inspect and implement. I choose the approach and check the result.
+- Ephemeris records the state of the day and hands the next session addresses rather than a summary.
+- When something needs to reach a person, herald sends it through an allowed route, and a person reads it before the client does.
+The tools connect through links and published formats. Each one can be understood, and discarded, on its own.
+
+### What agents do not decide
+
+Agents read unfamiliar code faster than I do, hold more of a repository at once, and write a first version of a bounded change quickly.
+They also produce nearly correct work, and such mistakes are expensive. So the loop keeps four things with me: what the requirement means, where the boundary goes, what counts as verified, and whether a result is allowed to leave the machine.
+I do not read the code line by line. Generated work stays a draft until it has passed subagent review until LGTM, my manual and live checks, and a check against the requirements: what was asked for is done and nothing was lost. The cases (/work/) show what this looks like in practice.
+
+### What this does not prove
+
+Four tools and a working habit are not a product. I am the only one using them, at work and on my own projects, and nothing here has been tested by a team under someone else's constraints.
+The workflow reduces one specific loss, which is context evaporating between sessions. It does not make agent output correct, and it is not a security boundary.
+
+## When a passing check misses the problem
+
+Shelf: C-02
+Status: A working practice, documented from real corrections
+Last reviewed: 2026-10-01
+Address: https://zenonel.github.io/collections/corrections-and-checks/
+
+Catalogue imports and product metrics can pass a check while failing the task. These cases explain the mismatch and what had to change.
+
+Evidence: The examples combine public project histories with a private work archive. Employer and customer details stay out of the page.
+Evidence: This is a description of my practice, not a claim that the practice prevents every defect.
+
+### The check passed, but the task was not done
+
+In a catalogue import, checking for duplicate attributes was not enough. A size written as a point and the same size represented by a range were different strings, so both survived. The catalogue gained unwanted variants even though the duplicate check returned zero.
+A product metric had a different problem: it counted the presence of a name in an answer, including an answer that refused to provide the requested information. The implementation could count the text correctly and still report the wrong outcome.
+
+### What to read next
+
+The catalogue case follows the failure through a database restore and a change in transformation order. The metric case explains what had to count as a result before there was any point comparing scores.
+The cost-and-search case takes this further into evaluation: a cheaper proposal only helps if it still returns the material the task needs. The mnemo page covers another part of the same working process: keeping the original source available when a decision has to be revisited.

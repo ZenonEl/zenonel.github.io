@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "От сообщения до следующей сессии",
+    "animation": "none",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "incoming",
+        "label": "Входящий материал",
+        "focus": ["people", "capture", "mnemo", "agent"],
+        "note": "Сообщение или файл становится материалом проекта с адресом и источником."
+      },
+      {
+        "id": "decision",
+        "label": "Решение человека",
+        "focus": ["agent", "human", "send"],
+        "note": "Агент готовит изменение или сообщение, человек проверяет и принимает решение."
+      },
+      {
+        "id": "continuity",
+        "label": "Следующая сессия",
+        "focus": ["human", "ephemeris", "next_session", "mnemo"],
+        "note": "Состояние дня ведёт обратно к исходным материалам, а не к пересказу."
+      }
+    ]
+  },
+  "components": [
+    {"id": "people", "type": "external", "label": "Люди и каналы", "sublabel": "сообщения и файлы", "pos": [30, 210], "size": [142, 68]},
+    {"id": "capture", "type": "messagebus", "label": "herald", "sublabel": "временный локальный буфер", "tag": "захват", "pos": [200, 210], "size": [140, 72]},
+    {"id": "mnemo", "type": "database", "label": "mnemo", "sublabel": "материал, источник и связи", "tag": "архив", "pos": [370, 210], "size": [140, 72]},
+    {"id": "agent", "type": "backend", "label": "Сессия агента", "sublabel": "анализ и реализация", "pos": [540, 210], "size": [140, 68]},
+    {"id": "human", "type": "security", "label": "Решение и проверка", "sublabel": "ответственность у человека", "tag": "не автоматизируется", "pos": [710, 210], "size": [154, 76]},
+    {"id": "send", "type": "security", "label": "herald", "sublabel": "отправка по разрешённому маршруту", "tag": "адресат", "pos": [894, 210], "size": [160, 72]},
+    {"id": "next_session", "type": "backend", "label": "Следующая сессия", "sublabel": "входит по адресам", "pos": [370, 390], "size": [140, 68]},
+    {"id": "ephemeris", "type": "database", "label": "ephemeris", "sublabel": "состояние дня и адреса", "tag": "продолжение", "pos": [540, 390], "size": [140, 72]}
+  ],
+  "boundaries": [
+    {"kind": "region", "label": "Локальный контур проекта", "wraps": ["capture", "mnemo", "agent", "send", "next_session", "ephemeris"], "pad": 28},
+    {"kind": "security-group", "label": "Контроль человека", "wraps": ["human"], "pad": 18}
+  ],
+  "connections": [
+    {"id": "receive", "from": "people", "to": "capture"},
+    {"id": "import", "from": "capture", "to": "mnemo", "label": "импорт", "variant": "emphasis", "labelDy": -30},
+    {"id": "read", "from": "mnemo", "to": "agent", "label": "материал со ссылками", "labelDy": -30},
+    {"id": "propose", "from": "agent", "to": "human", "variant": "security"},
+    {"id": "approve", "from": "human", "to": "send", "label": "подготовленный текст", "variant": "emphasis", "labelDy": -32},
+    {"id": "record", "from": "human", "to": "ephemeris", "label": "что решено", "variant": "dashed"},
+    {"id": "resume", "from": "ephemeris", "to": "next_session", "label": "адреса и состояние", "variant": "dashed", "labelDy": -30},
+    {"id": "restore", "from": "mnemo", "to": "next_session", "label": "исходный контекст", "variant": "dashed", "labelAt": [461, 296]}
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Граница автоматизации",
+      "items": [
+        "Инструменты сохраняют материал и связывают шаги",
+        "Решение, проверка и ответственность остаются у человека"
+      ]
+    }
+  ]
+}

@@ -1,32 +1,37 @@
 User-agent: *
 Allow: /
 
-# Content-Signal directives (IETF AI Preferences / Content Signals)
-Content-Signal: search=yes, ai-train=no, ai-input=yes
-
-# AI crawlers — allowed for citation/answer, disallowed for training
-User-agent: GPTBot
+# Answer and citation crawlers: welcome.
+User-agent: OAI-SearchBot
 Allow: /
-Content-Signal: search=yes, ai-train=no, ai-input=yes
 
-User-agent: ClaudeBot
+User-agent: ChatGPT-User
 Allow: /
-Content-Signal: search=yes, ai-train=no, ai-input=yes
 
-User-agent: Claude-Web
+User-agent: Claude-SearchBot
 Allow: /
-Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: Claude-User
+Allow: /
 
 User-agent: PerplexityBot
 Allow: /
-Content-Signal: search=yes, ai-train=no, ai-input=yes
+
+User-agent: Perplexity-User
+Allow: /
+
+# Training crawlers: not welcome.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
 
 User-agent: Google-Extended
-Allow: /
-Content-Signal: search=yes, ai-train=no, ai-input=yes
+Disallow: /
 
-User-agent: anthropic-ai
-Allow: /
+User-agent: Applebot-Extended
+Disallow: /
 
 User-agent: CCBot
 Disallow: /
@@ -34,4 +39,10 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
+User-agent: meta-externalagent
+Disallow: /
+
+# AI usage policy: https://zenonel.github.io/.well-known/ai.txt
+# A short index for language models: https://zenonel.github.io/llms.txt
+# Every record and reading line as JSON: https://zenonel.github.io/catalog.json
 Sitemap: https://zenonel.github.io/sitemap.xml

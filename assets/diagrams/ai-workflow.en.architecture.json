@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "From a message to the next session",
+    "locale": "en",
+    "animation": "none",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "views": [
+      {"id": "incoming", "label": "Incoming material", "focus": ["people", "capture", "mnemo", "agent"], "note": "A message or file becomes project material with an address and source."},
+      {"id": "decision", "label": "Human decision", "focus": ["agent", "human", "send"], "note": "The agent prepares a change or message; a person checks it and makes the decision."},
+      {"id": "continuity", "label": "Next session", "focus": ["human", "ephemeris", "next_session", "mnemo"], "note": "The state of the day leads back to source material rather than another retelling."}
+    ]
+  },
+  "components": [
+    {"id": "people", "type": "external", "label": "People and channels", "sublabel": "messages and files", "pos": [30, 210], "size": [142, 68]},
+    {"id": "capture", "type": "messagebus", "label": "herald", "sublabel": "temporary local buffer", "tag": "capture", "pos": [200, 210], "size": [140, 72]},
+    {"id": "mnemo", "type": "database", "label": "mnemo", "sublabel": "material, source, links", "tag": "archive", "pos": [370, 210], "size": [140, 72]},
+    {"id": "agent", "type": "backend", "label": "Agent session", "sublabel": "analysis and implementation", "pos": [540, 210], "size": [140, 68]},
+    {"id": "human", "type": "security", "label": "Decision and check", "sublabel": "a person remains responsible", "tag": "not automated", "pos": [710, 210], "size": [154, 76]},
+    {"id": "send", "type": "security", "label": "herald", "sublabel": "send through an allowed route", "tag": "recipient", "pos": [894, 210], "size": [160, 72]},
+    {"id": "next_session", "type": "backend", "label": "Next session", "sublabel": "starts from addresses", "pos": [370, 390], "size": [140, 68]},
+    {"id": "ephemeris", "type": "database", "label": "ephemeris", "sublabel": "day state and addresses", "tag": "continuity", "pos": [540, 390], "size": [140, 72]}
+  ],
+  "boundaries": [
+    {"kind": "region", "label": "Local project boundary", "wraps": ["capture", "mnemo", "agent", "send", "next_session", "ephemeris"], "pad": 28},
+    {"kind": "security-group", "label": "Human control", "wraps": ["human"], "pad": 18}
+  ],
+  "connections": [
+    {"id": "receive", "from": "people", "to": "capture"},
+    {"id": "import", "from": "capture", "to": "mnemo", "label": "import", "variant": "emphasis", "labelDy": -30},
+    {"id": "read", "from": "mnemo", "to": "agent", "label": "cited material", "labelDy": -30},
+    {"id": "propose", "from": "agent", "to": "human", "variant": "security"},
+    {"id": "approve", "from": "human", "to": "send", "label": "prepared text", "variant": "emphasis", "labelDy": -32},
+    {"id": "record", "from": "human", "to": "ephemeris", "label": "what was decided", "variant": "dashed"},
+    {"id": "resume", "from": "ephemeris", "to": "next_session", "label": "addresses and state", "variant": "dashed", "labelDy": -30},
+    {"id": "restore", "from": "mnemo", "to": "next_session", "label": "source context", "variant": "dashed", "labelAt": [441, 296]}
+  ],
+  "cards": [
+    {"dot": "emerald", "title": "Automation boundary", "items": ["Tools preserve material and connect the steps", "Decision, verification, and responsibility stay with a person"]}
+  ]
+}

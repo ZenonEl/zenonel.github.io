@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colophon | ZenonEl</title>
+<meta name="description" content="How this site is built: a JSON content model, a standard library generator, self hosted assets, and checks on the published result.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101a24" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef3f6" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/colophon/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/colophon/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/colophon/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/colophon/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="alternate" type="application/json" title="catalog" href="/catalog.json">
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css?v=aecd12e5aaa4">
+<script>/* the site's only script: the theme control, and the reading line it remembers */
+(function(){var k="theme",L="line",d=document.documentElement;
+function sync(){var c=d.dataset.theme||"auto";var n=d.querySelectorAll("[data-theme-set]");
+for(var i=0;i<n.length;i++){n[i].setAttribute("aria-pressed",String(n[i].dataset.themeSet===c));}
+var l=d.dataset.line,r=l?d.querySelector('.route[data-line="'+l+'"]'):null;
+if(r){r.classList.add("is-chosen");r.parentNode.classList.add("has-choice");}}
+try{var v=localStorage.getItem(k);if(v==="light"||v==="dark"){d.dataset.theme=v;}
+var w=localStorage.getItem(L);if(w){d.dataset.line=w;}}catch(e){}
+d.addEventListener("click",function(e){var q=e.target.closest?e.target.closest("[data-line-set]"):null;
+if(q){try{localStorage.setItem(L,q.dataset.lineSet);}catch(e){}}
+var t=e.target.closest?e.target.closest("[data-theme-set]"):null;
+if(!t){return;}var v=t.dataset.themeSet;
+if(v==="auto"){delete d.dataset.theme;try{localStorage.removeItem(k);}catch(e){}}
+else{d.dataset.theme=v;try{localStorage.setItem(k,v);}catch(e){}}sync();});
+document.addEventListener("DOMContentLoaded",sync);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="Colophon">
+<meta property="og:description" content="How this site is built: a JSON content model, a standard library generator, self hosted assets, and checks on the published result.">
+<meta property="og:url" content="https://zenonel.github.io/colophon/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zenonel.github.io/assets/img/avatar.jpg">
+<meta property="og:image:alt" content="ZenonEl">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc">
+<script async data-analytics src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
+<script data-analytics>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XFXVE7BPP');</script>
+<script defer data-analytics src="https://app.rybbit.io/api/script.js" data-site-id="430"></script>
+<script defer data-analytics src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+<script defer data-analytics src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="/">
+    <img class="brand-mark" src="/assets/img/avatar.jpg" width="96" height="96"
+         alt="" loading="eager" decoding="async">
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Backend engineer</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Primary">
+    <ul><li><a href="/work/">Cases</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Approach</a></li><li><a href="/#lines">Map</a></li><li><a href="/cv/">CV</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-set="auto" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+    </div>
+    <a class="lang-switch" href="/ru/colophon/" lang="ru" hreflang="ru">RU</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<article class="entry static-page">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><ol>
+    <li><a href="/">Home</a></li>
+    <li><span>Colophon</span></li>
+  </ol></nav>
+  <header class="entry-head">
+    <p class="entry-coord">Colophon</p>
+    <h1>Colophon</h1>
+    <p class="entry-lead">Static HTML generated from a content model by a Python script with no dependencies. Of my own code the pages carry one script, which switches the theme and remembers which reading line you chose. The workflow diagram opens as a separate document with its own scripts and a text version next to it.</p>
+<p class="page-reviewed"><span>Updated</span> <time datetime="2026-10-01">2026-10-01</time></p>
+  </header>
+  <details class="story-mobile-contents"><summary>On this sheet</summary>
+  <ol><li><a href="#rules"><span class="rail-num" aria-hidden="true">01</span>What this site holds to</a></li><li><a href="#build"><span class="rail-num" aria-hidden="true">02</span>How it is built</a></li><li><a href="#marks"><span class="rail-num" aria-hidden="true">03</span>Sources, gaps, and omissions</a></li><li><a href="#stack"><span class="rail-num" aria-hidden="true">04</span>What it does not use</a></li><li><a href="#type"><span class="rail-num" aria-hidden="true">05</span>Type, surface, and ink</a></li><li><a href="#sheet"><span class="rail-num" aria-hidden="true">06</span>The shape of a record</a></li><li><a href="#icons"><span class="rail-num" aria-hidden="true">07</span>Icons, and what they are not allowed to do</a></li><li><a href="#checks"><span class="rail-num" aria-hidden="true">08</span>Checks</a></li><li><a href="#licence"><span class="rail-num" aria-hidden="true">09</span>Licence</a></li></ol></details>
+  <div class="page-layout">
+    <div class="entry-body"><section class="entry-section" id="rules" aria-labelledby="h-rules"><h2 id="h-rules"><span class="section-num" aria-hidden="true">01</span>What this site holds to</h2><p>Every number on the site has a source in my private evidence files: a commit, a daily, a production log or a till report. Clients, companies and people are not named. What went wrong stays on the page next to what worked.</p></section><section class="entry-section" id="build" aria-labelledby="h-build"><h2 id="h-build"><span class="section-num" aria-hidden="true">02</span>How it is built</h2><p>Every entry is a JSON file with an <code>en</code> and a <code>ru</code> block. A generator in the Python standard library reads them, checks them against the case and project schemas, and writes the whole site.</p><p>Stories have their own headings. The build checks that both languages contain the same sections in the same order, that the text is not empty, and that older fragment links still have a destination. All cases and projects are stories now; collections and service pages still use the original fixed section schema.</p><p>The newest rule also fails a required section that carries nothing but an owner-input marker. Structural presence was too easy to satisfy, and an empty section under a real heading reads as an answer.</p></section><section class="entry-section" id="marks" aria-labelledby="h-marks"><h2 id="h-marks"><span class="section-num" aria-hidden="true">03</span>Sources, gaps, and omissions</h2><p>The content model keeps sources and publication limits for editing and validation. Those internal labels are not shown as badges on the public pages.</p><p>When a number matters, the surrounding text says what was measured and where the boundary lies. A deliberate omission is explained in the sentence where it matters. A genuinely missing public fact remains an explicit <code>TODO: owner input</code> until it can be checked.</p></section><section class="entry-section" id="stack" aria-labelledby="h-stack"><h2 id="h-stack"><span class="section-num" aria-hidden="true">04</span>What it does not use</h2><ul><li>No framework and no build toolchain. The generator has no dependencies outside the standard library.</li><li>No application framework and no site-wide runtime. Interactive diagrams run only inside their own same-origin documents.</li><li>No ads and no embeds.</li><li>One web font, served from this site, under an open licence, in two subsets.</li><li>One icon set, 26 files, vendored and inlined. No icon font.</li><li>The workflow diagram is an interactive map in its own document inside the page. A text version sits under it, so the diagram stays readable with styles or scripts off.</li></ul></section><section class="entry-section" id="type" aria-labelledby="h-type"><h2 id="h-type"><span class="section-num" aria-hidden="true">05</span>Type, surface, and ink</h2><p>The site follows the reader's system colour scheme: graphite at night and soft paper by day. If the browser reports no preference, graphite is the default. Geometry, type and hierarchy do not move between them, so the two palettes belong to one design.</p><p>Both palettes use three surfaces: the page, an inset panel, and a sheet on the panel. Text is near white on graphite and deep green-black on paper. Structure is carried by one-pixel hairlines in two weights: a quieter one inside a list and a firmer one where a section starts.</p><p>Text and headings are set in Onest, a grotesque drawn for Cyrillic and Latin alike, published under the SIL Open Font License. It is served from this site in a Latin and a Cyrillic subset, so Russian and English headings come from the same drawing. Metadata is set in the system monospace.</p><p class="note">Softness comes from spacing and curvature, not from blur. There is no shadow anywhere in the stylesheet, and no decorative mark. Every line on a page separates, connects, or classifies something.</p><p>One botanical green accent, tuned separately for graphite and paper, appears only where it carries meaning: the current page, a hovered link, a gate on a diagram, and a section number. Every text colour is checked against WCAG 2.2 AA on all three surfaces in both palettes, and the lines that carry information clear the 3 to 1 ratio for non-text contrast.</p><p>Print uses a third palette, plain black on white. Navigation disappears and external link addresses are written out, so a printed CV or case remains readable without its screen chrome.</p></section><section class="entry-section" id="sheet" aria-labelledby="h-sheet"><h2 id="h-sheet"><span class="section-num" aria-hidden="true">06</span>The shape of a record</h2><p>A deep record keeps the narrative in one reading column and a quiet navigation rail beside it. The rail contains only section links and relevant destinations; editorial status and source bookkeeping stay in the content model.</p><p>On a narrow screen the contents becomes a compact disclosure before the text. The reading order stays the same across layouts.</p></section><section class="entry-section" id="icons" aria-labelledby="h-icons"><h2 id="h-icons"><span class="section-num" aria-hidden="true">07</span>Icons, and what they are not allowed to do</h2><p>The site uses 26 Iconoir icons across navigation, project cards, fact strips, links, and diagrams. Only those 26 files are vendored into the repository under the MIT licence.</p><p>There is no icon font and no request. Each icon is inlined into the page at build time from one helper, so a concept is drawn the same way everywhere and adding one means vendoring a file rather than pasting markup.</p><p>An icon supports a label and never replaces one. A decorative instance is hidden from assistive technology in the markup, the word beside it stays, and the validator fails a link whose only content is an icon.</p><p>The licence ships with them at <a href="/assets/icons/LICENSE.txt">/assets/icons/LICENSE.txt</a>.</p></section><section class="entry-section" id="checks" aria-labelledby="h-checks"><h2 id="h-checks"><span class="section-num" aria-hidden="true">08</span>Checks</h2><p><code>tools/build.py</code> refuses to build content that breaks the schema. <code>tools/validate.py</code> checks the generated site: internal links and fragments, page metadata, language parity, the rendered section schema, dash usage and a short list of canned phrases, the single allowed script, external requests, the self hosted font declarations, and the publish boundary.</p><p>The privacy check is stored as digests of stems rather than as words, because a linter that spells out the identifiers it protects has already published them. Hashing stems rather than whole words is what catches an inflected form. A single word can be tested against the list with <code>tools/validate.py --check-token</code>.</p><p>HTML validation runs separately with html-validate, and the commands are in the README.</p></section><section class="entry-section" id="licence" aria-labelledby="h-licence"><h2 id="h-licence"><span class="section-num" aria-hidden="true">09</span>Licence</h2><p>Site text is published under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of its own repository.</p><p>Onest is copyright The Onest Project Authors and is used under the SIL Open Font License 1.1. The full licence ships with the font at <a href="/assets/fonts/OFL.txt">/assets/fonts/OFL.txt</a>.</p><p>The interactive workflow diagram is built with Archify, whose code is under the MIT licence: <a href="/assets/diagrams/ARCHIFY-LICENSE.txt">/assets/diagrams/ARCHIFY-LICENSE.txt</a>. It embeds the JetBrains Mono font under the SIL Open Font License 1.1; the copyright notice sits inside the diagram document itself.</p></section></div>
+    <aside class="page-rail">
+      <nav aria-label="On this sheet">
+        <h2>On this sheet</h2>
+        <ol><li><a href="#rules"><span class="rail-num" aria-hidden="true">01</span>What this site holds to</a></li><li><a href="#build"><span class="rail-num" aria-hidden="true">02</span>How it is built</a></li><li><a href="#marks"><span class="rail-num" aria-hidden="true">03</span>Sources, gaps, and omissions</a></li><li><a href="#stack"><span class="rail-num" aria-hidden="true">04</span>What it does not use</a></li><li><a href="#type"><span class="rail-num" aria-hidden="true">05</span>Type, surface, and ink</a></li><li><a href="#sheet"><span class="rail-num" aria-hidden="true">06</span>The shape of a record</a></li><li><a href="#icons"><span class="rail-num" aria-hidden="true">07</span>Icons, and what they are not allowed to do</a></li><li><a href="#checks"><span class="rail-num" aria-hidden="true">08</span>Checks</a></li><li><a href="#licence"><span class="rail-num" aria-hidden="true">09</span>Licence</a></li></ol>
+      </nav>
+      <p class="rail-reviewed"><svg class="icon icon-reviewed" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M15 4V2M15 4V6M15 4H10.5M3 10V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V10H3Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10V6C3 4.89543 3.89543 4 5 4H7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 2V6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 10V6C21 4.89543 20.1046 4 19 4H18.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Updated</span> <time datetime="2026-10-01">2026-10-01</time></p>
+    </aside>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Backend development and tools I build for my own work.</p>
+    <p class="footer-legal">Site text under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of each repository.</p>
+  </div>
+  <nav class="footer-lines" aria-labelledby="footer-lines-title">
+    <h2 id="footer-lines-title">Reading lines</h2>
+    <ul><li class="tone-case"><span class="bullet" aria-hidden="true">1</span><a href="/cv/" data-line-set="hr">Hiring line</a><span>5 stations</span></li><li class="tone-collection"><span class="bullet" aria-hidden="true">2</span><a href="/work/ecommerce-scenarios/" data-line-set="engineer">Engineering line</a><span>6 stations</span></li><li class="tone-project"><span class="bullet" aria-hidden="true">3</span><a href="/collections/ai-agent-workflow/" data-line-set="tools">Tools line</a><span>11 stations</span></li></ul>
+  </nav>
+  <nav class="footer-map" aria-labelledby="footer-map-title">
+    <h2 id="footer-map-title">Every section</h2>
+    <ul><li><a href="/work/">Cases</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Approach</a></li><li><a href="/#lines">Map</a></li><li><a href="/cv/">CV</a></li><li><a href="/about/">About me</a></li><li><a href="/library/">Library index</a></li><li><a href="/colophon/">Colophon</a></li><li><a href="/ru/colophon/" lang="ru" hreflang="ru">Русская версия</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>

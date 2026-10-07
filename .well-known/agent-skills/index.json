@@ -3,14 +3,19 @@
   "agent": "https://zenonel.github.io/.well-known/agent-card.json",
   "skills": [
     {
-      "id": "project-info",
-      "url": "https://zenonel.github.io/llms.txt",
-      "description": "Information about ZenonEl's open-source projects"
+      "id": "case-info",
+      "url": "https://zenonel.github.io/work/",
+      "description": "Anonymised engineering cases from 2026"
     },
     {
-      "id": "crabvoice-info",
-      "url": "https://zenonel.github.io/crabvoice/",
-      "description": "Real-time voice translation app for online videos"
+      "id": "project-info",
+      "url": "https://zenonel.github.io/llms.txt",
+      "description": "Public projects and the tools for working with AI agents"
+    },
+    {
+      "id": "catalog",
+      "url": "https://zenonel.github.io/catalog.json",
+      "description": "Every record and reading line as JSON"
     }
   ]
 }

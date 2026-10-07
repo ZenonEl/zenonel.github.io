@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commercial cases | ZenonEl</title>
+<meta name="description" content="Five anonymised backend cases from 2026: a store before launch, a finance bot, a payment path, a product metric and the cost of an LLM answer.">
+<meta name="author" content="ZenonEl">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101a24" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#eef3f6" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://zenonel.github.io/work/">
+<link rel="alternate" hreflang="en" href="https://zenonel.github.io/work/">
+<link rel="alternate" hreflang="ru" href="https://zenonel.github.io/ru/work/">
+<link rel="alternate" hreflang="x-default" href="https://zenonel.github.io/work/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+<link rel="alternate" type="application/json" title="catalog" href="/catalog.json">
+<link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/library.css?v=aecd12e5aaa4">
+<script>/* the site's only script: the theme control, and the reading line it remembers */
+(function(){var k="theme",L="line",d=document.documentElement;
+function sync(){var c=d.dataset.theme||"auto";var n=d.querySelectorAll("[data-theme-set]");
+for(var i=0;i<n.length;i++){n[i].setAttribute("aria-pressed",String(n[i].dataset.themeSet===c));}
+var l=d.dataset.line,r=l?d.querySelector('.route[data-line="'+l+'"]'):null;
+if(r){r.classList.add("is-chosen");r.parentNode.classList.add("has-choice");}}
+try{var v=localStorage.getItem(k);if(v==="light"||v==="dark"){d.dataset.theme=v;}
+var w=localStorage.getItem(L);if(w){d.dataset.line=w;}}catch(e){}
+d.addEventListener("click",function(e){var q=e.target.closest?e.target.closest("[data-line-set]"):null;
+if(q){try{localStorage.setItem(L,q.dataset.lineSet);}catch(e){}}
+var t=e.target.closest?e.target.closest("[data-theme-set]"):null;
+if(!t){return;}var v=t.dataset.themeSet;
+if(v==="auto"){delete d.dataset.theme;try{localStorage.removeItem(k);}catch(e){}}
+else{d.dataset.theme=v;try{localStorage.setItem(k,v);}catch(e){}}sync();});
+document.addEventListener("DOMContentLoaded",sync);})();</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZenonEl">
+<meta property="og:title" content="Commercial cases">
+<meta property="og:description" content="Five anonymised backend cases from 2026: a store before launch, a finance bot, a payment path, a product metric and the cost of an LLM answer.">
+<meta property="og:url" content="https://zenonel.github.io/work/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zenonel.github.io/assets/img/avatar.jpg">
+<meta property="og:image:alt" content="ZenonEl">
+<meta name="twitter:card" content="summary">
+<meta name="google-site-verification" content="ZiqotmxED3CSexchqj8jKut49d14pneVSoVLUy2Vdhc">
+<script async data-analytics src="https://www.googletagmanager.com/gtag/js?id=G-7XFXVE7BPP"></script>
+<script data-analytics>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XFXVE7BPP');</script>
+<script defer data-analytics src="https://app.rybbit.io/api/script.js" data-site-id="430"></script>
+<script defer data-analytics src="https://cloud.umami.is/script.js" data-website-id="48d2f76f-9d85-4492-9e52-4ebfa4128c44"></script>
+<script defer data-analytics src="https://zenonelumami-jztp5tlau-zenonels-projects.vercel.app/script.js" data-website-id="6c7f8ba2-4aa6-4c22-9d92-615c4c7ea6ab"></script>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="/">
+    <img class="brand-mark" src="/assets/img/avatar.jpg" width="96" height="96"
+         alt="" loading="eager" decoding="async">
+    <span class="brand-name">ZenonEl</span>
+    <span class="brand-role">Backend engineer</span>
+  </a>
+  <nav class="masthead-nav" aria-label="Primary">
+    <ul><li><a href="/work/" aria-current="page">Cases</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Approach</a></li><li><a href="/#lines">Map</a></li><li><a href="/cv/">CV</a></li></ul>
+  </nav>
+  <div class="masthead-tools">
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-set="auto" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+    </div>
+    <a class="lang-switch" href="/ru/work/" lang="ru" hreflang="ru">RU</a>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+
+<article class="shelf">
+  <header class="page-head">
+    <p class="page-kicker">Commercial work</p>
+    <h1>Some of the work behind my CV.</h1>
+    <div class="page-lead"><p>I work on backends, product integrations and applied AI features. Requirements usually reach me through management; I turn them into implementation and check the result.</p><p>These cases cover payment paths through to their real effects, an import that needed a rollback, and metrics that were measuring the wrong thing. Each page follows the work far enough to explain the decision.</p></div>
+    <p class="page-note">Client names and private project material are omitted.</p>
+  </header>
+  <ul class="card-grid card-grid-wide"><li class="card card-case"><p class="card-coord"><span>W-01</span><span class="card-kind"><svg class="icon icon-case" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6 6L14 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14L18 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 18L18 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 21.4V2.6C2 2.26863 2.26863 2 2.6 2H18.2515C18.4106 2 18.5632 2.06321 18.6757 2.17574L21.8243 5.32426C21.9368 5.43679 22 5.5894 22 5.74853V21.4C22 21.7314 21.7314 22 21.4 22H2.6C2.26863 22 2 21.7314 2 21.4Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18V14H9V18H6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 2V5.4C18 5.73137 18.2686 6 18.6 6H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Case</span></p><h2 class="card-title"><a href="/work/ecommerce-scenarios/">Real orders before the official launch</a></h2><p class="card-summary">I led the build of a PrestaShop store on a stack that was new to me: AI agents wrote the code, and every change went through subagent review until LGTM before production. Work began on 24 July 2026 and the first real payment went through on 9 September. From 9 to 29 September, before the official launch and with the site hidden from search engines, the store took 101 orders, 70 of them paid, and 347,980 RUB passed through its online till.</p><p class="card-state"><span class="status-chip status-active"><span class="status-dot" aria-hidden="true"></span>Real orders and payments before the official launch</span></p><ul class="card-tags"><li>e-commerce</li><li>PHP</li><li>data import</li><li class="tag-more">+1</li></ul></li><li class="card card-case"><p class="card-coord"><span>W-02</span><span class="card-kind"><svg class="icon icon-case" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6 6L14 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14L18 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 18L18 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 21.4V2.6C2 2.26863 2.26863 2 2.6 2H18.2515C18.4106 2 18.5632 2.06321 18.6757 2.17574L21.8243 5.32426C21.9368 5.43679 22 5.5894 22 5.74853V21.4C22 21.7314 21.7314 22 21.4 22H2.6C2.26863 22 2 21.7314 2 21.4Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18V14H9V18H6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 2V5.4C18 5.73137 18.2686 6 18.6 6H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Case</span></p><h2 class="card-title"><a href="/work/finance-bot-blind-spots/">A finance bot that says only what it knows about the money</a></h2><p class="card-summary">I led the finance side of a Telegram back-office bot: balances, statements, scheduled payments and money notifications that the client sets up alone through a wizard. AI in the bot reads free text and writes a weekly summary; only code does the arithmetic. From 28 August to 29 September the bot sent 1,344 notifications, 1,005 of them on incoming payments, from six rules the client set up alone. What mattered most was never passing off a bank failure as an absence of money. Large sums pass through the client's accounts and a write to their bank cannot be undone, so company details and payments go through checks and gates: a wrong tax number or account has to stop before the bank, not after the money has gone to the wrong place.</p><p class="card-state"><span class="status-chip status-active"><span class="status-dot" aria-hidden="true"></span>Production bot; usage figures from production on 29 September 2026</span></p><ul class="card-tags"><li>Python</li><li>Telegram bot</li><li>bank APIs</li><li class="tag-more">+1</li></ul></li><li class="card card-case"><p class="card-coord"><span>W-03</span><span class="card-kind"><svg class="icon icon-case" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6 6L14 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14L18 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 18L18 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 21.4V2.6C2 2.26863 2.26863 2 2.6 2H18.2515C18.4106 2 18.5632 2.06321 18.6757 2.17574L21.8243 5.32426C21.9368 5.43679 22 5.5894 22 5.74853V21.4C22 21.7314 21.7314 22 21.4 22H2.6C2.26863 22 2 21.7314 2 21.4Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18V14H9V18H6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 2V5.4C18 5.73137 18.2686 6 18.6 6H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Case</span></p><h2 class="card-title"><a href="/work/contract-path-backend/">The contract path from order to fiscal receipt</a></h2><p class="card-summary">I ran the backend of a contract project: a site where a client builds an order in a configurator, pays online and receives documents in a personal cabinet. In five weeks I took it from someone else's skeleton to a production server, then through three waves of client changes. I counted a payment as finished not on the gateway's word, but only when the internal state agreed and a fiscal receipt existed.</p><p class="card-state"><span class="status-chip status-active"><span class="status-dot" aria-hidden="true"></span>In production since 8 July 2026; three waves of client changes delivered</span></p><ul class="card-tags"><li>payments</li><li>Python</li><li>Django</li><li class="tag-more">+1</li></ul></li><li class="card card-case"><p class="card-coord"><span>W-04</span><span class="card-kind"><svg class="icon icon-case" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6 6L14 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14L18 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 18L18 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 21.4V2.6C2 2.26863 2.26863 2 2.6 2H18.2515C18.4106 2 18.5632 2.06321 18.6757 2.17574L21.8243 5.32426C21.9368 5.43679 22 5.5894 22 5.74853V21.4C22 21.7314 21.7314 22 21.4 22H2.6C2.26863 22 2 21.7314 2 21.4Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18V14H9V18H6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 2V5.4C18 5.73137 18.2686 6 18.6 6H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Case</span></p><h2 class="card-title"><a href="/work/false-positive-metric/">The product metric counted a refusal as a successful answer</a></h2><p class="card-summary">This was my first project after coming back to the team, and the first where I learned to work with AI agents. In a SaaS that shows how AI assistants see a website, the main metric looked for the brand name in the model's answer and counted a refusal as a mention: 14 of 15 where there was not a single real one. I moved it to a verification service with a model judge and two rubrics, calibrated it on a 44-case set, and carried the same principle, no grounds means refusal, into article generation.</p><p class="card-state"><span class="status-chip status-active"><span class="status-dot" aria-hidden="true"></span>Production test stand; the project was dropped before a public launch</span></p><ul class="card-tags"><li>applied AI</li><li>LLM judge</li><li>calibration</li><li class="tag-more">+1</li></ul></li><li class="card card-case"><p class="card-coord"><span>W-05</span><span class="card-kind"><svg class="icon icon-case" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6 6L14 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 14L18 14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 18L18 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 21.4V2.6C2 2.26863 2.26863 2 2.6 2H18.2515C18.4106 2 18.5632 2.06321 18.6757 2.17574L21.8243 5.32426C21.9368 5.43679 22 5.5894 22 5.74853V21.4C22 21.7314 21.7314 22 21.4 22H2.6C2.26863 22 2 21.7314 2 21.4Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 18V14H9V18H6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 2V5.4C18 5.73137 18.2686 6 18.6 6H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>Case</span></p><h2 class="card-title"><a href="/work/llm-cost-and-search-quality/">The cost of an answer: cache, a narrow check and a search that failed its measurement</a></h2><p class="card-summary">The bot answers franchise staff in their work chats from a knowledge base and stays silent or calls a person on everything else. When the base grew nearly fourfold, from 85 to 337 entries, an answer took 22 seconds and cost $0.13. I found where the money went: the provider's cache worked every other time, and the verifier read the whole base for the sake of a few entries. On 8 August, on live traffic, an answer with a cache hit cost $0.0310 against $0.0968 without one, and segmented search, which management asked to check as a saving, was rejected by measurement.</p><p class="card-state"><span class="status-chip status-active"><span class="status-dot" aria-hidden="true"></span>In production in 20 franchise chats; figures from the work logs and a production snapshot on 29 September 2026</span></p><ul class="card-tags"><li>applied AI</li><li>LLM cost</li><li>retrieval</li><li class="tag-more">+1</li></ul></li></ul>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-note">
+    <p>ZenonEl. Backend development and tools I build for my own work.</p>
+    <p class="footer-legal">Site text under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">CC BY 4.0<svg class="icon icon-external-link icon-inline" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M6.00005 19L19 5.99996M19 5.99996V18.48M19 5.99996H6.52005" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></a>. Project code stays under the licence of each repository.</p>
+  </div>
+  <nav class="footer-lines" aria-labelledby="footer-lines-title">
+    <h2 id="footer-lines-title">Reading lines</h2>
+    <ul><li class="tone-case"><span class="bullet" aria-hidden="true">1</span><a href="/cv/" data-line-set="hr">Hiring line</a><span>5 stations</span></li><li class="tone-collection"><span class="bullet" aria-hidden="true">2</span><a href="/work/ecommerce-scenarios/" data-line-set="engineer">Engineering line</a><span>6 stations</span></li><li class="tone-project"><span class="bullet" aria-hidden="true">3</span><a href="/collections/ai-agent-workflow/" data-line-set="tools">Tools line</a><span>11 stations</span></li></ul>
+  </nav>
+  <nav class="footer-map" aria-labelledby="footer-map-title">
+    <h2 id="footer-map-title">Every section</h2>
+    <ul><li><a href="/work/">Cases</a></li><li><a href="/projects/">Projects</a></li><li><a href="/collections/">Approach</a></li><li><a href="/#lines">Map</a></li><li><a href="/cv/">CV</a></li><li><a href="/about/">About me</a></li><li><a href="/library/">Library index</a></li><li><a href="/colophon/">Colophon</a></li><li><a href="/ru/work/" lang="ru" hreflang="ru">Русская версия</a></li></ul>
+  </nav>
+</footer>
+</body>
+</html>
